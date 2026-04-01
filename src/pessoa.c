@@ -8,6 +8,10 @@ typedef struct{
     int diaNascimento;
     int mesNascimento;
     int anoNascimento;
+    int CEP;
+    char face;
+    int numero;
+    char complemento[50];
 }stPessoa;
 
 Pessoa criarPessoa(){
@@ -22,6 +26,9 @@ Pessoa criarPessoa(){
     novaPessoa->mesNascimento = 0;
     novaPessoa->anoNascimento = 0;
     novaPessoa->sexo = -1;
+    novaPessoa->CEP = -1;
+    novaPessoa->face = 'i'; //indefinido
+    novaPessoa->numero = -1;
     
     return (Pessoa)novaPessoa;
 }
@@ -78,6 +85,47 @@ void setNascimento(Pessoa p, int dia, int mes, int ano){
     pessoa->anoNascimento = ano;
 }
 
+void setCEP(Pessoa p, int CEP){
+    if(p == NULL){
+        printf("Erro em setCEP\n");
+        return;
+    }
+
+    stPessoa *pessoa = (stPessoa*)p;
+    pessoa->CEP = CEP;
+}
+
+void setFace(Pessoa p, char face){
+    if(p == NULL){
+        printf("Erro em setFace\n");
+        return;
+    }
+    stPessoa* pessoa = (stPessoa*)p;
+    pessoa->face = face;
+}
+
+void setNum(Pessoa p, int num){
+    if(p == NULL){
+        printf("Erro em setNum\n");
+        return;
+    }
+    stPessoa* pessoa = (stPessoa*)p;
+    pessoa->numero = num;
+}
+
+void setComplemento(Pessoa p, char* complemento){
+    if(p == NULL){
+        printf("Erro em setComplemento\n");
+        return;
+    }
+
+    stPessoa* pessoa =(stPessoa*)p;
+    char* complementoPassado = malloc(sizeof(strlen(complemento)));
+    if(complementoPassado == NULL) return NULL;
+
+    stcpy(pessoa->complemento, complementoPassado);
+}
+
 int getCPF(Pessoa p){
     stPessoa* pessoa = (stPessoa*)p;
 
@@ -112,4 +160,20 @@ int getMesNascimento(Pessoa p){
 int getAnoNascimento(Pessoa p){
     stPessoa* pessoa = (stPessoa*)p;
     return pessoa->anoNascimento;
+}
+
+int getCEP(Pessoa p){
+    return ((stPessoa*)p)->CEP;
+}
+
+char getFace(Pessoa p){
+    return ((stPessoa*)p)->face;
+}
+
+int getNum(Pessoa p){
+    return ((stPessoa*)p)->numero;
+}
+
+char* getComplemento(Pessoa p){
+    return ((stPessoa*)p)->complemento;
 }

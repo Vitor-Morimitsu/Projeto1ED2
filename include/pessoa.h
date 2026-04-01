@@ -41,6 +41,26 @@ void setSexo(Pessoa p, int sexo);
 /// @param ano Ano do nascimento
 void setNascimento(Pessoa p, int dia, int mes, int ano);
 
+/// @brief Define o CEP de um morador
+/// @param p Pessoa já existente
+/// @param CEP CEP
+void setCEP(Pessoa p, int CEP);
+
+/// @brief Define a face da quadra em que uma pessoa mora
+/// @param p Pessoa já existente
+/// @param face Face da quadra 
+void setFace(Pessoa p, char face);
+
+/// @brief Define o numero da moradia onde uma pessoa mora
+/// @param p Pessoa já existente
+/// @param num Numero da moradia
+void setNum(Pessoa p, int num);
+
+/// @brief Define o complemento de onde uma pessoa mora
+/// @param p Pessoa já existente
+/// @param complemento Complemento que será adicionado
+void setComplemento(Pessoa p, char* complemento);
+
 /// @brief Retorna o CPF de uma pessoa
 /// @param p Pessoa já existente
 /// @return CPF
@@ -75,5 +95,25 @@ int getMesNascimento(Pessoa p);
 /// @param p Pessoa já existente
 /// @return Ano de nascimento
 int getAnoNascimento(Pessoa p);
+
+/// @brief Retorna o CEP de uma pessoa
+/// @param p Pessoa já existente
+/// @return CEP
+int getCEP(Pessoa p);
+
+/// @brief Retorna a face da quadra em que uma pessoa mora
+/// @param p Pessoa já existente
+/// @return Letra da face
+char getFace(Pessoa p);
+
+/// @brief Retorna o numero da moradia de uma pessoa
+/// @param p Pessoa já existente
+/// @return Numero da moradia
+int getNum(Pessoa p);
+
+/// @brief Retorna o complemento da moradia de uma pessoa
+/// @param p Pessoa já existente
+/// @return Complemento
+char* getComplemento(Pessoa p);
 
 #endif

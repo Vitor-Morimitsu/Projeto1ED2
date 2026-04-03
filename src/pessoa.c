@@ -177,3 +177,16 @@ int getNum(Pessoa p){
 char* getComplemento(Pessoa p){
     return ((stPessoa*)p)->complemento;
 }
+
+void liberarPessoa(Pessoa p){
+    if(p == NULL){
+        printf("Erro em liberarPessoa\n");
+        return;
+    }
+    stPessoa* pessoa = (stPessoa*)p;
+
+    free(pessoa->nome);
+    free(pessoa->sobrenome);
+    free(pessoa->complemento);
+    free(pessoa);
+}

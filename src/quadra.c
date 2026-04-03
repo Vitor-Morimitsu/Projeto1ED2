@@ -59,3 +59,15 @@ void setPreenchimentoQuadra(Quadra q, int sw, char* cfill, char* cstrk){
 int getCEPQuadra(Quadra q){
     return ((stQuadra*)q)->CEP;
 }
+
+void liberarQuadra(Quadra q){
+    if(q == NULL){
+        printf("Erro em liberarQuadra\n");
+        return;
+    }
+
+    stQuadra* quadra = (stQuadra*)q;
+    free(quadra->cstrk);
+    free(quadra->fill);
+    free(quadra);
+}

@@ -116,4 +116,8 @@ int getNum(Pessoa p);
 /// @return Complemento
 char* getComplemento(Pessoa p);
 
+/// @brief Libera o espaço ocupado por uma pessoa na memória
+/// @param p Pessoa que será apagada
+void liberarPessoa(Pessoa p);
+
 #endif

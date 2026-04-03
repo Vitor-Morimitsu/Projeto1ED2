@@ -39,11 +39,6 @@ void setPreenchimentoQuadra(Quadra q, int sw, char* cfill, char* cstrk);
 /// @return CEP
 int getCEPQuadra(Quadra q);
 
-
-
-
-
-
-
+void liberarQuadra(Quadra q);
 
 #endif

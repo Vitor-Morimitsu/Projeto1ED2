@@ -32,7 +32,7 @@ void setSobrenome(Pessoa p, char* sobrenome);
 /// @brief Define o sexo de uma pessoa
 /// @param p Pessoa já existente
 /// @param sexo Sexo que será atribuído à uma pessoa
-void setSexo(Pessoa p, int sexo);
+void setSexo(Pessoa p, char sexo);
 
 /// @brief Define o nascimento de uma pessoa
 /// @param p Pessoa já existente
@@ -76,10 +76,10 @@ char* getNome(Pessoa p);
 /// @return Sobrenome
 char* getSobrenome(Pessoa p);
 
-/// @brief Retorna o sexo de uma pessoa (0 - homem, 1 - mulher)
+/// @brief Retorna o sexo de uma pessoa 
 /// @param p Pessoa já existente
 /// @return Sexo
-int getSexo(Pessoa p);
+char getSexo(Pessoa p);
 
 /// @brief Retorna o dia do nascimento de uma pessoa
 /// @param p Pessoa já existente
@@ -119,5 +119,16 @@ char* getComplemento(Pessoa p);
 /// @brief Libera o espaço ocupado por uma pessoa na memória
 /// @param p Pessoa que será apagada
 void liberarPessoa(Pessoa p);
+
+/// @brief Escreve os dados de uma Pessoa no arquivo binário na posição atual do cursor
+/// @param p Pessoa já existente
+/// @param arquivo Arquivo binário aberto para escrita
+void escreverPessoaArquivo(Pessoa p, FILE* arquivo);
+
+/// @brief Lê e retorna uma Pessoa do arquivo binário a partir de um offset
+/// @param arquivo Arquivo binário aberto para leitura
+/// @param offset Posição em bytes no arquivo onde a Pessoa está gravada
+/// @return Pessoa lida, ou NULL em caso de erro
+Pessoa lerPessoaArquivo(FILE* arquivo, long offset);
 
 #endif

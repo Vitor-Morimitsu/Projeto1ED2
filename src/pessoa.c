@@ -1,10 +1,12 @@
 #include "pessoa.h"
+#include <string.h>
+#include <stdlib.h>
 
 typedef struct{
     int CPF;
     char nome[32];
     char sobrenome[50];
-    int sexo;
+    char sexo;
     int diaNascimento;
     int mesNascimento;
     int anoNascimento;
@@ -45,29 +47,23 @@ void setCPF(Pessoa p, int cpf){
 void setNome(Pessoa p, char* nome){
     if(p == NULL){
         printf("Erro ao settar nome\n");
+        return;
     }
     stPessoa *pessoa =(stPessoa*)p;
-    char* nomePassado = malloc(sizeof(strlen(nome)));
-    if(nomePassado == NULL) return NULL;
-
-    strcpy(pessoa->nome,nomePassado);
+    strcpy(pessoa->nome, nome);
 }
 
 void setSobrenome(Pessoa p, char* sobrenome){
     if(p == NULL){
         printf("Erro em settar o sobrenome\n");
+        return;
     }
 
     stPessoa* pessoa = (stPessoa*)p;
-
-    char* sobrenomePassado = malloc(sizeof(strlen(sobrenome)));
-    if(sobrenomePassado == NULL) return NULL;
-
-    strcpy(pessoa->sobrenome, sobrenomePassado);
+    strcpy(pessoa->sobrenome, sobrenome);
 }
 
-void setSexo(Pessoa p, int sexo){
-    //0-homem e 1-mulher
+void setSexo(Pessoa p, char sexo){
     if(p == NULL){
         printf("Erro em settar o sexo\n");
     }
@@ -120,10 +116,7 @@ void setComplemento(Pessoa p, char* complemento){
     }
 
     stPessoa* pessoa =(stPessoa*)p;
-    char* complementoPassado = malloc(sizeof(strlen(complemento)));
-    if(complementoPassado == NULL) return NULL;
-
-    stcpy(pessoa->complemento, complementoPassado);
+    strcpy(pessoa->complemento, complemento);
 }
 
 int getCPF(Pessoa p){
@@ -142,7 +135,7 @@ char* getSobrenome(Pessoa p){
     return pessoa->sobrenome;
 }
 
-int getSexo(Pessoa p){
+char getSexo(Pessoa p){
     stPessoa* pessoa = (stPessoa*)p;
     return pessoa->sexo;
 }
@@ -184,9 +177,31 @@ void liberarPessoa(Pessoa p){
         return;
     }
     stPessoa* pessoa = (stPessoa*)p;
-
-    free(pessoa->nome);
-    free(pessoa->sobrenome);
-    free(pessoa->complemento);
     free(pessoa);
+}
+
+void escreverPessoaArquivo(Pessoa p, FILE* arquivo){
+    if(p == NULL || arquivo == NULL){
+        printf("Erro em escreverPessoaArquivo\n");
+        return;
+    }
+    stPessoa* pessoa = (stPessoa*)p;
+    fwrite(pessoa, sizeof(stPessoa), 1, arquivo);
+}
+
+Pessoa lerPessoaArquivo(FILE* arquivo, long offset){
+    if(arquivo == NULL){
+        printf("Erro em lerPessoaArquivo\n");
+        return NULL;
+    }
+    stPessoa* pessoa = malloc(sizeof(stPessoa));
+    if(pessoa == NULL) return NULL;
+
+    fseek(arquivo, offset, SEEK_SET);
+    int lidos = fread(pessoa, sizeof(stPessoa), 1, arquivo);
+    if(lidos != 1){
+        free(pessoa);
+        return NULL;
+    }
+    return (Pessoa)pessoa;
 }

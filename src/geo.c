@@ -13,7 +13,10 @@ void lerGeo(FILE* geo, FILE* svg,HashFile hashFile){
         if (linha[0] == '\n' || linha[0] == '#') continue;
         int lidos_cmd = sscanf(linha, "%9s", comando);
         if (lidos_cmd != 1) continue;
-
+        
+        char sw[50];
+        char cfill[50];
+        char cstrk[50];
         if(strcmp(comando, 'q') == 0){
             //criar uma quadra
             Quadra novaQuadra = criarQuadra();
@@ -24,15 +27,16 @@ void lerGeo(FILE* geo, FILE* svg,HashFile hashFile){
             int lidos = sscanf(&linha[strlen(comando)]," %d %d %d %d %d",&CEP,&x,&y,&w,&h);
             setCEPQuadra(novaQuadra,CEP);
             setDimensoesQuadra(novaQuadra, x,y,w,h);
+            setPreenchimentoQuadra(novaQuadra, sw, cfill,cstrk);
 
             //inserir quadra no hashfile de quadras
             long endereco = buscarDadosHashFile(hashFile, CEP);
             inserirDadoHashFile(hashFile, CEP, endereco);
         }else if(strcmp(comando,'cq') == 0){
             //vai receber as cores de preenchimento, da borda e espessura das bordas das quadras
-            char sw[50];
-            char cfill[50];
-            char cstrk[50];
+            int lidos = sscanf(&linha[strlen(comando)], " %s %s %s", sw, cfill, cstrk);        
+            
+            //quando for criar as quadras, elas serão criadas com essas cores
         }
     }
 }

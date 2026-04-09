@@ -25,14 +25,14 @@ void setCEPQuadra(Quadra q, int cepQuadra);
 /// @param y Localização da âncora no eixo y
 /// @param w Tamanho do comprimento
 /// @param h Tamanho da altura
-void setDimensoesQuadra(Quadra q, int x, int y, int w, int h);
+void setDimensoesQuadra(Quadra q, float x, float y, float w, float h);
 
 /// @brief Define os parâmetros de preenchimento da quadra
 /// @param q Quadra já existente
 /// @param sw Espessura da borda
 /// @param cfill Cor de preenchimento
 /// @param cstrk Cor preenchimento da borda
-void setPreenchimentoQuadra(Quadra q, int sw, char* cfill, char* cstrk);
+void setPreenchimentoQuadra(Quadra q, char* sw, char* cfill, char* cstrk);
 
 /// @brief Retorna o CEP de uma quadra 
 /// @param q Quadra já existente

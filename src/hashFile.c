@@ -7,7 +7,7 @@
 
 
 typedef struct {
-    int CPF;
+    int numero;
     long offset;  
     int  valido;  // 0=vazio, 1=válido, 2=removido
 } Registro;
@@ -24,26 +24,27 @@ typedef struct {
     int   profundidade;
 } stHashFile;
 
-int getBits(int CPF, int profundidade) {
+//pega os bits menos significativos do numero para determinar em qaul bucket o registro deve ir
+int getBits(int numero, int profundidade) {
     int mascara = (1 << profundidade) - 1;
-    return CPF & mascara;
+    return numero & mascara;
 }
 
-HashFile criarHashFile() {
-    FILE* diretorio = fopen("diretorio.bin", "r+b");
-    FILE* dados     = fopen("dados.bin",     "r+b");
+HashFile criarHashFile(const char* dirArq, const char* dadosArq) {
+    FILE* diretorio = fopen(dirArq,  "r+b");
+    FILE* dados     = fopen(dadosArq, "r+b");
     if (diretorio == NULL || dados == NULL) {
         if (diretorio) fclose(diretorio);
         if (dados)     fclose(dados);
 
-        diretorio = fopen("diretorio.bin", "w+b");
+        diretorio = fopen(dirArq, "w+b");
         if (diretorio == NULL) {
-            printf("Erro ao criar diretorio.bin\n");
+            printf("Erro ao criar %s\n", dirArq);
             return NULL;
         }
-        dados = fopen("dados.bin", "w+b");
+        dados = fopen(dadosArq, "w+b");
         if (dados == NULL) {
-            printf("Erro ao criar dados.bin\n");
+            printf("Erro ao criar %s\n", dadosArq);
             fclose(diretorio);
             return NULL;
         }
@@ -86,14 +87,14 @@ int getProfundidadeHash(HashFile hash) {
     return ((stHashFile*)hash)->profundidade;
 }
 
-long getEnderecoDiretorioHashFile(HashFile hash, int CPF) {
+long getEnderecoDiretorioHashFile(HashFile hash, int numero) {
     if (hash == NULL) {
         printf("Erro em getEnderecoDiretorioHashFile\n");
         return -1;
     }
 
     stHashFile* hashFile = (stHashFile*)hash;
-    int   indice     = getBits(CPF, hashFile->profundidade);
+    int   indice     = getBits(numero, hashFile->profundidade);
     long  posicao    = sizeof(int) + (long)indice * sizeof(long);
 
     fseek(hashFile->diretorio, posicao, SEEK_SET);
@@ -103,7 +104,7 @@ long getEnderecoDiretorioHashFile(HashFile hash, int CPF) {
     return offsetBucket;
 }
 
-void inserirDadoHashFile(HashFile hashFile, int CPF, long offset) {
+void inserirDadoHashFile(HashFile hashFile, int numero, long offset) {
     if (hashFile == NULL) {
         printf("Erro em inserirDadoHashFile\n");
         return;
@@ -111,7 +112,7 @@ void inserirDadoHashFile(HashFile hashFile, int CPF, long offset) {
 
     stHashFile* hash = (stHashFile*)hashFile;
 
-    long   offsetBucket = getEnderecoDiretorioHashFile(hashFile, CPF);
+    long   offsetBucket = getEnderecoDiretorioHashFile(hashFile, numero);
     if (offsetBucket == -1) return;
 
     Bucket bucket;
@@ -120,7 +121,7 @@ void inserirDadoHashFile(HashFile hashFile, int CPF, long offset) {
 
     if (bucket.qtdRegistro < tamBucket) {
         int slot = bucket.qtdRegistro;
-        bucket.registros[slot].CPF    = CPF;
+        bucket.registros[slot].numero = numero;
         bucket.registros[slot].offset = offset;
         bucket.registros[slot].valido = registro_valido;
         bucket.qtdRegistro++;
@@ -129,16 +130,16 @@ void inserirDadoHashFile(HashFile hashFile, int CPF, long offset) {
         fwrite(&bucket, sizeof(Bucket), 1, hash->dados);
     } else {
         /* Split não implementado ainda */
-        printf("Bucket cheio! Split não implementado. CPF %d não foi inserido.\n", CPF);
+        printf("Bucket cheio! Split não implementado. numero %d não foi inserido.\n", numero);
     }
 }
 
-long buscarDadosHashFile(HashFile hashFile, int CPF) {
+long buscarDadosHashFile(HashFile hashFile, int numero) {
     if (hashFile == NULL) return -1;
 
     stHashFile* hash = (stHashFile*)hashFile;
 
-    long offsetBucket = getEnderecoDiretorioHashFile(hashFile, CPF);
+    long offsetBucket = getEnderecoDiretorioHashFile(hashFile, numero);
     if (offsetBucket == -1) return -1;
 
     Bucket bucket;
@@ -147,14 +148,14 @@ long buscarDadosHashFile(HashFile hashFile, int CPF) {
 
     for (int i = 0; i < tamBucket; i++) {
         if (bucket.registros[i].valido == registro_valido &&
-            bucket.registros[i].CPF   == CPF) {
+            bucket.registros[i].numero == numero) {
             return bucket.registros[i].offset;
         }
     }
     return -1;
 }
 
-void removerDadosHashFile(HashFile hashFile, int CPF) {
+void removerDadosHashFile(HashFile hashFile, int numero) {
     if (hashFile == NULL) {
         printf("Erro em removerDadosHashFile\n");
         return;
@@ -162,7 +163,7 @@ void removerDadosHashFile(HashFile hashFile, int CPF) {
 
     stHashFile* hash = (stHashFile*)hashFile;
 
-    long offsetBucket = getEnderecoDiretorioHashFile(hashFile, CPF);
+    long offsetBucket = getEnderecoDiretorioHashFile(hashFile, numero);
     if (offsetBucket == -1) return;
 
     Bucket bucket;
@@ -171,7 +172,7 @@ void removerDadosHashFile(HashFile hashFile, int CPF) {
 
     for (int i = 0; i < tamBucket; i++) {
         if (bucket.registros[i].valido == registro_valido &&
-            bucket.registros[i].CPF   == CPF) {
+            bucket.registros[i].numero  == numero) {
             bucket.registros[i].valido = registro_removido;
             bucket.qtdRegistro--;
 
@@ -180,7 +181,7 @@ void removerDadosHashFile(HashFile hashFile, int CPF) {
             return;
         }
     }
-    printf("CPF %d não encontrado para remoção.\n", CPF);
+    printf("numero %d não encontrado para remoção.\n", numero);
 }
 
 void fecharHashFile(HashFile hashFile) {

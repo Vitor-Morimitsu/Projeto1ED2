@@ -13,39 +13,31 @@ void comandoP(HashFile hashFile, FILE* pessoasArq,
     setSexo(novoHabitante, sexo);
     setNascimento(novoHabitante, diaNascimento, mesNascimento, anoNascimento);
 
-    /* Descobre o offset no final do arquivo e grava a Pessoa lá */
     fseek(pessoasArq, 0, SEEK_END);
     long offset = ftell(pessoasArq);
     escreverPessoaArquivo(novoHabitante, pessoasArq);
 
-    /* Registra CPF → offset na HashFile */
     inserirDadoHashFile(hashFile, CPF, offset);
 
-    /* Pessoa não precisa mais ficar na memória */
     liberarPessoa(novoHabitante);
 }
 
-void comandoM(HashFile hashFile, FILE* pessoasArq,
-              int CPF, int CEP, char face, int num, char* complemento) {
-
-    /* Localiza onde a Pessoa está em pessoas.bin */
+void comandoM(HashFile hashFile, FILE* pessoasArq,int CPF, int CEP, char face, int num, char* complemento) {
+    //procura onde a pessoa está
     long offset = buscarDadosHashFile(hashFile, CPF);
     if (offset == -1) {
         printf("CPF %d não encontrado na HashFile em comandoM\n", CPF);
         return;
     }
 
-    /* Lê a Pessoa do disco */
     Pessoa habitante = lerPessoaArquivo(pessoasArq, offset);
     if (habitante == NULL) return;
 
-    /* Atualiza os dados de endereço */
     setCEP(habitante, CEP);
     setFace(habitante, face);
     setNum(habitante, num);
     setComplemento(habitante, complemento);
 
-    /* Regrava no mesmo offset */
     fseek(pessoasArq, offset, SEEK_SET);
     escreverPessoaArquivo(habitante, pessoasArq);
 
@@ -76,10 +68,7 @@ void lerPm(FILE* arquivoPm, HashFile hashFile, FILE* pessoasArq) {
             char sobrenome[100] = "";
 
             /* Lê a partir do caractere após o comando */
-            int lidos = sscanf(&linha[strlen(comando)],
-                               " %d %99s %99s %c %d/%d/%d",
-                               &CPF, nome, sobrenome, &sexo,
-                               &diaNascimento, &mesNascimento, &anoNascimento);
+            int lidos = sscanf(&linha[strlen(comando)]," %d %99s %99s %c %d/%d/%d",&CPF, nome, sobrenome, &sexo,&diaNascimento, &mesNascimento, &anoNascimento);
             if (lidos != 7) {
                 printf("Erro ao ler parâmetros do comando 'p'\n");
                 continue;

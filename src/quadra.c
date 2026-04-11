@@ -65,5 +65,49 @@ void liberarQuadra(Quadra q) {
         printf("Erro em liberarQuadra\n");
         return;
     }
-    free(q); // campos são arrays fixos, não há heap interno para liberar
+    free(q);
+}
+
+char* serializarQuadra(Quadra q) {
+    if (q == NULL) return NULL;
+    stQuadra* quadra = (stQuadra*)q;
+    char* buf = malloc(256);
+    if (!buf) return NULL;
+    /* Formato: CEP|x|y|w|h|sw|fill|cstrk */
+    snprintf(buf, 256, "%d|%.4f|%.4f|%.4f|%.4f|%s|%s|%s",
+             quadra->CEP, quadra->x, quadra->y, quadra->w, quadra->h,
+             quadra->sw, quadra->fill, quadra->cstrk);
+    return buf;
+}
+
+Quadra desserializarQuadra(const char* s) {
+    if (s == NULL) return NULL;
+    stQuadra* q = malloc(sizeof(stQuadra));
+    if (!q) return NULL;
+    memset(q, 0, sizeof(stQuadra));
+    /* %[^|] le ate o proximo '|' (suporta espacos dentro dos campos) */
+    sscanf(s, "%d|%f|%f|%f|%f|%15[^|]|%31[^|]|%31[^|]",
+           &q->CEP, &q->x, &q->y, &q->w, &q->h,
+           q->sw, q->fill, q->cstrk);
+    return (Quadra)q;
+}
+
+void escreverQuadraArquivo(Quadra q, FILE* arq) {
+    if (q == NULL || arq == NULL) {
+        printf("Erro em escreverQuadraArquivo\n");
+        return;
+    }
+    fwrite((stQuadra*)q, sizeof(stQuadra), 1, arq);
+}
+
+Quadra lerQuadraArquivo(FILE* arq, long offset) {
+    if (arq == NULL) return NULL;
+    stQuadra* q = malloc(sizeof(stQuadra));
+    if (!q) return NULL;
+    fseek(arq, offset, SEEK_SET);
+    if (fread(q, sizeof(stQuadra), 1, arq) != 1) {
+        free(q);
+        return NULL;
+    }
+    return (Quadra)q;
 }

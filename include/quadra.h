@@ -41,4 +41,21 @@ int getCEPQuadra(Quadra q);
 
 void liberarQuadra(Quadra q);
 
+/// @brief Serializa todos os campos de uma Quadra em uma string de texto.
+/// Formato: "CEP|x|y|w|h|sw|fill|cstrk"
+/// @param q Quadra já existente
+/// @return String alocada dinamicamente (caller deve liberar com free)
+char* serializarQuadra(Quadra q);
+
+/// @brief Reconstrói uma Quadra a partir de uma string serializada.
+/// @param s String no formato gerado por serializarQuadra
+/// @return Quadra alocada dinamicamente, ou NULL em caso de erro
+Quadra desserializarQuadra(const char* s);
+
+/// @brief Escreve os dados de uma Quadra no arquivo binário na posição atual
+void escreverQuadraArquivo(Quadra q, FILE* arq);
+
+/// @brief Lê e retorna uma Quadra do arquivo binário a partir de um offset
+Quadra lerQuadraArquivo(FILE* arq, long offset);
+
 #endif

@@ -1,197 +1,352 @@
 #include "hashFile.h"
 
-#define registro_vazio    0
-#define registro_valido   1
-#define registro_removido 2
-#define tamBucket         4
+#define VAZIO    0
+#define VALIDO   1
+#define REMOVIDO 2
 
+#define TAM_BUCKET 10
+#define TAM_DADO   HASHFILE_TAM_BUF   // 256 é o tamanho máximo da string
+
+#define REG_CONTENT_SIZE  (3 + 3 + 10 + 3 + TAM_DADO)  
+#define REG_LINE_SIZE     (REG_CONTENT_SIZE + 1)        
+
+#define HEADER_CONTENT_SIZE  30
+#define HEADER_LINE_SIZE     (HEADER_CONTENT_SIZE + 1)  
+
+#define TAM_BUCKET_BYTES  (HEADER_LINE_SIZE + TAM_BUCKET * REG_LINE_SIZE)
 
 typedef struct {
-    int numero;
-    long offset;  
-    int  valido;  // 0=vazio, 1=válido, 2=removido
+    int  status;          /* VAZIO / VALIDO / REMOVIDO */
+    int  chave;
+    char dado[TAM_DADO];  /* string serializada do dado */
 } Registro;
 
 typedef struct {
-    int       profundidadeLocal;
-    int       qtdRegistro;
-    Registro  registros[tamBucket];
+    int      profLocal;
+    int      qtd;         /* número de registros VALIDO no bucket */
+    Registro registros[TAM_BUCKET];
 } Bucket;
 
 typedef struct {
-    FILE* diretorio; 
-    FILE* dados;     
-    int   profundidade;
+    FILE* dir;
+    FILE* dados;
+    int   profundidade;   /* profundidade global */
 } stHashFile;
 
-//pega os bits menos significativos do numero para determinar em qaul bucket o registro deve ir
-int getBits(int numero, int profundidade) {
-    int mascara = (1 << profundidade) - 1;
-    return numero & mascara;
+/* ── Funções privadas ─────────────────────────────────────── */
+
+static int getBits(int numero, int prof) {
+    return numero & ((1 << prof) - 1);
+}
+
+/* Retorna o offset do bucket para 'chave' lendo o arquivo diretório */
+static long _lerOffsetBucket(stHashFile* h, int chave) {
+    int  idx = getBits(chave, h->profundidade);
+    long pos = sizeof(int) + (long)idx * sizeof(long);
+    fseek(h->dir, pos, SEEK_SET);
+    long off = -1;
+    fread(&off, sizeof(long), 1, h->dir);
+    return off;
+}
+
+/* Escreve um offset no diretório para o índice 'idx' */
+static void _escreverOffsetDir(stHashFile* h, int idx, long offset) {
+    long pos = sizeof(int) + (long)idx * sizeof(long);
+    fseek(h->dir, pos, SEEK_SET);
+    fwrite(&offset, sizeof(long), 1, h->dir);
+}
+
+/* Lê um bucket completo a partir do offset no arquivo de dados */
+static void _lerBucket(stHashFile* h, long offset, Bucket* b) {
+    fseek(h->dados, offset, SEEK_SET);
+
+    /* Lê cabeçalho (linha de tamanho fixo) */
+    char linhaH[HEADER_LINE_SIZE + 1];
+    memset(linhaH, 0, sizeof(linhaH));
+    fread(linhaH, 1, HEADER_LINE_SIZE, h->dados);
+    b->profLocal = 0;
+    b->qtd       = 0;
+    sscanf(linhaH, "prof_local=%d|qtd=%d", &b->profLocal, &b->qtd);
+
+    /* Lê cada linha de registro */
+    for (int i = 0; i < TAM_BUCKET; i++) {
+        char linhaR[REG_LINE_SIZE + 1];
+        memset(linhaR, 0, sizeof(linhaR));
+        fread(linhaR, 1, REG_LINE_SIZE, h->dados);
+
+        int  s = 0, k = 0;
+        char dado[TAM_DADO + 1];
+        memset(dado, 0, sizeof(dado));
+
+        /* %256[^\n] lê todos os chars até '\n', incluindo espaços de padding */
+        sscanf(linhaR, "s=%d|k=%d|d=%256[^\n]", &s, &k, dado);
+
+        /* Remove espaços de padding do final */
+        int len = (int)strlen(dado);
+        while (len > 0 && dado[len - 1] == ' ') dado[--len] = '\0';
+
+        b->registros[i].status = s;
+        b->registros[i].chave  = k;
+        strncpy(b->registros[i].dado, dado, TAM_DADO - 1);
+        b->registros[i].dado[TAM_DADO - 1] = '\0';
+    }
+}
+
+/* Escreve um bucket completo no offset especificado do arquivo de dados */
+static void _escreverBucket(stHashFile* h, long offset, Bucket* b) {
+    fseek(h->dados, offset, SEEK_SET);
+
+    /* ── Cabeçalho ── */
+    char linhaH[HEADER_LINE_SIZE + 1];
+    int n = snprintf(linhaH, HEADER_LINE_SIZE + 1,
+                     "prof_local=%d|qtd=%d", b->profLocal, b->qtd);
+    for (int i = n; i < HEADER_CONTENT_SIZE; i++) linhaH[i] = ' ';
+    linhaH[HEADER_CONTENT_SIZE] = '\n';
+    fwrite(linhaH, 1, HEADER_LINE_SIZE, h->dados);
+
+    /* ── Registros ── */
+    for (int i = 0; i < TAM_BUCKET; i++) {
+        char linhaR[REG_LINE_SIZE + 1];
+        int n2 = snprintf(linhaR, REG_LINE_SIZE + 1,
+                          "s=%d|k=%010d|d=%s",
+                          b->registros[i].status,
+                          b->registros[i].chave,
+                          b->registros[i].dado);
+        /* Preenche com espaços até REG_CONTENT_SIZE, depois '\n' */
+        for (int j = n2; j < REG_CONTENT_SIZE; j++) linhaR[j] = ' ';
+        linhaR[REG_CONTENT_SIZE] = '\n';
+        fwrite(linhaR, 1, REG_LINE_SIZE, h->dados);
+    }
+    fflush(h->dados);
+}
+
+/* Retorna o offset do próximo byte livre no arquivo de dados */
+static long _proximaPosFim(stHashFile* h) {
+    fseek(h->dados, 0, SEEK_END);
+    return ftell(h->dados);
+}
+
+/* Dobra o diretório: duplica o número de entradas */
+static void _dobrarDiretorio(stHashFile* h) {
+    int tamanhoAtual  = 1 << h->profundidade;
+    int novaTamanho   = tamanhoAtual * 2;
+    int novaProfund   = h->profundidade + 1;
+
+    /* Lê todos os offsets atuais */
+    long* offsets = malloc(tamanhoAtual * sizeof(long));
+    if (!offsets) return;
+    fseek(h->dir, sizeof(int), SEEK_SET);
+    fread(offsets, sizeof(long), tamanhoAtual, h->dir);
+
+    /* Atualiza profundidade no cabeçalho do diretório */
+    fseek(h->dir, 0, SEEK_SET);
+    fwrite(&novaProfund, sizeof(int), 1, h->dir);
+
+    /* Escreve os novos offsets: entrada i aponta ao mesmo bucket de i % tamanhoAtual */
+    for (int i = 0; i < novaTamanho; i++) {
+        long off = offsets[i % tamanhoAtual];
+        fwrite(&off, sizeof(long), 1, h->dir);
+    }
+    fflush(h->dir);
+    free(offsets);
+    h->profundidade = novaProfund;
+}
+
+/* Faz o split do bucket que contém 'chave' */
+static void _splitBucket(stHashFile* h, int chave) {
+    long   offsetAntigo = _lerOffsetBucket(h, chave);
+    Bucket bucketAntigo;
+    _lerBucket(h, offsetAntigo, &bucketAntigo);
+
+    /* Se profLocal == profGlobal, dobrar o diretório antes */
+    if (bucketAntigo.profLocal == h->profundidade) {
+        _dobrarDiretorio(h);
+    }
+
+    int novoProfLocal = bucketAntigo.profLocal + 1;
+
+    /* Criar dois novos buckets vazios */
+    Bucket b0, b1;
+    memset(&b0, 0, sizeof(Bucket));
+    memset(&b1, 0, sizeof(Bucket));
+    b0.profLocal = b1.profLocal = novoProfLocal;
+
+    /* Redistribuir os registros válidos */
+    for (int i = 0; i < TAM_BUCKET; i++) {
+        if (bucketAntigo.registros[i].status == VALIDO) {
+            /* O bit discriminante é o bit na posição bucketAntigo.profLocal */
+            int novoBit = (getBits(bucketAntigo.registros[i].chave, novoProfLocal)
+                          >> bucketAntigo.profLocal) & 1;
+            Bucket* dest = (novoBit == 0) ? &b0 : &b1;
+            dest->registros[dest->qtd++] = bucketAntigo.registros[i];
+        }
+    }
+
+    /* b0 reutiliza offsetAntigo; b1 é alocado no final do arquivo */
+    long offsetB1 = _proximaPosFim(h);
+    _escreverBucket(h, offsetAntigo, &b0);
+    _escreverBucket(h, offsetB1,     &b1);
+
+    /* Atualizar entradas do diretório que apontavam para o bucket antigo */
+    int mascAntiga    = (1 << bucketAntigo.profLocal) - 1;
+    int baseAntiga    = getBits(chave, bucketAntigo.profLocal);
+    int totalEntradas = 1 << h->profundidade;
+
+    for (int i = 0; i < totalEntradas; i++) {
+        if ((i & mascAntiga) == baseAntiga) {
+            int novoBit = (i >> bucketAntigo.profLocal) & 1;
+            _escreverOffsetDir(h, i, (novoBit == 0) ? offsetAntigo : offsetB1);
+        }
+    }
+    fflush(h->dir);
 }
 
 HashFile criarHashFile(const char* dirArq, const char* dadosArq) {
-    FILE* diretorio = fopen(dirArq,  "r+b");
-    FILE* dados     = fopen(dadosArq, "r+b");
-    if (diretorio == NULL || dados == NULL) {
-        if (diretorio) fclose(diretorio);
-        if (dados)     fclose(dados);
+    /* Tenta abrir arquivos existentes */
+    FILE* dir   = fopen(dirArq,   "r+b");
+    FILE* dados = fopen(dadosArq, "r+b");
 
-        diretorio = fopen(dirArq, "w+b");
-        if (diretorio == NULL) {
-            printf("Erro ao criar %s\n", dirArq);
-            return NULL;
-        }
+    if (dir == NULL || dados == NULL) {
+        /* Algum arquivo não existe — fecha o que porventura abriu e cria tudo do zero */
+        if (dir)   fclose(dir);
+        if (dados) fclose(dados);
+
+        dir = fopen(dirArq, "w+b");
+        if (!dir) { printf("Erro ao criar %s\n", dirArq); return NULL; }
+
         dados = fopen(dadosArq, "w+b");
-        if (dados == NULL) {
+        if (!dados) {
             printf("Erro ao criar %s\n", dadosArq);
-            fclose(diretorio);
+            fclose(dir);
             return NULL;
         }
 
-        int profundidadeInicial = 1;
-        fwrite(&profundidadeInicial, sizeof(int), 1, diretorio);
+        /* ── Inicializar diretório binário ── */
+        int profInicial = 1;
+        fwrite(&profInicial, sizeof(int), 1, dir);
 
-        Bucket bucketVazio;
-        memset(&bucketVazio, 0, sizeof(Bucket));
-        bucketVazio.profundidadeLocal = 1;
+        long off0 = 0;
+        long off1 = (long)TAM_BUCKET_BYTES;
+        fwrite(&off0, sizeof(long), 1, dir);   /* bucket índice 0 */
+        fwrite(&off1, sizeof(long), 1, dir);   /* bucket índice 1 */
+        fflush(dir);
 
-        long offsetBucket0 = 0;
-        long offsetBucket1 = (long)sizeof(Bucket);
-        fwrite(&bucketVazio, sizeof(Bucket), 1, dados); /* bucket índice 0 */
-        fwrite(&bucketVazio, sizeof(Bucket), 1, dados); /* bucket índice 1 */
-
-        /* Registrar os offsets no diretório */
-        fwrite(&offsetBucket0, sizeof(long), 1, diretorio);
-        fwrite(&offsetBucket1, sizeof(long), 1, diretorio);
+        /* ── Inicializar dois buckets vazios no arquivo de dados ── */
+        stHashFile htmp = { dir, dados, profInicial };
+        Bucket bVazio;
+        memset(&bVazio, 0, sizeof(Bucket));
+        bVazio.profLocal = 1;
+        _escreverBucket(&htmp, off0, &bVazio);
+        _escreverBucket(&htmp, off1, &bVazio);
     }
 
     stHashFile* hash = malloc(sizeof(stHashFile));
-    if (hash == NULL) {
-        fclose(diretorio);
-        fclose(dados);
-        return NULL;
-    }
+    if (!hash) { fclose(dir); fclose(dados); return NULL; }
 
-    hash->diretorio = diretorio;
-    hash->dados     = dados;
+    hash->dir   = dir;
+    hash->dados = dados;
 
-    /* Lê a profundidade do cabeçalho do arquivo */
-    fseek(diretorio, 0, SEEK_SET);
-    fread(&hash->profundidade, sizeof(int), 1, diretorio);
+    /* Lê a profundidade global do cabeçalho do diretório */
+    fseek(dir, 0, SEEK_SET);
+    fread(&hash->profundidade, sizeof(int), 1, dir);
 
     return (HashFile)hash;
 }
 
-int getProfundidadeHash(HashFile hash) {
-    return ((stHashFile*)hash)->profundidade;
+int getProfundidadeHash(HashFile hf) {
+    if (!hf) return -1;
+    return ((stHashFile*)hf)->profundidade;
 }
 
-long getEnderecoDiretorioHashFile(HashFile hash, int numero) {
-    if (hash == NULL) {
-        printf("Erro em getEnderecoDiretorioHashFile\n");
-        return -1;
-    }
-
-    stHashFile* hashFile = (stHashFile*)hash;
-    int   indice     = getBits(numero, hashFile->profundidade);
-    long  posicao    = sizeof(int) + (long)indice * sizeof(long);
-
-    fseek(hashFile->diretorio, posicao, SEEK_SET);
-
-    long offsetBucket = -1;
-    fread(&offsetBucket, sizeof(long), 1, hashFile->diretorio);
-    return offsetBucket;
+long getEnderecoDiretorioHashFile(HashFile hash, int chave) {
+    if (!hash) return -1;
+    return _lerOffsetBucket((stHashFile*)hash, chave);
 }
 
-void inserirDadoHashFile(HashFile hashFile, int numero, long offset) {
-    if (hashFile == NULL) {
-        printf("Erro em inserirDadoHashFile\n");
-        return;
+void inserirDadoHashFile(HashFile hashFile, int chave, const char* dado) {
+    if (!hashFile || !dado) return;
+    stHashFile* h = (stHashFile*)hashFile;
+
+    /* Tenta inserir; se o bucket estiver cheio, faz split e repete */
+    for (int tentativas = 0; tentativas < 64; tentativas++) {
+        long   offsetBucket = _lerOffsetBucket(h, chave);
+        Bucket b;
+        _lerBucket(h, offsetBucket, &b);
+
+        /* Se a chave já existe, apenas atualiza o dado */
+        for (int i = 0; i < TAM_BUCKET; i++) {
+            if (b.registros[i].status == VALIDO && b.registros[i].chave == chave) {
+                strncpy(b.registros[i].dado, dado, TAM_DADO - 1);
+                b.registros[i].dado[TAM_DADO - 1] = '\0';
+                _escreverBucket(h, offsetBucket, &b);
+                return;
+            }
+        }
+
+        /* Procura slot vazio ou removido para inserção */
+        for (int i = 0; i < TAM_BUCKET; i++) {
+            if (b.registros[i].status != VALIDO) {
+                b.registros[i].status = VALIDO;
+                b.registros[i].chave  = chave;
+                strncpy(b.registros[i].dado, dado, TAM_DADO - 1);
+                b.registros[i].dado[TAM_DADO - 1] = '\0';
+                b.qtd++;
+                _escreverBucket(h, offsetBucket, &b);
+                return;
+            }
+        }
+
+        /* Bucket cheio → split e tenta novamente */
+        _splitBucket(h, chave);
     }
-
-    stHashFile* hash = (stHashFile*)hashFile;
-
-    long   offsetBucket = getEnderecoDiretorioHashFile(hashFile, numero);
-    if (offsetBucket == -1) return;
-
-    Bucket bucket;
-    fseek(hash->dados, offsetBucket, SEEK_SET);
-    fread(&bucket, sizeof(Bucket), 1, hash->dados);
-
-    if (bucket.qtdRegistro < tamBucket) {
-        int slot = bucket.qtdRegistro;
-        bucket.registros[slot].numero = numero;
-        bucket.registros[slot].offset = offset;
-        bucket.registros[slot].valido = registro_valido;
-        bucket.qtdRegistro++;
-
-        fseek(hash->dados, offsetBucket, SEEK_SET);
-        fwrite(&bucket, sizeof(Bucket), 1, hash->dados);
-    } else {
-        /* Split não implementado ainda */
-        printf("Bucket cheio! Split não implementado. numero %d não foi inserido.\n", numero);
-    }
+    printf("Erro: nao foi possivel inserir chave %d apos multiplos splits.\n", chave);
 }
 
-long buscarDadosHashFile(HashFile hashFile, int numero) {
-    if (hashFile == NULL) return -1;
+int buscarDadosHashFile(HashFile hashFile, int chave, char* buf, int tamBuf) {
+    if (!hashFile || !buf) return 0;
+    stHashFile* h = (stHashFile*)hashFile;
 
-    stHashFile* hash = (stHashFile*)hashFile;
+    long offsetBucket = _lerOffsetBucket(h, chave);
+    if (offsetBucket < 0) return 0;
 
-    long offsetBucket = getEnderecoDiretorioHashFile(hashFile, numero);
-    if (offsetBucket == -1) return -1;
+    Bucket b;
+    _lerBucket(h, offsetBucket, &b);
 
-    Bucket bucket;
-    fseek(hash->dados, offsetBucket, SEEK_SET);
-    fread(&bucket, sizeof(Bucket), 1, hash->dados);
-
-    for (int i = 0; i < tamBucket; i++) {
-        if (bucket.registros[i].valido == registro_valido &&
-            bucket.registros[i].numero == numero) {
-            return bucket.registros[i].offset;
+    for (int i = 0; i < TAM_BUCKET; i++) {
+        if (b.registros[i].status == VALIDO && b.registros[i].chave == chave) {
+            strncpy(buf, b.registros[i].dado, tamBuf - 1);
+            buf[tamBuf - 1] = '\0';
+            return 1;
         }
     }
-    return -1;
+    return 0;
 }
 
-void removerDadosHashFile(HashFile hashFile, int numero) {
-    if (hashFile == NULL) {
-        printf("Erro em removerDadosHashFile\n");
-        return;
-    }
+void removerDadosHashFile(HashFile hashFile, int chave) {
+    if (!hashFile) return;
+    stHashFile* h = (stHashFile*)hashFile;
 
-    stHashFile* hash = (stHashFile*)hashFile;
+    long offsetBucket = _lerOffsetBucket(h, chave);
+    if (offsetBucket < 0) return;
 
-    long offsetBucket = getEnderecoDiretorioHashFile(hashFile, numero);
-    if (offsetBucket == -1) return;
+    Bucket b;
+    _lerBucket(h, offsetBucket, &b);
 
-    Bucket bucket;
-    fseek(hash->dados, offsetBucket, SEEK_SET);
-    fread(&bucket, sizeof(Bucket), 1, hash->dados);
-
-    for (int i = 0; i < tamBucket; i++) {
-        if (bucket.registros[i].valido == registro_valido &&
-            bucket.registros[i].numero  == numero) {
-            bucket.registros[i].valido = registro_removido;
-            bucket.qtdRegistro--;
-
-            fseek(hash->dados, offsetBucket, SEEK_SET);
-            fwrite(&bucket, sizeof(Bucket), 1, hash->dados);
+    for (int i = 0; i < TAM_BUCKET; i++) {
+        if (b.registros[i].status == VALIDO && b.registros[i].chave == chave) {
+            b.registros[i].status = REMOVIDO;
+            b.qtd--;
+            _escreverBucket(h, offsetBucket, &b);
             return;
         }
     }
-    printf("numero %d não encontrado para remoção.\n", numero);
+    printf("Chave %d nao encontrada para remocao.\n", chave);
 }
 
 void fecharHashFile(HashFile hashFile) {
-    if (hashFile == NULL) {
-        printf("Erro em fecharHashFile\n");
-        return;
-    }
-
-    stHashFile* hash = (stHashFile*)hashFile;
-    fclose(hash->diretorio);
-    fclose(hash->dados);
-    free(hash);
+    if (!hashFile) return;
+    stHashFile* h = (stHashFile*)hashFile;
+    fclose(h->dir);
+    fclose(h->dados);
+    free(h);
 }

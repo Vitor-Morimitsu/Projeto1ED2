@@ -49,7 +49,7 @@ void comandoNasc(HashFile hashPessoas, int cpf, char* nome, char* sobrenome, cha
 /// @brief Pessoa falece.
 /// @param hashPessoas Hash File que contém as pessoas 
 /// @param cpf CPF da pessoa 
-void comandoRip(HashFile hashPessoas, int cpf);
+void comandoRip(FILE* txt, HashFile hashPessoas, int cpf);
 
 /// @brief Morador identificado por cpf muda-se para novo endereço.
 /// @param svg Arquivo svg 

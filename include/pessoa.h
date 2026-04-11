@@ -131,4 +131,15 @@ void escreverPessoaArquivo(Pessoa p, FILE* arquivo);
 /// @return Pessoa lida, ou NULL em caso de erro
 Pessoa lerPessoaArquivo(FILE* arquivo, long offset);
 
+/// @brief Serializa todos os campos de uma Pessoa em uma string de texto.
+/// Formato: "CPF|nome|sobrenome|sexo|dia|mes|ano|CEP|face|num|complemento"
+/// @param p Pessoa já existente
+/// @return String alocada dinamicamente com os dados (caller deve liberar com free)
+char* serializarPessoa(Pessoa p);
+
+/// @brief Reconstrói uma Pessoa a partir de uma string serializada.
+/// @param s String no formato gerado por serializarPessoa
+/// @return Pessoa alocada dinamicamente, ou NULL em caso de erro
+Pessoa desserializarPessoa(const char* s);
+
 #endif

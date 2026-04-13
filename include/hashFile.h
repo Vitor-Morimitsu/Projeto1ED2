@@ -23,12 +23,6 @@
         permitindo fseek direto via offset do diretório.
 */
 
-/* ── Nomes fixos dos arquivos gerados por este módulo ── */
-#define HASHFILE_PESSOAS_DIR    "pessoas.dir"
-#define HASHFILE_PESSOAS_DADOS  "pessoas.txt"
-#define HASHFILE_QUADRAS_DIR    "quadras.dir"
-#define HASHFILE_QUADRAS_DADOS  "quadras.txt"
-
 /** Tamanho máximo (em bytes) da string serializada de um dado. */
 #define HASHFILE_TAM_BUF 256
 
@@ -43,25 +37,24 @@ HashFile criarHashFile(const char* dirArq, const char* dadosArq);
 /// @brief Retorna a profundidade global da HashFile.
 int getProfundidadeHash(HashFile hash);
 
-/// @brief Insere ou atualiza o registro completo na HashFile.
-///        Se o bucket ficar cheio, realiza split automático.
+/// @brief Insere ou atualiza o registro completo na HashFile. Se o bucket ficar cheio, realiza split automático.
 /// @param hashFile HashFile já existente
-/// @param chave    Chave inteira (CPF para Pessoa, CEP para Quadra)
-/// @param dado     String serializada do registro completo
-void inserirDadoHashFile(HashFile hashFile, int chave, const char* dado);
+/// @param chave Chave inteira (CPF para Pessoa, CEP para Quadra)
+/// @param dado String serializada do registro completo
+void inserirDadoHashFile(HashFile hashFile, char* chave, const char* dado);
 
 /// @brief Busca uma chave na HashFile e preenche 'buf' com o registro completo.
 /// @param hashFile HashFile já existente
-/// @param chave    Chave a buscar
-/// @param buf      Buffer de saída (deve ter pelo menos HASHFILE_TAM_BUF bytes)
-/// @param tamBuf   Tamanho do buffer (use HASHFILE_TAM_BUF)
+/// @param chave Chave a buscar
+/// @param buf Buffer de saída (deve ter pelo menos HASHFILE_TAM_BUF bytes)
+/// @param tamBuf Tamanho do buffer (use HASHFILE_TAM_BUF)
 /// @return 1 se encontrado, 0 se não encontrado
-int buscarDadosHashFile(HashFile hashFile, int chave, char* buf, int tamBuf);
+int buscarDadosHashFile(HashFile hashFile, char* chave, char* buf, int tamBuf);
 
 /// @brief Remove logicamente um registro da HashFile (marcação de removido).
 /// @param hashFile HashFile já existente
-/// @param chave    Chave do registro a remover
-void removerDadosHashFile(HashFile hashFile, int chave);
+/// @param chave Chave do registro a remover
+void removerDadosHashFile(HashFile hashFile, char* chave);
 
 /// @brief Retorna o offset do bucket para uma chave no arquivo de dados.
 /// @return Offset em bytes, ou -1 em caso de erro.

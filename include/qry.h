@@ -16,14 +16,14 @@
 /// @param hashQuadras HashFile que contém as quadras 
 /// @param hashPessoas Hash File que contém as pessoas 
 /// @param cep CEP da quadra CEP  
-void comandoRq(FILE* txt, FILE* svg,HashFile hashQuadras,HashFile hashPessoas, int cep);
+void comandoRq(FILE* txt, FILE* svg,HashFile hashQuadras,HashFile hashPessoas, char* cep);
 
 /// @brief Calcula o número de moradores da quadra(por face e total)
 /// @param svg Arquivo svg Arquivo svg 
 /// @param hashQuadras HashFile que contém as quadras 
 /// @param hashPessoas Hash File que contém as pessoas 
 /// @param cep CEP da quadra  
-void comandoPq(FILE* svg, HashFile hashQuadras, HashFile hashPessoas, int cep);
+void comandoPq(FILE* svg, HashFile hashQuadras, HashFile hashPessoas, char* cep);
 
 /// @brief Produz várias estatísticas sobre habitantes de Bitnópolis.
 /// @param txt Arquivo txt 
@@ -44,12 +44,12 @@ void comandoH(FILE* txt, HashFile hashPessoas);
 /// @param diaNasc Dia do nascimento
 /// @param mesNasc Mês do nascimento
 /// @param anoNasc Ano do nascimento
-void comandoNasc(HashFile hashPessoas, int cpf, char* nome, char* sobrenome, char sexo, int diaNasc, int mesNasc, int anoNasc);
+void comandoNasc(HashFile hashPessoas, char* cpf, char* nome, char* sobrenome, char sexo, int diaNasc, int mesNasc, int anoNasc);
 
 /// @brief Pessoa falece.
 /// @param hashPessoas Hash File que contém as pessoas 
 /// @param cpf CPF da pessoa 
-void comandoRip(FILE* txt, HashFile hashPessoas, int cpf);
+void comandoRip(FILE* txt, HashFile hashPessoas, char* cpf);
 
 /// @brief Morador identificado por cpf muda-se para novo endereço.
 /// @param svg Arquivo svg 
@@ -60,7 +60,7 @@ void comandoRip(FILE* txt, HashFile hashPessoas, int cpf);
 /// @param face Face da quadra
 /// @param num Numéro da moradia
 /// @param complemento Complemento do endereço
-void comandoMud(FILE* svg, HashFile hashQuadras, HashFile hashPessoas, int cpf, int cep, char face, int num, char* complemento);
+void comandoMud(FILE* svg, HashFile hashQuadras, HashFile hashPessoas, char* cpf, char* cep, char face, int num, char* complemento);
 
 /// @brief Morador identificado por cpf é despejado.
 /// @param txt Arquivo txt 
@@ -68,7 +68,7 @@ void comandoMud(FILE* svg, HashFile hashQuadras, HashFile hashPessoas, int cpf, 
 /// @param hashQuadras HashFile que contém as quadras 
 /// @param hashPessoas Hash File que contém as pessoas 
 /// @param cpf CPF da pessoa 
-void comandoDspj(FILE* txt, FILE* svg, HashFile hashQuadras, HashFile hashPessoas,int cpf);
+void comandoDspj(FILE* txt, FILE* svg, HashFile hashQuadras, HashFile hashPessoas,char* cpf);
 
 /// @brief Função principal para ler os comando passados no arquivo .qry  
 /// @param txt Arquivo txt 

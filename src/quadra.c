@@ -2,7 +2,7 @@
 #include <string.h>
 
 typedef struct {
-    int   CEP;
+    char  CEP[32];
     float x, y, w, h;   // coordenadas e dimensões (float para SVG)
     char  sw[16];        // espessura da borda  (ex: "1.0px")
     char  fill[32];      // cor de preenchimento (ex: "black")
@@ -15,19 +15,20 @@ Quadra criarQuadra() {
         printf("Erro em criarQuadra\n");
         return NULL;
     }
-    novaQuadra->CEP = 0;
+    novaQuadra->CEP[0] = '\0';
     novaQuadra->x = novaQuadra->y = novaQuadra->w = novaQuadra->h = 0.0f;
     novaQuadra->sw[0] = novaQuadra->fill[0] = novaQuadra->cstrk[0] = '\0';
 
     return (Quadra)novaQuadra;
 }
 
-void setCEPQuadra(Quadra q, int cepQuadra) {
+void setCEPQuadra(Quadra q, char* cepQuadra) {
     if (q == NULL) {
         printf("Erro em setCEPQuadra\n");
         return;
     }
-    ((stQuadra*)q)->CEP = cepQuadra;
+    strncpy(((stQuadra*)q)->CEP, cepQuadra, 31);
+    ((stQuadra*)q)->CEP[31] = '\0';
 }
 
 void setDimensoesQuadra(Quadra q, float x, float y, float w, float h) {
@@ -56,8 +57,24 @@ void setPreenchimentoQuadra(Quadra q, char* sw, char* cfill, char* cstrk) {
     quadra->cstrk[sizeof(quadra->cstrk) - 1] = '\0';
 }
 
-int getCEPQuadra(Quadra q) {
+char* getCEPQuadra(Quadra q) {
     return ((stQuadra*)q)->CEP;
+}
+
+float getXQuadra(Quadra q){
+    return ((stQuadra*)q)->x;
+}
+
+float getYQuadra(Quadra q){
+    return ((stQuadra*)q)->y;
+}
+
+float getWQuadra(Quadra q){
+    return ((stQuadra*)q)->w;
+}
+
+float getHQuadra(Quadra q){
+    return ((stQuadra*)q)->h;
 }
 
 void liberarQuadra(Quadra q) {
@@ -74,7 +91,7 @@ char* serializarQuadra(Quadra q) {
     char* buf = malloc(256);
     if (!buf) return NULL;
     /* Formato: CEP|x|y|w|h|sw|fill|cstrk */
-    snprintf(buf, 256, "%d|%.4f|%.4f|%.4f|%.4f|%s|%s|%s",
+    snprintf(buf, 256, "%s|%.4f|%.4f|%.4f|%.4f|%s|%s|%s",
              quadra->CEP, quadra->x, quadra->y, quadra->w, quadra->h,
              quadra->sw, quadra->fill, quadra->cstrk);
     return buf;
@@ -86,8 +103,8 @@ Quadra desserializarQuadra(const char* s) {
     if (!q) return NULL;
     memset(q, 0, sizeof(stQuadra));
     /* %[^|] le ate o proximo '|' (suporta espacos dentro dos campos) */
-    sscanf(s, "%d|%f|%f|%f|%f|%15[^|]|%31[^|]|%31[^|]",
-           &q->CEP, &q->x, &q->y, &q->w, &q->h,
+    sscanf(s, "%31[^|]|%f|%f|%f|%f|%15[^|]|%31[^|]|%31[^|]",
+           q->CEP, &q->x, &q->y, &q->w, &q->h,
            q->sw, q->fill, q->cstrk);
     return (Quadra)q;
 }

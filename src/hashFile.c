@@ -7,7 +7,8 @@
 #define TAM_BUCKET 10
 #define TAM_DADO   HASHFILE_TAM_BUF   // 256 é o tamanho máximo da string
 
-#define REG_CONTENT_SIZE  (3 + 3 + 10 + 3 + TAM_DADO)  
+/* O formato do registro passa a ser: s=%d|k=%-31s|d=%s */
+#define REG_CONTENT_SIZE  300  
 #define REG_LINE_SIZE     (REG_CONTENT_SIZE + 1)        
 
 #define HEADER_CONTENT_SIZE  30
@@ -17,7 +18,7 @@
 
 typedef struct {
     int  status;          /* VAZIO / VALIDO / REMOVIDO */
-    int  chave;
+    char chave[32];
     char dado[TAM_DADO];  /* string serializada do dado */
 } Registro;
 
@@ -35,13 +36,22 @@ typedef struct {
 
 /* ── Funções privadas ─────────────────────────────────────── */
 
-static int getBits(int numero, int prof) {
+static unsigned int hashString(const char *str) {
+    if (!str) return 0;
+    unsigned long hash = 5381;
+    int c;
+    while ((c = *str++))
+        hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
+    return (unsigned int)hash;
+}
+
+static int getBits(unsigned int numero, int prof) {
     return numero & ((1 << prof) - 1);
 }
 
 /* Retorna o offset do bucket para 'chave' lendo o arquivo diretório */
-static long _lerOffsetBucket(stHashFile* h, int chave) {
-    int  idx = getBits(chave, h->profundidade);
+static long _lerOffsetBucket(stHashFile* h, const char* chave) {
+    int  idx = getBits(hashString(chave), h->profundidade);
     long pos = sizeof(int) + (long)idx * sizeof(long);
     fseek(h->dir, pos, SEEK_SET);
     long off = -1;
@@ -74,19 +84,25 @@ static void _lerBucket(stHashFile* h, long offset, Bucket* b) {
         memset(linhaR, 0, sizeof(linhaR));
         fread(linhaR, 1, REG_LINE_SIZE, h->dados);
 
-        int  s = 0, k = 0;
+        int  s = 0;
+        char k[32];
         char dado[TAM_DADO + 1];
+        memset(k, 0, sizeof(k));
         memset(dado, 0, sizeof(dado));
 
-        /* %256[^\n] lê todos os chars até '\n', incluindo espaços de padding */
-        sscanf(linhaR, "s=%d|k=%d|d=%256[^\n]", &s, &k, dado);
+        /* %31[^|] le ate pipe, %256[^\n] le ate o fim */
+        sscanf(linhaR, "s=%d|k=%31[^|]|d=%256[^\n]", &s, k, dado);
 
         /* Remove espaços de padding do final */
+        int lenk = (int)strlen(k);
+        while (lenk > 0 && k[lenk - 1] == ' ') k[--lenk] = '\0';
+
         int len = (int)strlen(dado);
         while (len > 0 && dado[len - 1] == ' ') dado[--len] = '\0';
 
         b->registros[i].status = s;
-        b->registros[i].chave  = k;
+        strncpy(b->registros[i].chave, k, 31);
+        b->registros[i].chave[31] = '\0';
         strncpy(b->registros[i].dado, dado, TAM_DADO - 1);
         b->registros[i].dado[TAM_DADO - 1] = '\0';
     }
@@ -108,9 +124,9 @@ static void _escreverBucket(stHashFile* h, long offset, Bucket* b) {
     for (int i = 0; i < TAM_BUCKET; i++) {
         char linhaR[REG_LINE_SIZE + 1];
         int n2 = snprintf(linhaR, REG_LINE_SIZE + 1,
-                          "s=%d|k=%010d|d=%s",
+                          "s=%d|k=%-31s|d=%s",
                           b->registros[i].status,
-                          b->registros[i].chave,
+                          b->registros[i].status == VALIDO ? b->registros[i].chave : "",
                           b->registros[i].dado);
         /* Preenche com espaços até REG_CONTENT_SIZE, depois '\n' */
         for (int j = n2; j < REG_CONTENT_SIZE; j++) linhaR[j] = ' ';
@@ -153,7 +169,7 @@ static void _dobrarDiretorio(stHashFile* h) {
 }
 
 /* Faz o split do bucket que contém 'chave' */
-static void _splitBucket(stHashFile* h, int chave) {
+static void _splitBucket(stHashFile* h, const char* chave) {
     long   offsetAntigo = _lerOffsetBucket(h, chave);
     Bucket bucketAntigo;
     _lerBucket(h, offsetAntigo, &bucketAntigo);
@@ -175,7 +191,7 @@ static void _splitBucket(stHashFile* h, int chave) {
     for (int i = 0; i < TAM_BUCKET; i++) {
         if (bucketAntigo.registros[i].status == VALIDO) {
             /* O bit discriminante é o bit na posição bucketAntigo.profLocal */
-            int novoBit = (getBits(bucketAntigo.registros[i].chave, novoProfLocal)
+            int novoBit = (getBits(hashString(bucketAntigo.registros[i].chave), novoProfLocal)
                           >> bucketAntigo.profLocal) & 1;
             Bucket* dest = (novoBit == 0) ? &b0 : &b1;
             dest->registros[dest->qtd++] = bucketAntigo.registros[i];
@@ -189,7 +205,7 @@ static void _splitBucket(stHashFile* h, int chave) {
 
     /* Atualizar entradas do diretório que apontavam para o bucket antigo */
     int mascAntiga    = (1 << bucketAntigo.profLocal) - 1;
-    int baseAntiga    = getBits(chave, bucketAntigo.profLocal);
+    int baseAntiga    = getBits(hashString(chave), bucketAntigo.profLocal);
     int totalEntradas = 1 << h->profundidade;
 
     for (int i = 0; i < totalEntradas; i++) {
@@ -258,13 +274,18 @@ int getProfundidadeHash(HashFile hf) {
     return ((stHashFile*)hf)->profundidade;
 }
 
-long getEnderecoDiretorioHashFile(HashFile hash, int chave) {
+long getEnderecoDiretorioHashFile(HashFile hash, char* chave) {
     if (!hash) return -1;
     return _lerOffsetBucket((stHashFile*)hash, chave);
 }
 
-void inserirDadoHashFile(HashFile hashFile, int chave, const char* dado) {
-    if (!hashFile || !dado) return;
+FILE* getArquivoDadosHashFile(HashFile hash){
+    stHashFile* hf = (stHashFile*)hash;
+    return hf->dados;
+}
+
+void inserirDadoHashFile(HashFile hashFile, char* chave, const char* dado) {
+    if (!hashFile || !chave || !dado) return;
     stHashFile* h = (stHashFile*)hashFile;
 
     /* Tenta inserir; se o bucket estiver cheio, faz split e repete */
@@ -275,7 +296,7 @@ void inserirDadoHashFile(HashFile hashFile, int chave, const char* dado) {
 
         /* Se a chave já existe, apenas atualiza o dado */
         for (int i = 0; i < TAM_BUCKET; i++) {
-            if (b.registros[i].status == VALIDO && b.registros[i].chave == chave) {
+            if (b.registros[i].status == VALIDO && strcmp(b.registros[i].chave, chave) == 0) {
                 strncpy(b.registros[i].dado, dado, TAM_DADO - 1);
                 b.registros[i].dado[TAM_DADO - 1] = '\0';
                 _escreverBucket(h, offsetBucket, &b);
@@ -287,7 +308,8 @@ void inserirDadoHashFile(HashFile hashFile, int chave, const char* dado) {
         for (int i = 0; i < TAM_BUCKET; i++) {
             if (b.registros[i].status != VALIDO) {
                 b.registros[i].status = VALIDO;
-                b.registros[i].chave  = chave;
+                strncpy(b.registros[i].chave, chave, 31);
+                b.registros[i].chave[31] = '\0';
                 strncpy(b.registros[i].dado, dado, TAM_DADO - 1);
                 b.registros[i].dado[TAM_DADO - 1] = '\0';
                 b.qtd++;
@@ -299,11 +321,11 @@ void inserirDadoHashFile(HashFile hashFile, int chave, const char* dado) {
         /* Bucket cheio → split e tenta novamente */
         _splitBucket(h, chave);
     }
-    printf("Erro: nao foi possivel inserir chave %d apos multiplos splits.\n", chave);
+    printf("Erro: nao foi possivel inserir chave %s apos multiplos splits.\n", chave);
 }
 
-int buscarDadosHashFile(HashFile hashFile, int chave, char* buf, int tamBuf) {
-    if (!hashFile || !buf) return 0;
+int buscarDadosHashFile(HashFile hashFile, char* chave, char* buf, int tamBuf) {
+    if (!hashFile || !chave || !buf) return 0;
     stHashFile* h = (stHashFile*)hashFile;
 
     long offsetBucket = _lerOffsetBucket(h, chave);
@@ -313,7 +335,7 @@ int buscarDadosHashFile(HashFile hashFile, int chave, char* buf, int tamBuf) {
     _lerBucket(h, offsetBucket, &b);
 
     for (int i = 0; i < TAM_BUCKET; i++) {
-        if (b.registros[i].status == VALIDO && b.registros[i].chave == chave) {
+        if (b.registros[i].status == VALIDO && strcmp(b.registros[i].chave, chave) == 0) {
             strncpy(buf, b.registros[i].dado, tamBuf - 1);
             buf[tamBuf - 1] = '\0';
             return 1;
@@ -322,8 +344,8 @@ int buscarDadosHashFile(HashFile hashFile, int chave, char* buf, int tamBuf) {
     return 0;
 }
 
-void removerDadosHashFile(HashFile hashFile, int chave) {
-    if (!hashFile) return;
+void removerDadosHashFile(HashFile hashFile, char* chave) {
+    if (!hashFile || !chave) return;
     stHashFile* h = (stHashFile*)hashFile;
 
     long offsetBucket = _lerOffsetBucket(h, chave);
@@ -333,14 +355,31 @@ void removerDadosHashFile(HashFile hashFile, int chave) {
     _lerBucket(h, offsetBucket, &b);
 
     for (int i = 0; i < TAM_BUCKET; i++) {
-        if (b.registros[i].status == VALIDO && b.registros[i].chave == chave) {
+        if (b.registros[i].status == VALIDO && strcmp(b.registros[i].chave, chave) == 0) {
             b.registros[i].status = REMOVIDO;
             b.qtd--;
             _escreverBucket(h, offsetBucket, &b);
             return;
         }
     }
-    printf("Chave %d nao encontrada para remocao.\n", chave);
+    printf("Chave %s nao encontrada para remocao.\n", chave);
+}
+
+void percorrerHashFile(HashFile hashFile, HashFileCallback cb, void* extra) {
+    if (!hashFile || !cb) return;
+    stHashFile* h = (stHashFile*)hashFile;
+
+    long fim = _proximaPosFim(h);
+    Bucket b;
+
+    for (long offset = 0; offset < fim; offset += TAM_BUCKET_BYTES) {
+        _lerBucket(h, offset, &b);
+        for (int i = 0; i < TAM_BUCKET; i++) {
+            if (b.registros[i].status == VALIDO) {
+                cb(b.registros[i].chave, b.registros[i].dado, extra);
+            }
+        }
+    }
 }
 
 void fecharHashFile(HashFile hashFile) {

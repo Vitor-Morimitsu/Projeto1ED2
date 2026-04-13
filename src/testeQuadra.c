@@ -5,10 +5,10 @@
 
 /* Helper ─────────────────────────────────────── */
 static void imprimirQuadra(Quadra q) {
-    printf("  CEP       : %d\n",          getCEPQuadra(q));
+    printf("  CEP       : %s\n",          getCEPQuadra(q));
 }
 
-static void inserirQ(HashFile hash, int cep, float x, float y, float w, float h,
+static void inserirQ(HashFile hash, char* cep, float x, float y, float w, float h,
                      const char* sw, const char* fill, const char* cstrk) {
     Quadra q = criarQuadra();
     setCEPQuadra(q, cep);
@@ -21,9 +21,9 @@ static void inserirQ(HashFile hash, int cep, float x, float y, float w, float h,
     liberarQuadra(q);
 }
 
-static void buscarEImprimir(HashFile hash, int cep) {
+static void buscarEImprimir(HashFile hash, char* cep) {
     char buf[HASHFILE_TAM_BUF];
-    printf("Buscando CEP %d... ", cep);
+    printf("Buscando CEP %s... ", cep);
     if (buscarDadosHashFile(hash, cep, buf, HASHFILE_TAM_BUF)) {
         printf("ENCONTRADO — dado: %s\n", buf);
         Quadra q = desserializarQuadra(buf);
@@ -49,25 +49,25 @@ int main() {
 
     /* ── Inserções ── */
     printf("=== INSERCOES ===\n");
-    inserirQ(hash, 10001, 25.0f,  50.32f, 60.32f, 70.70f, "1.0px", "black",  "blue");
-    inserirQ(hash, 20002, 10.0f,  15.00f,100.00f, 80.00f, "2.0px", "red",    "black");
-    inserirQ(hash, 30003,  0.0f,   0.00f, 50.00f, 50.00f, "0.5px", "white",  "grey");
-    inserirQ(hash, 40004, 12.5f, 100.00f, 80.00f, 40.00f, "1.5px", "yellow", "green");
+    inserirQ(hash, "10001-000", 25.0f,  50.32f, 60.32f, 70.70f, "1.0px", "black",  "blue");
+    inserirQ(hash, "20002-111", 10.0f,  15.00f,100.00f, 80.00f, "2.0px", "red",    "black");
+    inserirQ(hash, "30003-222",  0.0f,   0.00f, 50.00f, 50.00f, "0.5px", "white",  "grey");
+    inserirQ(hash, "40004-333", 12.5f, 100.00f, 80.00f, 40.00f, "1.5px", "yellow", "green");
     printf("4 quadras inseridas com sucesso!\n\n");
 
     /* ── Buscas ── */
     printf("=== BUSCAS ===\n");
-    buscarEImprimir(hash, 10001);
-    buscarEImprimir(hash, 20002);
-    buscarEImprimir(hash, 30003);
-    buscarEImprimir(hash, 40004);
-    buscarEImprimir(hash, 99999);  /* nao existe */
+    buscarEImprimir(hash, "10001-000");
+    buscarEImprimir(hash, "20002-111");
+    buscarEImprimir(hash, "30003-222");
+    buscarEImprimir(hash, "40004-333");
+    buscarEImprimir(hash, "99999-999");  /* nao existe */
 
     /* ── Remoção ── */
     printf("\n=== REMOCAO ===\n");
-    printf("Removendo CEP 20002...\n");
-    removerDadosHashFile(hash, 20002);
-    buscarEImprimir(hash, 20002);  /* deve retornar NAO ENCONTRADO */
+    printf("Removendo CEP 20002-111...\n");
+    removerDadosHashFile(hash, "20002-111");
+    buscarEImprimir(hash, "20002-111");  /* deve retornar NAO ENCONTRADO */
 
     /* ── Profundidade final ── */
     printf("\nProfundidade final do diretorio: %d\n", getProfundidadeHash(hash));

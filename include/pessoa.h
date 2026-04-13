@@ -17,7 +17,7 @@ Pessoa criarPessoa();
 /// @brief Define o CPF de uma pessoa
 /// @param p Pessoa já existente
 /// @param cpf CPF que será atribuído à pessoa
-void setCPF(Pessoa p, int cpf);
+void setCPF(Pessoa p, char* cpf);
 
 /// @brief Define o nome de uma pessoa
 /// @param p Pessoa já existente
@@ -44,7 +44,7 @@ void setNascimento(Pessoa p, int dia, int mes, int ano);
 /// @brief Define o CEP de um morador
 /// @param p Pessoa já existente
 /// @param CEP CEP
-void setCEP(Pessoa p, int CEP);
+void setCEP(Pessoa p, char* cep);
 
 /// @brief Define a face da quadra em que uma pessoa mora
 /// @param p Pessoa já existente
@@ -64,7 +64,7 @@ void setComplemento(Pessoa p, char* complemento);
 /// @brief Retorna o CPF de uma pessoa
 /// @param p Pessoa já existente
 /// @return CPF
-int getCPF(Pessoa p);
+char* getCPF(Pessoa p);
 
 /// @brief Retorna o nome da pessoa
 /// @param p Pessoa já existente
@@ -99,7 +99,7 @@ int getAnoNascimento(Pessoa p);
 /// @brief Retorna o CEP de uma pessoa
 /// @param p Pessoa já existente
 /// @return CEP
-int getCEP(Pessoa p);
+char* getCEP(Pessoa p);
 
 /// @brief Retorna a face da quadra em que uma pessoa mora
 /// @param p Pessoa já existente

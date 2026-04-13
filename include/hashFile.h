@@ -26,6 +26,11 @@
 /** Tamanho máximo (em bytes) da string serializada de um dado. */
 #define HASHFILE_TAM_BUF 256
 
+#define HASHFILE_PESSOAS_DIR   "pessoas.dir"
+#define HASHFILE_PESSOAS_DADOS "pessoas.txt"
+#define HASHFILE_QUADRAS_DIR   "quadras.dir"
+#define HASHFILE_QUADRAS_DADOS "quadras.txt"
+
 typedef void* HashFile;
 
 /// @brief Cria ou reabre a HashFile com os arquivos especificados.
@@ -39,7 +44,7 @@ int getProfundidadeHash(HashFile hash);
 
 /// @brief Insere ou atualiza o registro completo na HashFile. Se o bucket ficar cheio, realiza split automático.
 /// @param hashFile HashFile já existente
-/// @param chave Chave inteira (CPF para Pessoa, CEP para Quadra)
+/// @param chave Chave em texto (CPF literal para Pessoa, CEP literal para Quadra)
 /// @param dado String serializada do registro completo
 void inserirDadoHashFile(HashFile hashFile, char* chave, const char* dado);
 
@@ -58,7 +63,21 @@ void removerDadosHashFile(HashFile hashFile, char* chave);
 
 /// @brief Retorna o offset do bucket para uma chave no arquivo de dados.
 /// @return Offset em bytes, ou -1 em caso de erro.
-long getEnderecoDiretorioHashFile(HashFile hash, int chave);
+long getEnderecoDiretorioHashFile(HashFile hash, char* chave);
+
+FILE* getArquivoDadosHashFile(HashFile hash);
+
+/// @brief Função de callback para a varredura da HashFile.
+/// @param chave Chave literal do registro atual
+/// @param dado Dado completo em string do registro
+/// @param extra Ponteiro customizado (opcional) passado pelo usuário
+typedef void (*HashFileCallback)(char* chave, const char* dado, void* extra);
+
+/// @brief Varre o arquivo de dados inteiro da HashFile e invoca 'cb' para todo registro VALIDO.
+/// @param hashFile HashFile já existente
+/// @param cb Função callback fornecida pelo usuário
+/// @param extra Ponteiro customizado a ser propagado (pode ser NULL)
+void percorrerHashFile(HashFile hashFile, HashFileCallback cb, void* extra);
 
 /// @brief Fecha os arquivos e libera a HashFile.
 void fecharHashFile(HashFile hashFile);

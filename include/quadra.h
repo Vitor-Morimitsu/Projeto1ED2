@@ -17,7 +17,7 @@ Quadra criarQuadra();
 /// @brief Define o CEP de uma quadra
 /// @param q Quadra Pré existente
 /// @param cepQuadra CEP que será definido
-void setCEPQuadra(Quadra q, int cepQuadra);
+void setCEPQuadra(Quadra q, char* cepQuadra);
 
 /// @brief Define as dimensões da quadra
 /// @param q Quadra já existente
@@ -37,7 +37,15 @@ void setPreenchimentoQuadra(Quadra q, char* sw, char* cfill, char* cstrk);
 /// @brief Retorna o CEP de uma quadra 
 /// @param q Quadra já existente
 /// @return CEP
-int getCEPQuadra(Quadra q);
+char* getCEPQuadra(Quadra q);
+
+float getXQuadra(Quadra q);
+
+float getYQuadra(Quadra q);
+
+float getWQuadra(Quadra q);
+
+float getHQuadra(Quadra q);
 
 void liberarQuadra(Quadra q);
 

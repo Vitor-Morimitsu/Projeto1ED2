@@ -3,14 +3,14 @@
 #include <stdlib.h>
 
 typedef struct{
-    int CPF;
+    char CPF[32];
     char nome[32];
     char sobrenome[50];
     char sexo;
     int diaNascimento;
     int mesNascimento;
     int anoNascimento;
-    int CEP;
+    char CEP[32];
     char face;
     int numero;
     char complemento[50];
@@ -23,25 +23,26 @@ Pessoa criarPessoa(){
         return NULL;
     }
 
-    novaPessoa->CPF = 0;
+    novaPessoa->CPF[0] = '\0';
     novaPessoa->diaNascimento = 0;
     novaPessoa->mesNascimento = 0;
     novaPessoa->anoNascimento = 0;
     novaPessoa->sexo = -1;
-    novaPessoa->CEP = -1;
+    novaPessoa->CEP[0] = '\0';
     novaPessoa->face = 'i'; //indefinido
     novaPessoa->numero = -1;
     
     return (Pessoa)novaPessoa;
 }
 
-void setCPF(Pessoa p, int cpf){
+void setCPF(Pessoa p, char* cpf){
     if(p == NULL){
         printf("Erro ao settar o cpf\n");
     }
 
     stPessoa *pessoa =(stPessoa*)p;
-    pessoa->CPF = cpf;
+    strncpy(pessoa->CPF, cpf, 31);
+    pessoa->CPF[31] = '\0';
 }
 
 void setNome(Pessoa p, char* nome){
@@ -81,14 +82,15 @@ void setNascimento(Pessoa p, int dia, int mes, int ano){
     pessoa->anoNascimento = ano;
 }
 
-void setCEP(Pessoa p, int CEP){
+void setCEP(Pessoa p, char* CEP){
     if(p == NULL){
         printf("Erro em setCEP\n");
         return;
     }
 
     stPessoa *pessoa = (stPessoa*)p;
-    pessoa->CEP = CEP;
+    strncpy(pessoa->CEP, CEP, 31);
+    pessoa->CEP[31] = '\0';
 }
 
 void setFace(Pessoa p, char face){
@@ -119,7 +121,7 @@ void setComplemento(Pessoa p, char* complemento){
     strcpy(pessoa->complemento, complemento);
 }
 
-int getCPF(Pessoa p){
+char* getCPF(Pessoa p){
     stPessoa* pessoa = (stPessoa*)p;
 
     return pessoa->CPF;
@@ -155,7 +157,7 @@ int getAnoNascimento(Pessoa p){
     return pessoa->anoNascimento;
 }
 
-int getCEP(Pessoa p){
+char* getCEP(Pessoa p){
     return ((stPessoa*)p)->CEP;
 }
 
@@ -186,7 +188,7 @@ char* serializarPessoa(Pessoa p) {
     char* buf = malloc(256);
     if (!buf) return NULL;
     /* Formato: CPF|nome|sobrenome|sexo|dia|mes|ano|CEP|face|num|complemento */
-    snprintf(buf, 256, "%d|%s|%s|%c|%d|%d|%d|%d|%c|%d|%s",
+    snprintf(buf, 256, "%s|%s|%s|%c|%d|%d|%d|%s|%c|%d|%s",
              pessoa->CPF, pessoa->nome, pessoa->sobrenome, pessoa->sexo,
              pessoa->diaNascimento, pessoa->mesNascimento, pessoa->anoNascimento,
              pessoa->CEP, pessoa->face, pessoa->numero, pessoa->complemento);
@@ -199,10 +201,10 @@ Pessoa desserializarPessoa(const char* s) {
     if (!p) return NULL;
     memset(p, 0, sizeof(stPessoa));
     /* %[^|] le ate o proximo '|', preservando espacos internos (ex: "Apto 5") */
-    sscanf(s, "%d|%31[^|]|%49[^|]|%c|%d|%d|%d|%d|%c|%d|%49[^|]",
-           &p->CPF, p->nome, p->sobrenome, &p->sexo,
+    sscanf(s, "%31[^|]|%31[^|]|%49[^|]|%c|%d|%d|%d|%31[^|]|%c|%d|%49[^|]",
+           p->CPF, p->nome, p->sobrenome, &p->sexo,
            &p->diaNascimento, &p->mesNascimento, &p->anoNascimento,
-           &p->CEP, &p->face, &p->numero, p->complemento);
+           p->CEP, &p->face, &p->numero, p->complemento);
     return (Pessoa)p;
 }
 

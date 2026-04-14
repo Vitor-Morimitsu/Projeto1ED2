@@ -6,9 +6,9 @@ void comandoRq(FILE* txt, FILE* svg, HashFile hashQuadras, HashFile hashPessoas,
         return;
     }
     printf("remoção de quadra iniciada\n");
-    FILE* arquivoDados = fopen(getArquivoDadosHashFile(hashPessoas), "r+");
+    FILE* arquivoDados = fopen(HASHFILE_PESSOAS_DADOS,"r");
     if(arquivoDados == NULL){
-        pritnf("Erro em comandoRq ao abrir o arquivo de dados da hash\n");
+        printf("Erro em comandoRq ao abrir o arquivo de dados da hash\n");
         return;
     }
     char linha[512];
@@ -43,7 +43,7 @@ void comandoRq(FILE* txt, FILE* svg, HashFile hashQuadras, HashFile hashPessoas,
 void comandoPq(FILE* svg, HashFile hashQuadras, HashFile hashPessoas, char* cep) {
     if(!svg || !hashQuadras || !hashPessoas) return;
     printf("Inicio do comandoPq\n");
-    FILE* moradores = fopen(getArquivoDadosHashFile(hashPessoas), "r+");
+    FILE* moradores = fopen(HASHFILE_PESSOAS_DADOS, "r");
     if(moradores == NULL){
         printf("Erro em comandoPq ao abrir o arquivo\n");
         return;
@@ -82,7 +82,7 @@ void comandoPq(FILE* svg, HashFile hashQuadras, HashFile hashPessoas, char* cep)
             }
         }
     }
-    fclose(moradores);
+    
     char quadraBuf[512];
     if(buscarDadosHashFile(hashQuadras, cep, quadraBuf, 512)){
         Quadra q = desserializarQuadra(quadraBuf);
@@ -115,12 +115,106 @@ void comandoPq(FILE* svg, HashFile hashQuadras, HashFile hashPessoas, char* cep)
     }
 }
 
+/*reportar estatísticas: número total de habitantes, número total de moradores, proporção moradores/habitantes, número de homens, número de mulheres, % de
+habitantes homens, % habitantes mulheres, % de moradores homens, % de moradores mulheres, número total de sem-tetos, % sem-tetos homens, %sem-tetos mulheres
+*/
 void comandoCenso(FILE* txt, HashFile hashPessoas) {
-    // TODO: implementar
+    if(!txt || !hashPessoas) return;
+
+    printf("Inicio do comandoCenso\n");
+    FILE* arquivoDados = fopen(HASHFILE_PESSOAS_DADOS, "r");
+    if(arquivoDados == NULL){
+        printf("Erro em comandoCenso ao abrir o arquivo\n");
+        return;
+    }
+    int habitantes,moradores,homens,mulheres,semTeto, semTetoHomens, semTetoMulheres;
+
+    char linha[512];
+    while(fgets(linha,sizeof(linha), arquivoDados)!=NULL){
+        if(strncmp(linha, "s=",2) != 0)continue;
+
+        int statusGavetaLida;
+        char pacoteDados[256];
+
+        if(sscanf(linha,"s=%d|k=%*[^|]|d=%256[^\n]", &statusGavetaLida, pacoteDados)){
+            if(statusGavetaLida == 1){
+                Pessoa p = desserializarPessoa(pacoteDados);
+                if(p){
+                    habitantes++;
+                    if(strcmp(getCEP(p), "") != 0){
+                        //possuem moradia
+                        moradores++;
+                    }
+                    if(getSexo(p) == 'm' || getSexo(p) == 'M'){
+                        homens++;
+                    }else{
+                        mulheres++;
+                    }
+                    if(strcmp(getCEP(p), "") == 0){
+                        semTeto++;
+                        if(getSexo(p) == 'm' || getSexo(p) == 'M'){
+                            semTetoHomens++;
+                        }else{
+                            semTetoMulheres++;
+                        }
+                    }
+                }
+                liberarPessoa(p);
+            }
+        }
+    }
+    fclose(arquivoDados);
+
+    if(habitantes > 0){
+        float propMoradores = (float)moradores / habitantes;
+        float propHomens = (float)homens / habitantes;
+        float propMulheres = (float)mulheres / habitantes;
+        float propMoradoresHomens = (float)homens / moradores;
+        float propMoradoresMulheres = (float)mulheres / moradores;
+        float propSemTeto = (float)semTeto / habitantes;
+        float propSemTetoHomens = (float)semTetoHomens / semTeto;
+        float propSemTetoMulheres = (float)semTetoMulheres / semTeto;
+
+        fprintf(txt, "Numero total de habitantes: %d\n", habitantes);
+        fprintf(txt, "Numero total de moradores: %d\n", moradores);
+        fprintf(txt, "Proporcao moradores/habitantes: %f\n", propMoradores);
+        fprintf(txt, "Numero total de homens: %d\n", homens);
+        fprintf(txt, "Numero total de mulheres: %d\n", mulheres);
+        fprintf(txt, "Porcentagem habitantes homens: %f\n", propHomens);
+        fprintf(txt, "Porcentagem habitantes mulheres: %f\n", propMulheres);
+        fprintf(txt, "Porcentagem moradores homens: %f\n", propMoradoresHomens);
+        fprintf(txt, "Porcentagem moradores mulheres: %f\n", propMoradoresMulheres);
+        fprintf(txt, "Numero total de sem-tetos: %d\n", semTeto);
+        fprintf(txt, "Porcentagem sem-tetos homens: %f\n", propSemTetoHomens);
+        fprintf(txt, "Porcentagem sem-tetos mulheres: %f\n", propSemTetoMulheres);  
+    }else{
+        fprintf(txt, "Nenhum habitante encontrado\n");
+    }   
 }
 
-void comandoH(FILE* txt, HashFile hashPessoas) {
-    // TODO: implementar
+//reporta os dados sobre um habitante identificado pelo CPF
+void comandoH(FILE* txt, HashFile hashPessoas,char* cpf) {
+    if(txt == NULL){
+        printf("Erro ao abrir o arquivo txt em comandoH\n");
+    }
+
+    char pacoteDados[256];
+    if(buscarDadosHashFile(hashPessoas, cpf, pacoteDados, 256)){
+        Pessoa p = desserializarPessoa(pacoteDados);
+        if(p){
+            printf("Printado dados do habitante em comandoH\n");
+            fprintf(txt, "CPF: %s,Nome: %s ,Sobrenome: %s,Sexo: %c, Nascimento: %d/%d/%d \n", getCPF(p), getNome(p),
+            getSobrenome(p),getSexo(p), getDiaNascimento(p),getMesNascimento(p),getAnoNascimento(p));
+            if(strcmp(getCEP(p), "") != 0){
+                fprintf(txt, "CEP: %s,Número: %d,Complemento: %s\n", getCEP(p), getNum(p), getCompl(p));
+            }else{
+                fprintf(txt, "CEP: nao encontrado\n");
+            }   
+            liberarPessoa(p);
+        }
+        fprintf(txt,"Habitante do CPF %s não encontrado\n", cpf)
+    }   
+
 }
 
 void comandoNasc(HashFile hashPessoas, char* cpf, char* nome, char* sobrenome,char sexo, int diaNasc, int mesNasc, int anoNasc) {
@@ -179,8 +273,13 @@ void comandoRip(FILE* txt, HashFile hashPessoas, char* cpf) {
     removerDadosHashFile(hashPessoas, cpf);
 }
 
+//morador identificado por cpf muda-se para novo endereço
 void comandoMud(FILE* svg, HashFile hashQuadras, HashFile hashPessoas, char* cpf, char* cep, char face, int num, char* complemento) {
-    // TODO: implementar
+    if(!svg || !hashQuadras || !hashPessoas){
+        printf("Erro ao abrir arquvios em comandoMud\n");
+        return;
+    }
+    
 }
 
 void comandoDspj(FILE* txt, FILE* svg, HashFile hashQuadras, HashFile hashPessoas, char* cpf) {
@@ -215,11 +314,12 @@ void lerQry(FILE* txt, FILE* qry, FILE* svg, HashFile hashQuadras, HashFile hash
                 comandoPq(svg,hashQuadras,hashPessoas,cep);
             }
         }else if(strcmp(comando, "censo") == 0){
-            //produzir estatística dos habitantes --------------------------------------------falta implementar
+            comandoCenso(txt,hashPessoas);
+
         }else if(strcmp(comando, "h?") == 0){
             char cpf[32];
             if(sscanf(linha, "h? %31s", cpf) == 1){
-                comandoH(txt, hashPessoas);
+                comandoH(txt, hashPessoas,cpf);
             }
         }else if(strcmp(comando, "nasc") == 0){
             char cpf[32];

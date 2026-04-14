@@ -17,7 +17,7 @@
 #define TAM_BUCKET_BYTES  (HEADER_LINE_SIZE + TAM_BUCKET * REG_LINE_SIZE)
 
 typedef struct {
-    int  status;          /* VAZIO / VALIDO / REMOVIDO */
+    int  status;          /* VAZIO-0 / VALIDO-1 / REMOVIDO-2 */
     char chave[32];
     char dado[TAM_DADO];  /* string serializada do dado */
 } Registro;

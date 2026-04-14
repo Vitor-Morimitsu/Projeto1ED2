@@ -32,8 +32,9 @@ void comandoCenso(FILE* txt, HashFile hashPessoas);
 
 /// @brief Dados sobre habitante identificado por cpf.
 /// @param txt Arquivo txt 
+/// @param cpf Cpf que será buscado e informado
 /// @param hashPessoas Hash File que contém as pessoas 
-void comandoH(FILE* txt, HashFile hashPessoas);
+void comandoH(FILE* txt, HashFile hashPessoas, char* cpf);
 
 /// @brief Pessoa nasce.
 /// @param hashPessoas Hash File que contém as pessoas 

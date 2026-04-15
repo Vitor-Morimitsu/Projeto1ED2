@@ -212,9 +212,8 @@ void comandoH(FILE* txt, HashFile hashPessoas,char* cpf) {
             }   
             liberarPessoa(p);
         }
-        fprintf(txt,"Habitante do CPF %s não encontrado\n", cpf)
+        fprintf(txt,"Habitante do CPF %s não encontrado\n", cpf);
     }   
-
 }
 
 void comandoNasc(HashFile hashPessoas, char* cpf, char* nome, char* sobrenome,char sexo, int diaNasc, int mesNasc, int anoNasc) {
@@ -279,11 +278,42 @@ void comandoMud(FILE* svg, HashFile hashQuadras, HashFile hashPessoas, char* cpf
         printf("Erro ao abrir arquvios em comandoMud\n");
         return;
     }
-    
+    char pacoteDados[512];
+    if(buscarDadosHashFile(hashPessoas,cpf,HASHFILE_TAM_BUF, HASHFILE_TAM_BUF)){
+        Pessoa p = desserializarPessoa(pacoteDados);
+        if(p != NULL){
+            printf("a pessoa com esse cpf: %s vai se mudar para o endereço passado\n");
+            setCEP(p, cep);
+            setFace(p,face);
+            setNum(p,num);
+            setComplemento(p,complemento);
+        }else{
+            printf("Pessoa com o CEPF: %s não foi encontrada\n");
+        }
+        liberarPessoa(p);
+    }
+
 }
 
+//morador identificado por cpf é despejado 
 void comandoDspj(FILE* txt, FILE* svg, HashFile hashQuadras, HashFile hashPessoas, char* cpf) {
-    // TODO: implementar
+    if(!txt || !svg || !hashQuadras || !hashPessoas){
+        printf("Erro em comandoDspj\n");
+        return;
+    }
+    char pacoteDados[512];
+    if(buscarDadosHashFile(hashPessoas,cpf,HASHFILE_TAM_BUF,HASHFILE_TAM_BUF)){
+        Pessoa p = desserializarPessoa(pacoteDados);
+        if(p != NULL){
+            printf("A pessoa com esse cpf: %s será despejada %s\n", cpf);
+            setCEP(p, "");
+            setNum(p, -1);
+            setComplemento(p,"");
+        }else{
+            printf("O cpf passado em comandoDsp não foi encontrado\n");
+        }
+        liberarPessoa(p);
+    }
 }
 
 void lerQry(FILE* txt, FILE* qry, FILE* svg, HashFile hashQuadras, HashFile hashPessoas) {

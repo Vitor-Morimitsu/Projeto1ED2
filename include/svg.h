@@ -27,7 +27,7 @@ void comandoRqSvg(FILE* svg, float x, float y);
 void inserirXSvg(FILE* svg, float x, float y);
 
 //marcar o endereço de destino com um pequeno quadrado vermelho no local de destino. Colocar o cpf dentro do quadrado (usar fonte minúscula)
-void comandoMudSvg(FILE* svg, float x , float y);
+void comandoMudSvg(FILE* svg, float x , float y, char* cpf);
 
 /// Colocar uma pequena cruz vermelha no local do endereço (se morador)
 void comandoRipSvg(FILE* svg,float x, float y);

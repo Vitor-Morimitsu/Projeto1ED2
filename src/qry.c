@@ -35,7 +35,11 @@ void comandoRq(FILE* txt, FILE* svg, HashFile hashQuadras, HashFile hashPessoas,
         } 
 
     }
-
+    Quadra q = desserializarQuadra(cep);
+    float x = getXQuadra(q);
+    float y = getYQuadra(q);
+    comandoRqSvg(svg,x,y);
+    liberarQuadra(q);   
     removerDadosHashFile(hashQuadras, cep);
 }
 
@@ -206,7 +210,7 @@ void comandoH(FILE* txt, HashFile hashPessoas,char* cpf) {
             fprintf(txt, "CPF: %s,Nome: %s ,Sobrenome: %s,Sexo: %c, Nascimento: %d/%d/%d \n", getCPF(p), getNome(p),
             getSobrenome(p),getSexo(p), getDiaNascimento(p),getMesNascimento(p),getAnoNascimento(p));
             if(strcmp(getCEP(p), "") != 0){
-                fprintf(txt, "CEP: %s,Número: %d,Complemento: %s\n", getCEP(p), getNum(p), getCompl(p));
+                fprintf(txt, "CEP: %s,Número: %d,Complemento: %s\n", getCEP(p), getNum(p), getComplemento(p));
             }else{
                 fprintf(txt, "CEP: nao encontrado\n");
             }   
@@ -242,13 +246,12 @@ void comandoNasc(HashFile hashPessoas, char* cpf, char* nome, char* sobrenome,ch
     liberarPessoa(nova);
 }
 
-void comandoRip(FILE* txt, HashFile hashPessoas, char* cpf) {
+void comandoRip(FILE* txt,FILE* svg, HashFile hashPessoas,HashFile hashQuadras, char* cpf) {
     if (hashPessoas == NULL) {
         printf("Erro em comandoRip\n");
         return;
     }
 
-    /* Busca o registro ANTES de remover para poder imprimir os dados */
     char buf[HASHFILE_TAM_BUF];
     if (!buscarDadosHashFile(hashPessoas, cpf, buf, HASHFILE_TAM_BUF)) {
         printf("CPF %s nao encontrado em comandoRip\n", cpf);
@@ -267,8 +270,19 @@ void comandoRip(FILE* txt, HashFile hashPessoas, char* cpf) {
             getAnoNascimento(falecido));
 
     liberarPessoa(falecido);
-
-    /* Remove logicamente da HashFile */
+    if(strcmp(getCEP(falecido),"") != 0){
+        fprintf(txt, "O falecido tinha moradia no CEP: %s, numero: %d, face: %c, complemento: %s\n", getCEP(falecido), getNum(falecido), getFace(falecido), getComplemento(falecido));    
+        char quadraBuf[512];
+        if(buscarDadosHashFile(hashQuadras, getCEP(falecido),quadraBuf,512)){
+            Quadra q = desserializarQuadra(quadraBuf);
+            float x = getXQuadra(q);
+            float y = getYQuadra(q);
+            comandoRipSvg(svg, x, y);
+            liberarQuadra(q);   
+        }
+    }
+    
+    //remove a pessoa da hash file
     removerDadosHashFile(hashPessoas, cpf);
 }
 
@@ -279,22 +293,33 @@ void comandoMud(FILE* svg, HashFile hashQuadras, HashFile hashPessoas, char* cpf
         return;
     }
     char pacoteDados[512];
-    if(buscarDadosHashFile(hashPessoas,cpf,HASHFILE_TAM_BUF, HASHFILE_TAM_BUF)){
+    if(buscarDadosHashFile(hashPessoas,cpf,pacoteDados,512)){
         Pessoa p = desserializarPessoa(pacoteDados);
         if(p != NULL){
-            printf("a pessoa com esse cpf: %s vai se mudar para o endereço passado\n");
+            printf("a pessoa com esse cpf: %s vai se mudar para o endereço passado\n", cpf);
             setCEP(p, cep);
             setFace(p,face);
             setNum(p,num);
             setComplemento(p,complemento);
+            char quadraBuf[512];
+            if(buscarDadosHashFile(hashQuadras, cep,quadraBuf,512)){
+                Quadra q = desserializarQuadra(quadraBuf);
+                float x = getXQuadra(q);
+                float y = getYQuadra(q);
+                comandoMudSvg(svg, x, y, cpf);
+                liberarQuadra(q);
+            }
+            char* textoFinal = serializarPessoa(p);
+            inserirDadoHashFile(hashPessoas,cpf,textoFinal);
+            free(textoFinal);
+            liberarPessoa(p);
         }else{
-            printf("Pessoa com o CEPF: %s não foi encontrada\n");
+            printf("Pessoa com o CPF: %s não foi encontrada\n",cpf);
         }
-        liberarPessoa(p);
+        
     }
 
 }
-
 //morador identificado por cpf é despejado 
 void comandoDspj(FILE* txt, FILE* svg, HashFile hashQuadras, HashFile hashPessoas, char* cpf) {
     if(!txt || !svg || !hashQuadras || !hashPessoas){
@@ -302,17 +327,38 @@ void comandoDspj(FILE* txt, FILE* svg, HashFile hashQuadras, HashFile hashPessoa
         return;
     }
     char pacoteDados[512];
-    if(buscarDadosHashFile(hashPessoas,cpf,HASHFILE_TAM_BUF,HASHFILE_TAM_BUF)){
+    char endereco[50];
+    if(buscarDadosHashFile(hashPessoas,cpf,pacoteDados,512)){
         Pessoa p = desserializarPessoa(pacoteDados);
         if(p != NULL){
-            printf("A pessoa com esse cpf: %s será despejada %s\n", cpf);
+            printf("A pessoa com esse cpf: %s será despejada\n", cpf);
+            char cepAntigo[512];
+            strcpy(cepAntigo, getCEP(p));
+            fprintf(txt, "Antigo endereço: cep = %s, Número = %d, Complemento = %s\n", cepAntigo, getNum(p), getComplemento(p));
+
+            //zerar o atual endereço do morador
             setCEP(p, "");
             setNum(p, -1);
             setComplemento(p,"");
+            
+            char* dadoFinal = serializarPessoa(p);
+            inserirDadoHashFile(hashPessoas, getCPF(p),dadoFinal);
+            free(dadoFinal);
+            
         }else{
             printf("O cpf passado em comandoDsp não foi encontrado\n");
         }
+        //colocar um círculo preto no local do despejo
+        Quadra q = desserializarQuadra(endereco);
+        float x = getXQuadra(q);
+        float y = getYQuadra(q);
+
+        comandoDspjSvg(svg,x,y);
+        liberarQuadra(q);
+
         liberarPessoa(p);
+    }else{
+        printf("Erro em comandoDspj no final\n");
     }
 }
 
@@ -365,7 +411,7 @@ void lerQry(FILE* txt, FILE* qry, FILE* svg, HashFile hashQuadras, HashFile hash
         }else if(strcmp(comando, "rip") == 0){
             char cpf[32];
             if(sscanf(linha,"rip %31s", cpf) == 1){
-                comandoRip(txt,hashPessoas, cpf);
+                comandoRip(txt,svg,hashPessoas,hashQuadras, cpf);
             }
         }else if(strcmp(comando, "mud") == 0){
             char cpf[32];

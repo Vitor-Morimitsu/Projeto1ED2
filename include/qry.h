@@ -9,6 +9,7 @@
 #include "quadra.h"
 #include "pessoa.h"
 #include "hashFile.h"
+#include "svg.h"
 
 /// @brief Remove a quadra com o cep passado. Moradores da quadra passam a ser sem-tetos
 /// @param txt Arquivo txt 
@@ -48,9 +49,12 @@ void comandoH(FILE* txt, HashFile hashPessoas, char* cpf);
 void comandoNasc(HashFile hashPessoas, char* cpf, char* nome, char* sobrenome, char sexo, int diaNasc, int mesNasc, int anoNasc);
 
 /// @brief Pessoa falece.
+/// @param txt Arquivo txt
+/// @param svg Arquivo svg
 /// @param hashPessoas Hash File que contém as pessoas 
+/// @param hashQuadras HashFile que contém as quadras
 /// @param cpf CPF da pessoa 
-void comandoRip(FILE* txt, HashFile hashPessoas, char* cpf);
+void comandoRip(FILE* txt, FILE* svg, HashFile hashPessoas, HashFile hashQuadras, char* cpf);
 
 /// @brief Morador identificado por cpf muda-se para novo endereço.
 /// @param svg Arquivo svg 

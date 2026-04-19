@@ -1,45 +1,47 @@
 #include "qry.h"
 
+/* ── Contexto para o callback do comandoRq ───────────────── */
+typedef struct {
+    FILE*     txt;
+    HashFile  hashPessoas;
+    char*     cep;
+} CtxRq;
+
+static void _callbackRq(char* chave, const char* dado, void* extra) {
+    CtxRq* ctx = (CtxRq*)extra;
+    Pessoa p = desserializarPessoa(dado);
+    if (!p) return;
+    if (strcmp(getCEP(p), ctx->cep) == 0) {
+        fprintf(ctx->txt, "O(a) %s %s (CPF: %s) acabou de ficar sem teto!\n",
+                getNome(p), getSobrenome(p), getCPF(p));
+        setCEP(p, "");
+        char* atualizado = serializarPessoa(p);
+        inserirDadoHashFile(ctx->hashPessoas, chave, atualizado);
+        free(atualizado);
+    }
+    liberarPessoa(p);
+}
+
 void comandoRq(FILE* txt, FILE* svg, HashFile hashQuadras, HashFile hashPessoas, char* cep) {
     if (txt == NULL || svg == NULL || hashQuadras == NULL || hashPessoas == NULL) {
         printf("Erro em comandoRq\n");
         return;
     }
-    printf("remoção de quadra iniciada\n");
-    FILE* arquivoDados = fopen(HASHFILE_PESSOAS_DADOS,"r");
-    if(arquivoDados == NULL){
-        printf("Erro em comandoRq ao abrir o arquivo de dados da hash\n");
-        return;
+    printf("remocao de quadra iniciada\n");
+    // Usa percorrerHashFile para varrer moradores sem abrir o arquivo diretamente
+    CtxRq ctx = { txt, hashPessoas, cep };
+    percorrerHashFile(hashPessoas, _callbackRq, &ctx);
+    // Busca a quadra na hash antes de remover
+    char quadraBuf[512];
+    if(buscarDadosHashFile(hashQuadras, cep, quadraBuf, sizeof(quadraBuf))){
+        Quadra q = desserializarQuadra(quadraBuf);
+        if(q){
+            float x = getXQuadra(q);
+            float y = getYQuadra(q);
+            comandoRqSvg(svg, x, y);
+            liberarQuadra(q);
+        }
     }
-    char linha[512];
-    while(fgets(linha, sizeof(linha), arquivoDados)!= NULL){
-        //pula lixo
-        if(strncmp(linha, "s=",2) != 0)continue;
-        int status;
-        char pacoteDados[256];
-        if(sscanf(linha,"s=%d|k=%*[^|]|d=%256[^\n]", &status,pacoteDados) == 2){
-            if(status == 1){
-                Pessoa p = desserializarPessoa(pacoteDados);
-                if(p) {
-                    if(strcmp(getCEP(p), cep) == 0) {
-                        fprintf(txt, "O(a) %s %s (CPF: %s) acabou de ficar sem teto!\n", getNome(p), getSobrenome(p), getCPF(p));                        
-                        // Atualizando o registro dele para virar sem-teto
-                        setCEP(p, "");
-                        char* moradorAtualizado = serializarPessoa(p);
-                        inserirDadoHashFile(hashPessoas, getCPF(p), moradorAtualizado);
-                        free(moradorAtualizado);
-                    }
-                    liberarPessoa(p);
-                }
-            }
-        } 
-
-    }
-    Quadra q = desserializarQuadra(cep);
-    float x = getXQuadra(q);
-    float y = getYQuadra(q);
-    comandoRqSvg(svg,x,y);
-    liberarQuadra(q);   
     removerDadosHashFile(hashQuadras, cep);
 }
 
@@ -210,13 +212,14 @@ void comandoH(FILE* txt, HashFile hashPessoas,char* cpf) {
             fprintf(txt, "CPF: %s,Nome: %s ,Sobrenome: %s,Sexo: %c, Nascimento: %d/%d/%d \n", getCPF(p), getNome(p),
             getSobrenome(p),getSexo(p), getDiaNascimento(p),getMesNascimento(p),getAnoNascimento(p));
             if(strcmp(getCEP(p), "") != 0){
-                fprintf(txt, "CEP: %s,Número: %d,Complemento: %s\n", getCEP(p), getNum(p), getComplemento(p));
+                fprintf(txt, "CEP: %s,Numero: %d,Complemento: %s\n", getCEP(p), getNum(p), getComplemento(p));
             }else{
                 fprintf(txt, "CEP: nao encontrado\n");
             }   
             liberarPessoa(p);
         }
-        fprintf(txt,"Habitante do CPF %s não encontrado\n", cpf);
+    } else {
+        fprintf(txt, "Habitante do CPF %s nao encontrado\n", cpf);
     }   
 }
 
@@ -269,18 +272,18 @@ void comandoRip(FILE* txt,FILE* svg, HashFile hashPessoas,HashFile hashQuadras, 
             getMesNascimento(falecido),
             getAnoNascimento(falecido));
 
-    liberarPessoa(falecido);
-    if(strcmp(getCEP(falecido),"") != 0){
-        fprintf(txt, "O falecido tinha moradia no CEP: %s, numero: %d, face: %c, complemento: %s\n", getCEP(falecido), getNum(falecido), getFace(falecido), getComplemento(falecido));    
-        char quadraBuf[512];
-        if(buscarDadosHashFile(hashQuadras, getCEP(falecido),quadraBuf,512)){
-            Quadra q = desserializarQuadra(quadraBuf);
-            float x = getXQuadra(q);
-            float y = getYQuadra(q);
-            comandoRipSvg(svg, x, y);
-            liberarQuadra(q);   
-        }
-    }
+            if(strcmp(getCEP(falecido),"") != 0){
+                fprintf(txt, "O falecido tinha moradia no CEP: %s, numero: %d, face: %c, complemento: %s\n", getCEP(falecido), getNum(falecido), getFace(falecido), getComplemento(falecido));    
+                char quadraBuf[512];
+                if(buscarDadosHashFile(hashQuadras, getCEP(falecido),quadraBuf,512)){
+                    Quadra q = desserializarQuadra(quadraBuf);
+                    float x = getXQuadra(q);
+                    float y = getYQuadra(q);
+                    comandoRipSvg(svg, x, y);
+                    liberarQuadra(q);   
+                }
+            }
+            liberarPessoa(falecido);
     
     //remove a pessoa da hash file
     removerDadosHashFile(hashPessoas, cpf);
@@ -327,38 +330,41 @@ void comandoDspj(FILE* txt, FILE* svg, HashFile hashQuadras, HashFile hashPessoa
         return;
     }
     char pacoteDados[512];
-    char endereco[50];
-    if(buscarDadosHashFile(hashPessoas,cpf,pacoteDados,512)){
+    if(buscarDadosHashFile(hashPessoas, cpf, pacoteDados, 512)){
         Pessoa p = desserializarPessoa(pacoteDados);
         if(p != NULL){
             printf("A pessoa com esse cpf: %s será despejada\n", cpf);
-            char cepAntigo[512];
-            strcpy(cepAntigo, getCEP(p));
-            fprintf(txt, "Antigo endereço: cep = %s, Número = %d, Complemento = %s\n", cepAntigo, getNum(p), getComplemento(p));
+            char cepAntigo[32];
+            strncpy(cepAntigo, getCEP(p), sizeof(cepAntigo) - 1);
+            cepAntigo[sizeof(cepAntigo) - 1] = '\0';
+            fprintf(txt, "Antigo endereco: cep = %s, Numero = %d, Complemento = %s\n", cepAntigo, getNum(p), getComplemento(p));
 
             //zerar o atual endereço do morador
             setCEP(p, "");
             setNum(p, -1);
-            setComplemento(p,"");
-            
+            setComplemento(p, "");
+
             char* dadoFinal = serializarPessoa(p);
-            inserirDadoHashFile(hashPessoas, getCPF(p),dadoFinal);
+            inserirDadoHashFile(hashPessoas, getCPF(p), dadoFinal);
             free(dadoFinal);
-            
-        }else{
-            printf("O cpf passado em comandoDsp não foi encontrado\n");
+
+            // Colocar um círculo preto no local da quadra onde a pessoa morava
+            char quadraBuf[512];
+            if(buscarDadosHashFile(hashQuadras, cepAntigo, quadraBuf, sizeof(quadraBuf))){
+                Quadra q = desserializarQuadra(quadraBuf);
+                if(q){
+                    float x = getXQuadra(q);
+                    float y = getYQuadra(q);
+                    comandoDspjSvg(svg, x, y);
+                    liberarQuadra(q);
+                }
+            }
+            liberarPessoa(p);
+        } else {
+            printf("O cpf passado em comandoDspj nao foi encontrado\n");
         }
-        //colocar um círculo preto no local do despejo
-        Quadra q = desserializarQuadra(endereco);
-        float x = getXQuadra(q);
-        float y = getYQuadra(q);
-
-        comandoDspjSvg(svg,x,y);
-        liberarQuadra(q);
-
-        liberarPessoa(p);
-    }else{
-        printf("Erro em comandoDspj no final\n");
+    } else {
+        printf("Erro em comandoDspj: CPF nao encontrado na hash\n");
     }
 }
 

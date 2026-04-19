@@ -1,91 +1,171 @@
+#include "unity.h"
 #include "pessoa.h"
-#include "hashFile.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include <string.h>
 
-/* Helpers ─────────────────────────────────────── */
-static void imprimirPessoa(Pessoa p) {
-    printf("  CPF       : %s\n",   getCPF(p));
-    printf("  Nome      : %s %s\n", getNome(p), getSobrenome(p));
-    printf("  Sexo      : %c\n",   getSexo(p));
-    printf("  Nascimento: %02d/%02d/%d\n",
-           getDiaNascimento(p), getMesNascimento(p), getAnoNascimento(p));
-    printf("  Endereco  : CEP %s, face %c, n.%d, %s\n\n",
-           getCEP(p), getFace(p), getNum(p), getComplemento(p));
+void setUp(void) {}
+void tearDown(void) {}
+
+/* ── criarPessoa ─────────────────────────────────────────── */
+
+void test_criarPessoa_naoRetornaNULL(void) {
+    Pessoa p = criarPessoa();
+    TEST_ASSERT_NOT_NULL(p);
+    liberarPessoa(p);
 }
 
-static void inserir(HashFile hash, char* cpf, const char* nome, const char* sob,
-                    char sexo, int dia, int mes, int ano,
-                    char* cep, char face, int num, const char* comp) {
-    Pessoa p = criarPessoa();
-    setCPF(p, cpf);
-    setNome(p, (char*)nome);
-    setSobrenome(p, (char*)sob);
-    setSexo(p, sexo);
-    setNascimento(p, dia, mes, ano);
-    setCEP(p, cep);
-    setFace(p, face);
-    setNum(p, num);
-    setComplemento(p, (char*)comp);
+/* ── set / get CPF ───────────────────────────────────────── */
 
+void test_setCPF_getCPF_retornaValorCorreto(void) {
+    Pessoa p = criarPessoa();
+    setCPF(p, "123.456.789-00");
+    TEST_ASSERT_EQUAL_STRING("123.456.789-00", getCPF(p));
+    liberarPessoa(p);
+}
+
+/* ── set / get nome e sobrenome ──────────────────────────── */
+
+void test_setNome_getNome_retornaValorCorreto(void) {
+    Pessoa p = criarPessoa();
+    setNome(p, "Vitor");
+    TEST_ASSERT_EQUAL_STRING("Vitor", getNome(p));
+    liberarPessoa(p);
+}
+
+void test_setSobrenome_getSobrenome_retornaValorCorreto(void) {
+    Pessoa p = criarPessoa();
+    setSobrenome(p, "Morimitsu");
+    TEST_ASSERT_EQUAL_STRING("Morimitsu", getSobrenome(p));
+    liberarPessoa(p);
+}
+
+/* ── set / get sexo ──────────────────────────────────────── */
+
+void test_setSexo_getSexo_masculino(void) {
+    Pessoa p = criarPessoa();
+    setSexo(p, 'm');
+    TEST_ASSERT_EQUAL_CHAR('m', getSexo(p));
+    liberarPessoa(p);
+}
+
+void test_setSexo_getSexo_feminino(void) {
+    Pessoa p = criarPessoa();
+    setSexo(p, 'f');
+    TEST_ASSERT_EQUAL_CHAR('f', getSexo(p));
+    liberarPessoa(p);
+}
+
+/* ── set / get nascimento ────────────────────────────────── */
+
+void test_setNascimento_retornaValoresCorretos(void) {
+    Pessoa p = criarPessoa();
+    setNascimento(p, 12, 3, 2004);
+    TEST_ASSERT_EQUAL_INT(12,   getDiaNascimento(p));
+    TEST_ASSERT_EQUAL_INT(3,    getMesNascimento(p));
+    TEST_ASSERT_EQUAL_INT(2004, getAnoNascimento(p));
+    liberarPessoa(p);
+}
+
+/* ── set / get endereço ──────────────────────────────────── */
+
+void test_setCEP_getCEP_retornaValorCorreto(void) {
+    Pessoa p = criarPessoa();
+    setCEP(p, "01310-100");
+    TEST_ASSERT_EQUAL_STRING("01310-100", getCEP(p));
+    liberarPessoa(p);
+}
+
+void test_setFace_getFace_retornaValorCorreto(void) {
+    Pessoa p = criarPessoa();
+    setFace(p, 'N');
+    TEST_ASSERT_EQUAL_CHAR('N', getFace(p));
+    liberarPessoa(p);
+}
+
+void test_setNum_getNum_retornaValorCorreto(void) {
+    Pessoa p = criarPessoa();
+    setNum(p, 42);
+    TEST_ASSERT_EQUAL_INT(42, getNum(p));
+    liberarPessoa(p);
+}
+
+void test_setComplemento_getComplemento_retornaValorCorreto(void) {
+    Pessoa p = criarPessoa();
+    setComplemento(p, "Apto 5");
+    TEST_ASSERT_EQUAL_STRING("Apto 5", getComplemento(p));
+    liberarPessoa(p);
+}
+
+/* ── serialização / desserialização ──────────────────────── */
+
+void test_serializar_naoRetornaNULL(void) {
+    Pessoa p = criarPessoa();
+    setCPF(p, "111.222.333-44");
     char* s = serializarPessoa(p);
-    inserirDadoHashFile(hash, cpf, s);
+    TEST_ASSERT_NOT_NULL(s);
     free(s);
     liberarPessoa(p);
 }
 
-static void buscarEImprimir(HashFile hash, char* cpf) {
-    char buf[HASHFILE_TAM_BUF];
-    printf("Buscando CPF %s... ", cpf);
-    if (buscarDadosHashFile(hash, cpf, buf, HASHFILE_TAM_BUF)) {
-        printf("ENCONTRADO\n");
-        Pessoa p = desserializarPessoa(buf);
-        imprimirPessoa(p);
-        liberarPessoa(p);
-    } else {
-        printf("NAO ENCONTRADO\n\n");
-    }
+void test_serializar_desserializar_mantemTodosOsDados(void) {
+    Pessoa original = criarPessoa();
+    setCPF(original,        "123.456.789-00");
+    setNome(original,       "Ana");
+    setSobrenome(original,  "Silva");
+    setSexo(original,       'f');
+    setNascimento(original, 5, 7, 1998);
+    setCEP(original,        "20002-111");
+    setFace(original,       'S');
+    setNum(original,        10);
+    setComplemento(original,"Casa");
+
+    char* s = serializarPessoa(original);
+    Pessoa copia = desserializarPessoa(s);
+    TEST_ASSERT_NOT_NULL(copia);
+
+    TEST_ASSERT_EQUAL_STRING("123.456.789-00", getCPF(copia));
+    TEST_ASSERT_EQUAL_STRING("Ana",            getNome(copia));
+    TEST_ASSERT_EQUAL_STRING("Silva",          getSobrenome(copia));
+    TEST_ASSERT_EQUAL_CHAR('f',                getSexo(copia));
+    TEST_ASSERT_EQUAL_INT(5,                   getDiaNascimento(copia));
+    TEST_ASSERT_EQUAL_INT(7,                   getMesNascimento(copia));
+    TEST_ASSERT_EQUAL_INT(1998,                getAnoNascimento(copia));
+    TEST_ASSERT_EQUAL_STRING("20002-111",      getCEP(copia));
+    TEST_ASSERT_EQUAL_CHAR('S',                getFace(copia));
+    TEST_ASSERT_EQUAL_INT(10,                  getNum(copia));
+    TEST_ASSERT_EQUAL_STRING("Casa",           getComplemento(copia));
+
+    free(s);
+    liberarPessoa(original);
+    liberarPessoa(copia);
 }
 
-/* ── main ────────────────────────────────────── */
-int main() {
-    /* Remove arquivos antigos para iniciar limpo */
-    remove(HASHFILE_PESSOAS_DIR);
-    remove(HASHFILE_PESSOAS_DADOS);
+void test_desserializar_stringNULL_retornaNULL(void) {
+    Pessoa p = desserializarPessoa(NULL);
+    TEST_ASSERT_NULL(p);
+}
 
-    HashFile hash = criarHashFile(HASHFILE_PESSOAS_DIR, HASHFILE_PESSOAS_DADOS);
-    if (!hash) {
-        printf("Erro ao criar HashFile\n");
-        return 1;
-    }
-    printf("HashFile criada. Profundidade inicial: %d\n\n", getProfundidadeHash(hash));
+/* ── main ───────────────────────────────────────────────── */
 
-    /* ── Inserções ── */
-    printf("=== INSERCOES ===\n");
-    inserir(hash, "123.456.789-00", "Vitor", "Morimitsu", 'm', 12, 3, 2004, "10001-000", 'N', 42, "Apto 5");
-    inserir(hash, "999.900.111-22", "Ana",   "Silva",     'f',  5, 7, 1998, "20002-111", 'S', 10, "Casa");
-    inserir(hash, "765.432.100-88", "Carlos","Oliveira",  'm', 30,11, 1985, "30003-222", 'L', 88, "Bloco B");
-    inserir(hash, "111.111.111-11", "Julia", "Santos",    'f',  1, 1, 2000, "40004-333", 'O', 15, "Ap 101");
-    printf("4 pessoas inseridas com sucesso!\n\n");
+int main(void) {
+    UNITY_BEGIN();
 
-    /* ── Buscas ── */
-    printf("=== BUSCAS ===\n");
-    buscarEImprimir(hash, "123.456.789-00");
-    buscarEImprimir(hash, "999.900.111-22");
-    buscarEImprimir(hash, "765.432.100-88");
-    buscarEImprimir(hash, "111.111.111-11");
-    buscarEImprimir(hash, "999.999.999-99");  /* nao existe */
+    RUN_TEST(test_criarPessoa_naoRetornaNULL);
 
-    /* ── Remoção ── */
-    printf("=== REMOCAO ===\n");
-    printf("Removendo CPF 999.900.111-22...\n");
-    removerDadosHashFile(hash, "999.900.111-22");
-    buscarEImprimir(hash, "999.900.111-22");  /* deve retornar NAO ENCONTRADO */
+    RUN_TEST(test_setCPF_getCPF_retornaValorCorreto);
+    RUN_TEST(test_setNome_getNome_retornaValorCorreto);
+    RUN_TEST(test_setSobrenome_getSobrenome_retornaValorCorreto);
+    RUN_TEST(test_setSexo_getSexo_masculino);
+    RUN_TEST(test_setSexo_getSexo_feminino);
+    RUN_TEST(test_setNascimento_retornaValoresCorretos);
 
-    /* ── Profundidade final ── */
-    printf("Profundidade final do diretorio: %d\n", getProfundidadeHash(hash));
+    RUN_TEST(test_setCEP_getCEP_retornaValorCorreto);
+    RUN_TEST(test_setFace_getFace_retornaValorCorreto);
+    RUN_TEST(test_setNum_getNum_retornaValorCorreto);
+    RUN_TEST(test_setComplemento_getComplemento_retornaValorCorreto);
 
-    fecharHashFile(hash);
-    printf("\nArquivos gerados: pessoas.dir (binario), pessoas.txt (texto)\n");
-    return 0;
+    RUN_TEST(test_serializar_naoRetornaNULL);
+    RUN_TEST(test_serializar_desserializar_mantemTodosOsDados);
+    RUN_TEST(test_desserializar_stringNULL_retornaNULL);
+
+    return UNITY_END();
 }

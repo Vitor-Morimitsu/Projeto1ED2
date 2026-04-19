@@ -24,10 +24,9 @@ void lerGeo(FILE* geo, FILE* svg, HashFile hashFile) {
 
         if (strcmp(comando, "q") == 0) {
             /* Lê: q CEP x y w h */
-            int   CEP;
+            char  CEP[32];
             float x, y, w, h;
-            int lidos = sscanf(&linha[strlen(comando)], " %d %f %f %f %f",
-                               &CEP, &x, &y, &w, &h);
+            int lidos = sscanf(&linha[strlen(comando)], " %31s %f %f %f %f", CEP, &x, &y, &w, &h);
             if (lidos != 5) {
                 printf("Erro ao ler comando 'q': formato invalido\n");
                 continue;
@@ -48,6 +47,7 @@ void lerGeo(FILE* geo, FILE* svg, HashFile hashFile) {
             inserirDadoHashFile(hashFile, CEP, dado);
             free(dado);
 
+            desenharRetanguloSVG(svg, novaQuadra);
             liberarQuadra(novaQuadra);
 
         } else if (strcmp(comando, "cq") == 0) {

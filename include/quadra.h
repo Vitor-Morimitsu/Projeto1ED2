@@ -34,6 +34,12 @@ void setDimensoesQuadra(Quadra q, float x, float y, float w, float h);
 /// @param cstrk Cor preenchimento da borda
 void setPreenchimentoQuadra(Quadra q, char* sw, char* cfill, char* cstrk);
 
+char* getSwQuadra(Quadra q);
+
+char* getCfillQuadra(Quadra q);
+
+char* getCstrkQuadra(Quadra q);
+
 /// @brief Retorna o CEP de uma quadra 
 /// @param q Quadra já existente
 /// @return CEP

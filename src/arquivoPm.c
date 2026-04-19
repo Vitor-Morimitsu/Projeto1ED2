@@ -4,49 +4,71 @@ void comandoP(HashFile hashFile, FILE* pessoasArq,
               int CPF, char* nome, char* sobrenome, char sexo,
               int diaNascimento, int mesNascimento, int anoNascimento) {
 
+    // Converte CPF int → string para usar como chave da HashFile
+    char cpfStr[32];
+    snprintf(cpfStr, sizeof(cpfStr), "%d", CPF);
+
     Pessoa novoHabitante = criarPessoa();
     if (novoHabitante == NULL) return;
 
-    setCPF(novoHabitante, CPF);
+    setCPF(novoHabitante, cpfStr);
     setNome(novoHabitante, nome);
     setSobrenome(novoHabitante, sobrenome);
     setSexo(novoHabitante, sexo);
     setNascimento(novoHabitante, diaNascimento, mesNascimento, anoNascimento);
 
-    fseek(pessoasArq, 0, SEEK_END);
-    long offset = ftell(pessoasArq);
-    escreverPessoaArquivo(novoHabitante, pessoasArq);
+    char* dado = serializarPessoa(novoHabitante);
+    inserirDadoHashFile(hashFile, cpfStr, dado);
+    free(dado);
 
-    inserirDadoHashFile(hashFile, CPF, offset);
+    // Mantém escrita no arquivo binário para compatibilidade com lerPessoaArquivo
+    if (pessoasArq) {
+        fseek(pessoasArq, 0, SEEK_END);
+        escreverPessoaArquivo(novoHabitante, pessoasArq);
+    }
 
     liberarPessoa(novoHabitante);
 }
 
-void comandoM(HashFile hashFile, FILE* pessoasArq,int CPF, int CEP, char face, int num, char* complemento) {
-    //procura onde a pessoa está
-    long offset = buscarDadosHashFile(hashFile, CPF);
-    if (offset == -1) {
-        printf("CPF %d não encontrado na HashFile em comandoM\n", CPF);
+void comandoM(HashFile hashFile, FILE* pessoasArq,
+              int CPF, int CEP, char face, int num, char* complemento) {
+
+    char cpfStr[32], cepStr[32];
+    snprintf(cpfStr, sizeof(cpfStr), "%d", CPF);
+    snprintf(cepStr, sizeof(cepStr), "%d", CEP);
+
+    char buf[HASHFILE_TAM_BUF];
+    if (!buscarDadosHashFile(hashFile, cpfStr, buf, HASHFILE_TAM_BUF)) {
+        printf("CPF %d nao encontrado na HashFile em comandoM\n", CPF);
         return;
     }
 
-    Pessoa habitante = lerPessoaArquivo(pessoasArq, offset);
+    Pessoa habitante = desserializarPessoa(buf);
     if (habitante == NULL) return;
 
-    setCEP(habitante, CEP);
+    setCEP(habitante, cepStr);
     setFace(habitante, face);
     setNum(habitante, num);
     setComplemento(habitante, complemento);
 
-    fseek(pessoasArq, offset, SEEK_SET);
-    escreverPessoaArquivo(habitante, pessoasArq);
+    char* dado = serializarPessoa(habitante);
+    inserirDadoHashFile(hashFile, cpfStr, dado);
+    free(dado);
+
+    // Atualiza no arquivo binário se disponível
+    if (pessoasArq) {
+        fseek(pessoasArq, 0, SEEK_END);
+        escreverPessoaArquivo(habitante, pessoasArq);
+    }
 
     liberarPessoa(habitante);
+
+    (void)pessoasArq; // suprime warning se não usado
 }
 
 void lerPm(FILE* arquivoPm, HashFile hashFile, FILE* pessoasArq) {
     if (arquivoPm == NULL) {
-        printf("Erro: arquivo .pm é NULL em lerPm\n");
+        printf("Erro: arquivo .pm e NULL em lerPm\n");
         return;
     }
 
@@ -54,7 +76,6 @@ void lerPm(FILE* arquivoPm, HashFile hashFile, FILE* pessoasArq) {
     char comando[10];
 
     while (fgets(linha, sizeof(linha), arquivoPm) != NULL) {
-        /* Ignora linhas em branco e comentários */
         if (linha[0] == '\n' || linha[0] == '#') continue;
 
         int lidos_cmd = sscanf(linha, "%9s", comando);
@@ -67,10 +88,11 @@ void lerPm(FILE* arquivoPm, HashFile hashFile, FILE* pessoasArq) {
             char nome[100]      = "";
             char sobrenome[100] = "";
 
-            /* Lê a partir do caractere após o comando */
-            int lidos = sscanf(&linha[strlen(comando)]," %d %99s %99s %c %d/%d/%d",&CPF, nome, sobrenome, &sexo,&diaNascimento, &mesNascimento, &anoNascimento);
+            int lidos = sscanf(&linha[strlen(comando)], " %d %99s %99s %c %d/%d/%d",
+                               &CPF, nome, sobrenome, &sexo,
+                               &diaNascimento, &mesNascimento, &anoNascimento);
             if (lidos != 7) {
-                printf("Erro ao ler parâmetros do comando 'p'\n");
+                printf("Erro ao ler parametros do comando 'p'\n");
                 continue;
             }
             comandoP(hashFile, pessoasArq, CPF, nome, sobrenome, sexo,
@@ -85,7 +107,7 @@ void lerPm(FILE* arquivoPm, HashFile hashFile, FILE* pessoasArq) {
                                " %d %d %c %d %49s",
                                &CPF, &CEP, &face, &num, complemento);
             if (lidos != 5) {
-                printf("Erro ao ler parâmetros do comando 'm'\n");
+                printf("Erro ao ler parametros do comando 'm'\n");
                 continue;
             }
             comandoM(hashFile, pessoasArq, CPF, CEP, face, num, complemento);

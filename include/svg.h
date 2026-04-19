@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <retangulo.h>
+#include "quadra.h"
 
 //a rosa dos ventos é invertida, Sul está no norte,etc
 
@@ -17,14 +17,12 @@
 void abrirSvg(FILE* arqSvg);
 
 /*
-    Função responsável por gerar um retângulo em SVG.
+    Função responsável por gerar uma quadra em SVG.
 */
-void desenharRetanguloSVG(FILE* arqSvg, Retangulo r);
+void desenharRetanguloSVG(FILE* arqSvg, Quadra q);
 
 ///colocar um pequeno X vermelho no local da âncora da quadra removida.
 void comandoRqSvg(FILE* svg, float x, float y);
-
-void inserirXSvg(FILE* svg, float x, float y);
 
 //marcar o endereço de destino com um pequeno quadrado vermelho no local de destino. Colocar o cpf dentro do quadrado (usar fonte minúscula)
 void comandoMudSvg(FILE* svg, float x , float y, char* cpf);

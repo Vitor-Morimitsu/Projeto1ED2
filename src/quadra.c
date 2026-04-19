@@ -77,6 +77,18 @@ float getHQuadra(Quadra q){
     return ((stQuadra*)q)->h;
 }
 
+char* getSwQuadra(Quadra q){
+    return ((stQuadra*)q)->sw;
+}
+
+char* getCfillQuadra(Quadra q){
+    return ((stQuadra*)q)->fill;
+}
+
+char* getCstrkQuadra(Quadra q){
+    return ((stQuadra*)q)->cstrk;
+}
+
 void liberarQuadra(Quadra q) {
     if (q == NULL) {
         printf("Erro em liberarQuadra\n");

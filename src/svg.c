@@ -4,17 +4,16 @@ void abrirSvg(FILE* arqSvg){
     if(arqSvg == NULL){
         printf("Erro em abrirSvg\n");
     }
-    fprintf(arqSvg, "<svg xmlns:svg=\"http://www.w3.org/2000/svg\" ""xmlns=\"http://www.w3.org/2000/svg\" ""version=\"1.1\n");
+    fprintf(arqSvg, "<svg xmlns:svg=\"http://www.w3.org/2000/svg\" xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n");
 }
 
-void desenharRetanguloSVG(FILE* arqSvg, Retangulo r){
-    if(!arqSvg || !r){
+void desenharRetanguloSVG(FILE* arqSvg, Quadra q){
+    if(!arqSvg || !q){
         printf("Erro em desenharRetanguloSVG\n");
         return;
     }
     fprintf(arqSvg, "<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" fill=\"%s\" stroke=\"%s\" stroke-width=\"1\" />\n",
-            getCoordXRetangulo(r), getCoordYRetangulo(r), getWRetangulo(r), getHRetangulo(r),
-            getCorPRetangulo(r), getCorBRetangulo(r));
+            getXQuadra(q),getYQuadra(q),getWQuadra(q),getHQuadra(q), getCfillQuadra(q), getCstrkQuadra(q));
 }
 
 //coloca um x no local da ancora da quadra removida

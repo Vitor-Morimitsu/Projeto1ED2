@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include "quadra.h"
 #include "hashFile.h"
+#include "svg.h"
 
 /*
     Arquivo .geo responsável por ler um arquivo geo e gerar as formas em svg.

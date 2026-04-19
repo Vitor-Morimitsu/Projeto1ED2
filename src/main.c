@@ -91,6 +91,8 @@ int main(int argc, char* argv[]) {
     FILE* arqSvgInicial = fopen(arquivoSvgGeo, "w");
     if(arqSvgInicial==NULL){
         printf("Erro: Nao foi possivel abrir o arquivo svgInicial\n");
+        fecharHashFile(hashPessoas);
+        fecharHashFile(hashQuadras);
         return EXIT_FAILURE;
     }
     abrirSvg(arqSvgInicial);
@@ -99,6 +101,9 @@ int main(int argc, char* argv[]) {
     FILE *arqGeo = fopen(fullPathGeo, "r");
     if (arqGeo == NULL) {
         fprintf(stderr, "ERRO: Não foi possível abrir o arquivo .geo: %s\n", fullPathGeo);
+        fclose(arqSvgInicial);
+        fecharHashFile(hashPessoas);
+        fecharHashFile(hashQuadras);
         return EXIT_FAILURE;
     }
     lerGeo(arqGeo,arqSvgInicial,hashQuadras);
@@ -113,6 +118,8 @@ int main(int argc, char* argv[]) {
         FILE* qry = fopen(fullPathQry, "r");
         if(qry == NULL){
             printf("Erro ao abrir o arquivo qry na main\n");
+            fecharHashFile(hashPessoas);
+            fecharHashFile(hashQuadras);
             return EXIT_FAILURE;
         }
 
@@ -120,6 +127,8 @@ int main(int argc, char* argv[]) {
         if(txt == NULL){
             printf("Erro na main ao abrir o arquivo txt\n");
             fclose(qry);
+            fecharHashFile(hashPessoas);
+            fecharHashFile(hashQuadras);
             return EXIT_FAILURE;
         }
 
@@ -128,6 +137,8 @@ int main(int argc, char* argv[]) {
             printf("Erro na main ao abrir o saidaSvg\n");
             fclose(qry);
             fclose(txt);
+            fecharHashFile(hashPessoas);
+            fecharHashFile(hashQuadras);
             return EXIT_FAILURE;
         }
 

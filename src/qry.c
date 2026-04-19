@@ -133,8 +133,8 @@ void comandoCenso(FILE* txt, HashFile hashPessoas) {
         printf("Erro em comandoCenso ao abrir o arquivo\n");
         return;
     }
-    int habitantes,moradores,homens,mulheres,semTeto, semTetoHomens, semTetoMulheres;
-
+    int habitantes = 0, moradores = 0, homens = 0, mulheres = 0;
+    int semTeto = 0, semTetoHomens = 0, semTetoMulheres = 0;
     char linha[512];
     while(fgets(linha,sizeof(linha), arquivoDados)!=NULL){
         if(strncmp(linha, "s=",2) != 0)continue;

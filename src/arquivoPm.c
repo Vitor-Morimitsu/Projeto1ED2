@@ -1,24 +1,20 @@
 #include "arquivoPm.h"
 
 void comandoP(HashFile hashFile, FILE* pessoasArq,
-              int CPF, char* nome, char* sobrenome, char sexo,
+              char* CPF, char* nome, char* sobrenome, char sexo,
               int diaNascimento, int mesNascimento, int anoNascimento) {
-
-    // Converte CPF int → string para usar como chave da HashFile
-    char cpfStr[32];
-    snprintf(cpfStr, sizeof(cpfStr), "%d", CPF);
 
     Pessoa novoHabitante = criarPessoa();
     if (novoHabitante == NULL) return;
 
-    setCPF(novoHabitante, cpfStr);
+    setCPF(novoHabitante, CPF);
     setNome(novoHabitante, nome);
     setSobrenome(novoHabitante, sobrenome);
     setSexo(novoHabitante, sexo);
     setNascimento(novoHabitante, diaNascimento, mesNascimento, anoNascimento);
 
     char* dado = serializarPessoa(novoHabitante);
-    inserirDadoHashFile(hashFile, cpfStr, dado);
+    inserirDadoHashFile(hashFile, CPF, dado);
     free(dado);
 
     // Mantém escrita no arquivo binário para compatibilidade com lerPessoaArquivo
@@ -31,28 +27,24 @@ void comandoP(HashFile hashFile, FILE* pessoasArq,
 }
 
 void comandoM(HashFile hashFile, FILE* pessoasArq,
-              int CPF, int CEP, char face, int num, char* complemento) {
-
-    char cpfStr[32], cepStr[32];
-    snprintf(cpfStr, sizeof(cpfStr), "%d", CPF);
-    snprintf(cepStr, sizeof(cepStr), "%d", CEP);
+              char* CPF, char* CEP, char face, int num, char* complemento) {
 
     char buf[HASHFILE_TAM_BUF];
-    if (!buscarDadosHashFile(hashFile, cpfStr, buf, HASHFILE_TAM_BUF)) {
-        printf("CPF %d nao encontrado na HashFile em comandoM\n", CPF);
+    if (!buscarDadosHashFile(hashFile, CPF, buf, HASHFILE_TAM_BUF)) {
+        printf("CPF %s nao encontrado na HashFile em comandoM\n", CPF);
         return;
     }
 
     Pessoa habitante = desserializarPessoa(buf);
     if (habitante == NULL) return;
 
-    setCEP(habitante, cepStr);
+    setCEP(habitante, CEP);
     setFace(habitante, face);
     setNum(habitante, num);
     setComplemento(habitante, complemento);
 
     char* dado = serializarPessoa(habitante);
-    inserirDadoHashFile(hashFile, cpfStr, dado);
+    inserirDadoHashFile(hashFile, CPF, dado);
     free(dado);
 
     // Atualiza no arquivo binário se disponível
@@ -82,14 +74,14 @@ void lerPm(FILE* arquivoPm, HashFile hashFile, FILE* pessoasArq) {
         if (lidos_cmd != 1) continue;
 
         if (strcmp(comando, "p") == 0) {
-            int  CPF;
+            char CPF[32];
             char sexo;
             int  diaNascimento, mesNascimento, anoNascimento;
             char nome[100]      = "";
             char sobrenome[100] = "";
 
-            int lidos = sscanf(&linha[strlen(comando)], " %d %99s %99s %c %d/%d/%d",
-                               &CPF, nome, sobrenome, &sexo,
+            int lidos = sscanf(&linha[strlen(comando)], " %31s %99s %99s %c %d/%d/%d",
+                               CPF, nome, sobrenome, &sexo,
                                &diaNascimento, &mesNascimento, &anoNascimento);
             if (lidos != 7) {
                 printf("Erro ao ler parametros do comando 'p'\n");
@@ -99,13 +91,14 @@ void lerPm(FILE* arquivoPm, HashFile hashFile, FILE* pessoasArq) {
                      diaNascimento, mesNascimento, anoNascimento);
 
         } else if (strcmp(comando, "m") == 0) {
-            int  CPF, CEP, num;
+            char CPF[32], CEP[32];
+            int num;
             char face;
             char complemento[50] = "";
 
             int lidos = sscanf(&linha[strlen(comando)],
-                               " %d %d %c %d %49s",
-                               &CPF, &CEP, &face, &num, complemento);
+                               " %31s %31s %c %d %49s",
+                               CPF, CEP, &face, &num, complemento);
             if (lidos != 5) {
                 printf("Erro ao ler parametros do comando 'm'\n");
                 continue;

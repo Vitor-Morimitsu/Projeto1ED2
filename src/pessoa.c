@@ -17,18 +17,13 @@ typedef struct{
 }stPessoa;
 
 Pessoa criarPessoa(){
-    stPessoa *novaPessoa = malloc(sizeof(stPessoa));
+    stPessoa *novaPessoa = calloc(1, sizeof(stPessoa));
     if(novaPessoa == NULL){
         printf("Erro ao criar pessoa\n");
         return NULL;
     }
 
-    novaPessoa->CPF[0] = '\0';
-    novaPessoa->diaNascimento = 0;
-    novaPessoa->mesNascimento = 0;
-    novaPessoa->anoNascimento = 0;
     novaPessoa->sexo = -1;
-    novaPessoa->CEP[0] = '\0';
     novaPessoa->face = 'i'; //indefinido
     novaPessoa->numero = -1;
     

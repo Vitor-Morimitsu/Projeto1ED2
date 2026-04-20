@@ -93,30 +93,7 @@ void comandoPq(FILE* svg, HashFile hashQuadras, HashFile hashPessoas, char* cep)
     if(buscarDadosHashFile(hashQuadras, cep, quadraBuf, 512)){
         Quadra q = desserializarQuadra(quadraBuf);
         
-        float qx = getXQuadra(q);
-        float qy = getYQuadra(q);
-        float qw = getWQuadra(q);
-        float qh = getHQuadra(q);
-        // -- TOTALIZADOR: Bem no centro da quadra (x + metade da largura)
-        fprintf(svg, "<text x=\"%f\" y=\"%f\" fill=\"black\" font-size=\"14\">Total: %d</text>\n", 
-                qx + (qw/2), qy + (qh/2), contadorTotal);
-        
-        // -- NORTE: Em cima da quadra (Eixo Y menor)
-        fprintf(svg, "<text x=\"%f\" y=\"%f\" fill=\"blue\" font-size=\"10\">%d</text>\n", 
-                qx + (qw/2), qy - 10, contadorNorte);
-                
-        // -- SUL: Abaixo da quadra (Eixo Y desce com a Altura inteira)
-        fprintf(svg, "<text x=\"%f\" y=\"%f\" fill=\"blue\" font-size=\"10\">%d</text>\n", 
-                qx + (qw/2), qy + qh + 10, contadorSul);
-                
-        // -- LESTE: À direita (Eixo X cresce)
-        fprintf(svg, "<text x=\"%f\" y=\"%f\" fill=\"blue\" font-size=\"10\">%d</text>\n", 
-                qx + qw + 5, qy + (qh/2), contadorLeste);
-                
-        // -- OESTE: À esquerda (Eixo X menor)
-        fprintf(svg, "<text x=\"%f\" y=\"%f\" fill=\"blue\" font-size=\"10\">%d</text>\n", 
-                qx - 15, qy + (qh/2), contadorOeste);
-
+        comandoPqSvg(svg, q, contadorTotal, contadorNorte, contadorSul, contadorLeste, contadorOeste);
         liberarQuadra(q);
     }
 }

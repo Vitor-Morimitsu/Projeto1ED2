@@ -2,6 +2,7 @@
 #include "hashFile.h"
 #include "qry.h"
 #include "svg.h"
+#include "arquivoPm.h"
 
 #define PATH_LEN 512
 #define FILE_NAME_LEN 256
@@ -107,6 +108,22 @@ int main(int argc, char* argv[]) {
         return EXIT_FAILURE;
     }
     lerGeo(arqGeo,arqSvgInicial,hashQuadras);
+
+    if (hasPm) {
+        char fullPathPm[MAX_FULL_PATH];
+        snprintf(fullPathPm, sizeof(fullPathPm), "%s/%s", dirEntrada, nomeArquivoPm);
+        FILE *arqPm = fopen(fullPathPm, "r");
+        if (arqPm == NULL) {
+            fprintf(stderr, "ERRO: Não foi possível abrir o arquivo .pm: %s\n", fullPathPm);
+            fclose(arqSvgInicial);
+            fclose(arqGeo);
+            fecharHashFile(hashPessoas);
+            fecharHashFile(hashQuadras);
+            return EXIT_FAILURE;
+        }
+        lerPm(arqPm, hashPessoas, NULL);
+        fclose(arqPm);
+    }
 
     //fechar o arqGeo e svgInicial
     fecharSVG(arqSvgInicial);

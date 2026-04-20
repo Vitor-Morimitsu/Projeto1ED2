@@ -31,7 +31,7 @@ void lerPm(FILE* arquivoPm, HashFile hashFile, FILE* pessoasArq);
 /// @param mesNascimento Mês de nascimento
 /// @param anoNascimento Ano de nascimento
 void comandoP(HashFile hashFile, FILE* pessoasArq,
-              int CPF, char* nome, char* sobrenome, char sexo,
+              char* CPF, char* nome, char* sobrenome, char sexo,
               int diaNascimento, int mesNascimento, int anoNascimento);
 
 /// @brief Atualiza os dados de endereço de uma Pessoa já existente em pessoas.bin
@@ -43,6 +43,6 @@ void comandoP(HashFile hashFile, FILE* pessoasArq,
 /// @param num Número do imóvel
 /// @param complemento Complemento do endereço
 void comandoM(HashFile hashFile, FILE* pessoasArq,
-              int CPF, int CEP, char face, int num, char* complemento);
+              char* CPF, char* CEP, char face, int num, char* complemento);
 
 #endif

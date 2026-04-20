@@ -4,7 +4,7 @@ void abrirSvg(FILE* arqSvg){
     if(arqSvg == NULL){
         printf("Erro em abrirSvg\n");
     }
-    fprintf(arqSvg, "<svg xmlns:svg=\"http://www.w3.org/2000/svg\" xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n");
+    fprintf(arqSvg, "<svg xmlns:svg=\"http://www.w3.org/2000/svg\" xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" width=\"15000\" height=\"15000\">\n");
 }
 
 void desenharRetanguloSVG(FILE* arqSvg, Quadra q){
@@ -46,12 +46,35 @@ void comandoRipSvg(FILE* svg,float x, float y){
 }
 
 //colocar numero de moradores em cada face da quadra e na quadra como um todo no centro
-void comandoPqSvg(FILE* svg, float x, float y){
-    if(!svg){
+void comandoPqSvg(FILE* svg, Quadra q, int total, int n, int s, int l, int o){
+    if(!svg || !q){
         printf("Erro em comandoPqSvg\n");
         return;
     }
-    //-----------------------------------------terminar
+    float qx = getXQuadra(q);
+    float qy = getYQuadra(q);
+    float qw = getWQuadra(q);
+    float qh = getHQuadra(q);
+
+    // -- TOTALIZADOR: Bem no centro da quadra (x + metade da largura)
+    fprintf(svg, "<text x=\"%f\" y=\"%f\" fill=\"black\" font-size=\"14\">Total: %d</text>\n", 
+            qx + (qw/2), qy + (qh/2), total);
+    
+    // -- NORTE: Em cima da quadra (Eixo Y menor)
+    fprintf(svg, "<text x=\"%f\" y=\"%f\" fill=\"blue\" font-size=\"10\">%d</text>\n", 
+            qx + (qw/2), qy - 10, n);
+            
+    // -- SUL: Abaixo da quadra (Eixo Y desce com a Altura inteira)
+    fprintf(svg, "<text x=\"%f\" y=\"%f\" fill=\"blue\" font-size=\"10\">%d</text>\n", 
+            qx + (qw/2), qy + qh + 10, s);
+            
+    // -- LESTE: À direita (Eixo X cresce)
+    fprintf(svg, "<text x=\"%f\" y=\"%f\" fill=\"blue\" font-size=\"10\">%d</text>\n", 
+            qx + qw + 5, qy + (qh/2), l);
+            
+    // -- OESTE: À esquerda (Eixo X menor)
+    fprintf(svg, "<text x=\"%f\" y=\"%f\" fill=\"blue\" font-size=\"10\">%d</text>\n", 
+            qx - 15, qy + (qh/2), o);
 }
 
 //vai desenhar um círculo preto no local do despejo

@@ -31,7 +31,7 @@ void comandoMudSvg(FILE* svg, float x , float y, char* cpf);
 void comandoRipSvg(FILE* svg,float x, float y);
 
 ///colocar número de moradores de cada face (próximo ao limite da face) e,no centro da quadra, o número total de moradores da quadra
-void comandoPqSvg(FILE* svg, float x, float y);
+void comandoPqSvg(FILE* svg, Quadra q, int total, int n, int s, int l, int o);
 
 /// @brief colocar um pequeno círculo preto no local do despejo.
 /// @param svg Arquivo svg

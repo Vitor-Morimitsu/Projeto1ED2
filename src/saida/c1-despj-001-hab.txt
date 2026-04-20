@@ -1,0 +1,3 @@
+Antigo endereco: cep = b02.1, Numero = 100, Complemento = ap-540
+CPF: 000.000.671-80,Nome: Paulo_Martijn ,Sobrenome: Abadghimarinowa_Vacavchieff,Sexo: M, Nascimento: 20/8/2025 
+CEP: nao encontrado

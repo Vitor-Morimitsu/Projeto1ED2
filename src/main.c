@@ -75,14 +75,25 @@ int main(int argc, char* argv[]) {
         snprintf(arquivoSvgFinal, sizeof(arquivoSvgFinal), "%s/%s-%s.svg", dirSaida, baseGeo, baseQry);
         snprintf(arquivoSaidaTxt, sizeof(arquivoSaidaTxt), "%s/%s-%s.txt", dirSaida, baseGeo, baseQry);
     }
-    //criar as duas HashFile
-    HashFile hashPessoas = criarHashFile(HASHFILE_PESSOAS_DIR, HASHFILE_PESSOAS_DADOS);
+    char pessoasHfc[MAX_FULL_PATH], pessoasHf[MAX_FULL_PATH], pessoasHfd[MAX_FULL_PATH];
+    char quadrasHfc[MAX_FULL_PATH], quadrasHf[MAX_FULL_PATH], quadrasHfd[MAX_FULL_PATH];
+
+    snprintf(pessoasHfc, sizeof(pessoasHfc), "%s/%s-pessoas.hfc", dirSaida, baseGeo);
+    snprintf(pessoasHf,  sizeof(pessoasHf),  "%s/%s-pessoas.hf",  dirSaida, baseGeo);
+    snprintf(pessoasHfd, sizeof(pessoasHfd), "%s/%s-pessoas.hfd", dirSaida, baseGeo);
+
+    snprintf(quadrasHfc, sizeof(quadrasHfc), "%s/%s-quadras.hfc", dirSaida, baseGeo);
+    snprintf(quadrasHf,  sizeof(quadrasHf),  "%s/%s-quadras.hf",  dirSaida, baseGeo);
+    snprintf(quadrasHfd, sizeof(quadrasHfd), "%s/%s-quadras.hfd", dirSaida, baseGeo);
+
+    //criar as duas HashFile dinâmicas no disco
+    HashFile hashPessoas = criarHashFile(pessoasHfc, pessoasHf, pessoasHfd);
     if(hashPessoas == NULL){
         printf("Erro na main ao criar hashPessoas\n");
         return EXIT_FAILURE;
     }
 
-    HashFile hashQuadras = criarHashFile(HASHFILE_QUADRAS_DIR, HASHFILE_QUADRAS_DADOS);
+    HashFile hashQuadras = criarHashFile(quadrasHfc, quadrasHf, quadrasHfd);
     if(hashQuadras == NULL){
         printf("Erro na main ao criar hashQuadras\n");
         return EXIT_FAILURE;

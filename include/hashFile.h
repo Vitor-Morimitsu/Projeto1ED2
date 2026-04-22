@@ -26,18 +26,14 @@
 /** Tamanho máximo (em bytes) da string serializada de um dado. */
 #define HASHFILE_TAM_BUF 256
 
-#define HASHFILE_PESSOAS_DIR   "pessoas.dir"
-#define HASHFILE_PESSOAS_DADOS "pessoas.txt"
-#define HASHFILE_QUADRAS_DIR   "quadras.dir"
-#define HASHFILE_QUADRAS_DADOS "quadras.txt"
-
 typedef void* HashFile;
 
 /// @brief Cria ou reabre a HashFile com os arquivos especificados.
-/// @param dirArq   Nome do arquivo de diretório binário (use as constantes HASHFILE_*_DIR)
-/// @param dadosArq Nome do arquivo de dados texto      (use as constantes HASHFILE_*_DADOS)
+/// @param dirArq   Nome do arquivo de diretório binário (extensão .hfc)
+/// @param dadosArq Nome do arquivo de dados texto      (extensão .hf)
+/// @param dumpArq  Nome do arquivo de despejo legível  (extensão .hfd)
 /// @return HashFile pronta para uso, ou NULL em caso de erro.
-HashFile criarHashFile(const char* dirArq, const char* dadosArq);
+HashFile criarHashFile(const char* dirArq, const char* dadosArq, const char* dumpArq);
 
 /// @brief Retorna a profundidade global da HashFile.
 int getProfundidadeHash(HashFile hash);

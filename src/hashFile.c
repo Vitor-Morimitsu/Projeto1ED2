@@ -31,6 +31,7 @@ typedef struct {
 typedef struct {
     FILE* dir;
     FILE* dados;
+    FILE* dumpArq;
     int   profundidade;   /* profundidade global */
 } stHashFile;
 
@@ -179,7 +180,12 @@ static void _splitBucket(stHashFile* h, const char* chave) {
         _dobrarDiretorio(h);
     }
 
+
     int novoProfLocal = bucketAntigo.profLocal + 1;
+
+    if (h->dumpArq) {
+        fprintf(h->dumpArq, "[EXPANSAO] Split no bucket de offset %ld. Profundidade local subiu de %d para %d.\n", offsetAntigo, bucketAntigo.profLocal, novoProfLocal);
+    }
 
     /* Criar dois novos buckets vazios */
     Bucket b0, b1;
@@ -217,10 +223,11 @@ static void _splitBucket(stHashFile* h, const char* chave) {
     fflush(h->dir);
 }
 
-HashFile criarHashFile(const char* dirArq, const char* dadosArq) {
+HashFile criarHashFile(const char* dirArq, const char* dadosArq, const char* dumpArq) {
     /* Tenta abrir arquivos existentes */
     FILE* dir   = fopen(dirArq,   "r+b");
     FILE* dados = fopen(dadosArq, "r+b");
+    FILE* dump  = fopen(dumpArq,  "a"); // Append to keep log during execution
 
     if (dir == NULL || dados == NULL) {
         /* Algum arquivo não existe — fecha o que porventura abriu e cria tudo do zero */
@@ -248,7 +255,7 @@ HashFile criarHashFile(const char* dirArq, const char* dadosArq) {
         fflush(dir);
 
         /* ── Inicializar dois buckets vazios no arquivo de dados ── */
-        stHashFile htmp = { dir, dados, profInicial };
+        stHashFile htmp = { dir, dados, dump, profInicial };
         Bucket bVazio;
         memset(&bVazio, 0, sizeof(Bucket));
         bVazio.profLocal = 1;
@@ -257,10 +264,11 @@ HashFile criarHashFile(const char* dirArq, const char* dadosArq) {
     }
 
     stHashFile* hash = malloc(sizeof(stHashFile));
-    if (!hash) { fclose(dir); fclose(dados); return NULL; }
+    if (!hash) { fclose(dir); fclose(dados); if (dump) fclose(dump); return NULL; }
 
-    hash->dir   = dir;
-    hash->dados = dados;
+    hash->dir     = dir;
+    hash->dados   = dados;
+    hash->dumpArq = dump;
 
     /* Lê a profundidade global do cabeçalho do diretório */
     fseek(dir, 0, SEEK_SET);
@@ -385,6 +393,33 @@ void percorrerHashFile(HashFile hashFile, HashFileCallback cb, void* extra) {
 void fecharHashFile(HashFile hashFile) {
     if (!hashFile) return;
     stHashFile* h = (stHashFile*)hashFile;
+
+    /* Gera o texto representativo legivel no fim da execução */
+    if (h->dumpArq) {
+        fprintf(h->dumpArq, "\n\n=== REPRESENTACAO ESQUEMATICA DA HASHFILE ===\n");
+        fprintf(h->dumpArq, "Profundidade Global: %d\n", h->profundidade);
+        
+        long fim = _proximaPosFim(h);
+        fprintf(h->dumpArq, "Total de Buckets Instanciados: %ld\n\n", fim / TAM_BUCKET_BYTES);
+
+        Bucket b;
+        for (long offset = 0; offset < fim; offset += TAM_BUCKET_BYTES) {
+            _lerBucket(h, offset, &b);
+            fprintf(h->dumpArq, "--> [Bucket Offset: %08ld] | ProfLocal: %d | Ocupacao: %d/%d\n", offset, b.profLocal, b.qtd, TAM_BUCKET);
+            if (b.qtd > 0) {
+                for (int i = 0; i < TAM_BUCKET; i++) {
+                    if (b.registros[i].status == VALIDO) {
+                        fprintf(h->dumpArq, "      [+] Chave: %s\n", b.registros[i].chave);
+                    }
+                }
+            } else {
+                fprintf(h->dumpArq, "      (Bucket Vazio)\n");
+            }
+            fprintf(h->dumpArq, "\n");
+        }
+        fclose(h->dumpArq);
+    }
+
     fclose(h->dir);
     fclose(h->dados);
     free(h);

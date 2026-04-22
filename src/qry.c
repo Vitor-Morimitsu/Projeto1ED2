@@ -45,55 +45,44 @@ void comandoRq(FILE* txt, FILE* svg, HashFile hashQuadras, HashFile hashPessoas,
     removerDadosHashFile(hashQuadras, cep);
 }
 
+typedef struct {
+    char cepAvo[32];
+    int contadorTotal;
+    int contadorNorte;
+    int contadorSul;
+    int contadorLeste;
+    int contadorOeste;
+} PqContadores;
+
+static void cbPq(char* chave, const char* dado, void* extra) {
+    PqContadores* c = (PqContadores*)extra;
+    Pessoa p = desserializarPessoa(dado);
+    if (p) {
+        if (strcmp(getCEP(p), c->cepAvo) == 0) {
+            char face = getFace(p);
+            if(face == 'n' || face == 'N') c->contadorNorte++;
+            else if(face == 's' || face == 'S') c->contadorSul++;
+            else if(face == 'l' || face == 'L') c->contadorLeste++;
+            else if(face == 'o' || face == 'O') c->contadorOeste++;
+            c->contadorTotal++;
+        }
+        liberarPessoa(p);
+    }
+}
+
 //calcula o numero de moradores por quadra
 void comandoPq(FILE* svg, HashFile hashQuadras, HashFile hashPessoas, char* cep) {
     if(!svg || !hashQuadras || !hashPessoas) return;
     printf("Inicio do comandoPq\n");
-    FILE* moradores = fopen(HASHFILE_PESSOAS_DADOS, "r");
-    if(moradores == NULL){
-        printf("Erro em comandoPq ao abrir o arquivo\n");
-        return;
-    }
-
-    int status;
-    char pacoteDados[512];
-    char linha[512];
-    int contadorTotal = 0;
-    int contadorNorte = 0;
-    int contadorLeste = 0;
-    int contadorOeste=0;
-    int contadorSul=0;
-
-    while(fgets(linha, sizeof(linha), moradores) != NULL){
-        if(strncmp(linha, "s=",2) != 0)continue;
-        if(sscanf(linha, "s=%d|k=%*[^|]|d=%256[^\n]", &status,pacoteDados)){
-            if(status ==1){
-                Pessoa p = desserializarPessoa(pacoteDados);
-                if(p){
-                    if(strcmp(getCEP(p), cep) == 0){
-                        char face = getFace(p);
-                        if(face == 'n' || face == 'N'){
-                            contadorNorte++;
-                        }else if(face == 's' || face == 'S'){
-                            contadorSul++;
-                        }else if(face == 'l' || face == 'L'){
-                            contadorLeste++;
-                        }else if(face == 'o' || face == 'O'){
-                            contadorOeste++;
-                        }
-                        contadorTotal++;
-                    }
-                }
-                liberarPessoa(p);
-            }
-        }
-    }
+    
+    PqContadores c = {0};
+    strcpy(c.cepAvo, cep);
+    percorrerHashFile(hashPessoas, cbPq, &c);
     
     char quadraBuf[512];
     if(buscarDadosHashFile(hashQuadras, cep, quadraBuf, 512)){
         Quadra q = desserializarQuadra(quadraBuf);
-        
-        comandoPqSvg(svg, q, contadorTotal, contadorNorte, contadorSul, contadorLeste, contadorOeste);
+        comandoPqSvg(svg, q, c.contadorTotal, c.contadorNorte, c.contadorSul, c.contadorLeste, c.contadorOeste);
         liberarQuadra(q);
     }
 }
@@ -101,73 +90,64 @@ void comandoPq(FILE* svg, HashFile hashQuadras, HashFile hashPessoas, char* cep)
 /*reportar estatísticas: número total de habitantes, número total de moradores, proporção moradores/habitantes, número de homens, número de mulheres, % de
 habitantes homens, % habitantes mulheres, % de moradores homens, % de moradores mulheres, número total de sem-tetos, % sem-tetos homens, %sem-tetos mulheres
 */
+typedef struct {
+    int habitantes;
+    int moradores;
+    int homens;
+    int mulheres;
+    int semTeto;
+    int semTetoHomens;
+    int semTetoMulheres;
+} CensoContadores;
+
+static void cbCenso(char* chave, const char* dado, void* extra) {
+    CensoContadores* c = (CensoContadores*)extra;
+    Pessoa p = desserializarPessoa(dado);
+    if (p) {
+        c->habitantes++;
+        if (strcmp(getCEP(p), "") != 0) {
+            c->moradores++;
+        }
+        if (getSexo(p) == 'm' || getSexo(p) == 'M') {
+            c->homens++;
+            if (strcmp(getCEP(p), "") == 0) c->semTetoHomens++;
+        } else {
+            c->mulheres++;
+            if (strcmp(getCEP(p), "") == 0) c->semTetoMulheres++;
+        }
+        if (strcmp(getCEP(p), "") == 0) {
+            c->semTeto++;
+        }
+        liberarPessoa(p);
+    }
+}
+
 void comandoCenso(FILE* txt, HashFile hashPessoas) {
     if(!txt || !hashPessoas) return;
 
     printf("Inicio do comandoCenso\n");
-    FILE* arquivoDados = fopen(HASHFILE_PESSOAS_DADOS, "r");
-    if(arquivoDados == NULL){
-        printf("Erro em comandoCenso ao abrir o arquivo\n");
-        return;
-    }
-    int habitantes = 0, moradores = 0, homens = 0, mulheres = 0;
-    int semTeto = 0, semTetoHomens = 0, semTetoMulheres = 0;
-    char linha[512];
-    while(fgets(linha,sizeof(linha), arquivoDados)!=NULL){
-        if(strncmp(linha, "s=",2) != 0)continue;
+    CensoContadores c = {0};
+    percorrerHashFile(hashPessoas, cbCenso, &c);
 
-        int statusGavetaLida;
-        char pacoteDados[256];
+    if(c.habitantes > 0){
+        float propMoradores = (float)c.moradores / c.habitantes;
+        float propHomens = (float)c.homens / c.habitantes;
+        float propMulheres = (float)c.mulheres / c.habitantes;
+        float propMoradoresHomens = c.moradores > 0 ? (float)c.homens / c.moradores : 0;
+        float propMoradoresMulheres = c.moradores > 0 ? (float)c.mulheres / c.moradores : 0;
+        float propSemTetoHomens = c.semTeto > 0 ? (float)c.semTetoHomens / c.semTeto : 0;
+        float propSemTetoMulheres = c.semTeto > 0 ? (float)c.semTetoMulheres / c.semTeto : 0;
 
-        if(sscanf(linha,"s=%d|k=%*[^|]|d=%256[^\n]", &statusGavetaLida, pacoteDados)){
-            if(statusGavetaLida == 1){
-                Pessoa p = desserializarPessoa(pacoteDados);
-                if(p){
-                    habitantes++;
-                    if(strcmp(getCEP(p), "") != 0){
-                        //possuem moradia
-                        moradores++;
-                    }
-                    if(getSexo(p) == 'm' || getSexo(p) == 'M'){
-                        homens++;
-                    }else{
-                        mulheres++;
-                    }
-                    if(strcmp(getCEP(p), "") == 0){
-                        semTeto++;
-                        if(getSexo(p) == 'm' || getSexo(p) == 'M'){
-                            semTetoHomens++;
-                        }else{
-                            semTetoMulheres++;
-                        }
-                    }
-                }
-                liberarPessoa(p);
-            }
-        }
-    }
-    fclose(arquivoDados);
-
-    if(habitantes > 0){
-        float propMoradores = (float)moradores / habitantes;
-        float propHomens = (float)homens / habitantes;
-        float propMulheres = (float)mulheres / habitantes;
-        float propMoradoresHomens = (float)homens / moradores;
-        float propMoradoresMulheres = (float)mulheres / moradores;
-        float propSemTeto = (float)semTeto / habitantes;
-        float propSemTetoHomens = (float)semTetoHomens / semTeto;
-        float propSemTetoMulheres = (float)semTetoMulheres / semTeto;
-
-        fprintf(txt, "Numero total de habitantes: %d\n", habitantes);
-        fprintf(txt, "Numero total de moradores: %d\n", moradores);
+        fprintf(txt, "Numero total de habitantes: %d\n", c.habitantes);
+        fprintf(txt, "Numero total de moradores: %d\n", c.moradores);
         fprintf(txt, "Proporcao moradores/habitantes: %f\n", propMoradores);
-        fprintf(txt, "Numero total de homens: %d\n", homens);
-        fprintf(txt, "Numero total de mulheres: %d\n", mulheres);
-        fprintf(txt, "Porcentagem habitantes homens: %f\n", propHomens);
-        fprintf(txt, "Porcentagem habitantes mulheres: %f\n", propMulheres);
+        fprintf(txt, "Numero total de homens: %d\n", c.homens);
+        fprintf(txt, "Numero total de mulheres: %d\n", c.mulheres);
+        fprintf(txt, "Porcentagem de habitantes homens: %f\n", propHomens);
+        fprintf(txt, "Porcentagem de habitantes mulheres: %f\n", propMulheres);
         fprintf(txt, "Porcentagem moradores homens: %f\n", propMoradoresHomens);
         fprintf(txt, "Porcentagem moradores mulheres: %f\n", propMoradoresMulheres);
-        fprintf(txt, "Numero total de sem-tetos: %d\n", semTeto);
+        fprintf(txt, "Numero total de sem-tetos: %d\n", c.semTeto);
         fprintf(txt, "Porcentagem sem-tetos homens: %f\n", propSemTetoHomens);
         fprintf(txt, "Porcentagem sem-tetos mulheres: %f\n", propSemTetoMulheres);  
     }else{

@@ -4,7 +4,7 @@ void abrirSvg(FILE* arqSvg){
     if(arqSvg == NULL){
         printf("Erro em abrirSvg\n");
     }
-    fprintf(arqSvg, "<svg xmlns:svg=\"http://www.w3.org/2000/svg\" xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" width=\"15000\" height=\"15000\">\n");
+    fprintf(arqSvg, "<svg xmlns:svg=\"http://www.w3.org/2000/svg\" xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" width=\"1500\" height=\"1500\">\n");
 }
 
 void desenharRetanguloSVG(FILE* arqSvg, Quadra q){
@@ -61,19 +61,19 @@ void comandoPqSvg(FILE* svg, Quadra q, int total, int n, int s, int l, int o){
             qx + (qw/2), qy + (qh/2), total);
     
     // -- NORTE: Inferior da quadra (Eixo Y cresce, base da tela)
-    fprintf(svg, "<text x=\"%f\" y=\"%f\" fill=\"blue\" font-size=\"10\">%d</text>\n", 
+    fprintf(svg, "<text x=\"%f\" y=\"%f\" fill=\"red\" font-size=\"14\">%d</text>\n", 
             qx + (qw/2), qy + qh + 10, n);
             
     // -- SUL: Superior da quadra (Eixo Y menor, topo da tela)
-    fprintf(svg, "<text x=\"%f\" y=\"%f\" fill=\"blue\" font-size=\"10\">%d</text>\n", 
+    fprintf(svg, "<text x=\"%f\" y=\"%f\" fill=\"red\" font-size=\"14\">%d</text>\n", 
             qx + (qw/2), qy - 10, s);
             
     // -- LESTE: Esquerda da quadra (Eixo X menor)
-    fprintf(svg, "<text x=\"%f\" y=\"%f\" fill=\"blue\" font-size=\"10\">%d</text>\n", 
+    fprintf(svg, "<text x=\"%f\" y=\"%f\" fill=\"red\" font-size=\"14\">%d</text>\n", 
             qx - 15, qy + (qh/2), l);
             
     // -- OESTE: Direita da quadra (Eixo X cresce)
-    fprintf(svg, "<text x=\"%f\" y=\"%f\" fill=\"blue\" font-size=\"10\">%d</text>\n", 
+    fprintf(svg, "<text x=\"%f\" y=\"%f\" fill=\"red\" font-size=\"14\">%d</text>\n", 
             qx + qw + 5, qy + (qh/2), o);
 }
 

@@ -1,0 +1,10 @@
+CPF: 100.000.102-43,Nome: Debora_Berta ,Sobrenome: Ferrari_Giuliano,Sexo: F, Nascimento: 22/2/2006 
+CEP: nao encontrado
+CPF: 100.000.009-57,Nome: Evelijn_Micaela ,Sobrenome: Vacadinscki_Daalieff,Sexo: F, Nascimento: 12/10/2023 
+CEP: nao encontrado
+CPF: 100.000.105-96,Nome: Aad_Paulo ,Sobrenome: Kabacchijsci_Carbone,Sexo: M, Nascimento: 2/6/2010 
+CEP: nao encontrado
+CPF: 100.000.234-93,Nome: Berta_Emmelieke ,Sobrenome: Mawiyan_Kabacchijsca,Sexo: F, Nascimento: 13/5/1983 
+CEP: nao encontrado
+CPF: 100.000.078-89,Nome: Leonel_Rutger ,Sobrenome: Ferrara_Kabacchiiscki,Sexo: M, Nascimento: 2/7/1977 
+CEP: nao encontrado

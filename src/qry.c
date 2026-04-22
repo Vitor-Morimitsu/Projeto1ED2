@@ -259,6 +259,8 @@ void comandoRip(FILE* txt,FILE* svg, HashFile hashPessoas,HashFile hashQuadras, 
                     comandoRipSvg(svg, x, y);
                     liberarQuadra(q);   
                 }
+            }else{
+                fprintf(txt,"O falecido não tinha moradia\n");
             }
             liberarPessoa(falecido);
     

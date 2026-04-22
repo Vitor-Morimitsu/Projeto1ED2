@@ -41,8 +41,8 @@ void comandoRipSvg(FILE* svg,float x, float y){
         printf("Erro em comandoRipSvg\n");
         return;
     }
-    fprintf(svg, "<line x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" stroke=\"red\" stroke-width=\"2\" />\n", x, y-6, x, y+6);
-    fprintf(svg, "<line x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" stroke=\"red\" stroke-width=\"2\" />\n", x-6, y, x+6, y);
+    fprintf(svg, "<line x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" stroke=\"red\" stroke-width=\"2\" />\n", x, y-10, x, y+10);
+    fprintf(svg, "<line x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" stroke=\"red\" stroke-width=\"2\" />\n", x-10, y, x+10, y);
 }
 
 //colocar numero de moradores em cada face da quadra e na quadra como um todo no centro
@@ -60,21 +60,21 @@ void comandoPqSvg(FILE* svg, Quadra q, int total, int n, int s, int l, int o){
     fprintf(svg, "<text x=\"%f\" y=\"%f\" fill=\"black\" font-size=\"14\">Total: %d</text>\n", 
             qx + (qw/2), qy + (qh/2), total);
     
-    // -- NORTE: Em cima da quadra (Eixo Y menor)
+    // -- NORTE: Inferior da quadra (Eixo Y cresce, base da tela)
     fprintf(svg, "<text x=\"%f\" y=\"%f\" fill=\"blue\" font-size=\"10\">%d</text>\n", 
-            qx + (qw/2), qy - 10, n);
+            qx + (qw/2), qy + qh + 10, n);
             
-    // -- SUL: Abaixo da quadra (Eixo Y desce com a Altura inteira)
+    // -- SUL: Superior da quadra (Eixo Y menor, topo da tela)
     fprintf(svg, "<text x=\"%f\" y=\"%f\" fill=\"blue\" font-size=\"10\">%d</text>\n", 
-            qx + (qw/2), qy + qh + 10, s);
+            qx + (qw/2), qy - 10, s);
             
-    // -- LESTE: À direita (Eixo X cresce)
+    // -- LESTE: Esquerda da quadra (Eixo X menor)
     fprintf(svg, "<text x=\"%f\" y=\"%f\" fill=\"blue\" font-size=\"10\">%d</text>\n", 
-            qx + qw + 5, qy + (qh/2), l);
+            qx - 15, qy + (qh/2), l);
             
-    // -- OESTE: À esquerda (Eixo X menor)
+    // -- OESTE: Direita da quadra (Eixo X cresce)
     fprintf(svg, "<text x=\"%f\" y=\"%f\" fill=\"blue\" font-size=\"10\">%d</text>\n", 
-            qx - 15, qy + (qh/2), o);
+            qx + qw + 5, qy + (qh/2), o);
 }
 
 //vai desenhar um círculo preto no local do despejo
@@ -83,7 +83,7 @@ void comandoDspjSvg(FILE* svg, float x, float y){
         printf("Erro em comandoDspjSvg\n");
         return;
     }
-    fprintf(svg, "<circle cx=\"%f\" cy=\"%f\" r=\"8\" fill=\"black\" />\n", x, y);
+    fprintf(svg, "<circle cx=\"%f\" cy=\"%f\" r=\"12\" fill=\"black\" />\n", x, y);
 }
 
 void fecharSVG(FILE* arqSvg){

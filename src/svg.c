@@ -83,7 +83,7 @@ void comandoDspjSvg(FILE* svg, float x, float y){
         printf("Erro em comandoDspjSvg\n");
         return;
     }
-    fprintf(svg, "<circle cx=\"%f\" cy=\"%f\" r=\"4\" fill=\"black\" />\n", x, y);
+    fprintf(svg, "<circle cx=\"%f\" cy=\"%f\" r=\"8\" fill=\"black\" />\n", x, y);
 }
 
 void fecharSVG(FILE* arqSvg){

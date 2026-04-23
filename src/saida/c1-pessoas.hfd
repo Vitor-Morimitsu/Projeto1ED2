@@ -11092,3 +11092,2403 @@ Total de Buckets Instanciados: 157
       [+] Chave: 100.000.138-54
       [+] Chave: 100.000.264-09
 
+
+
+=== REPRESENTACAO ESQUEMATICA DA HASHFILE ===
+Profundidade Global: 13
+Total de Buckets Instanciados: 157
+
+--> [Bucket Offset: 00000000] | ProfLocal: 4 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00003041] | ProfLocal: 4 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00006082] | ProfLocal: 5 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00009123] | ProfLocal: 5 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00012164] | ProfLocal: 9 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00015205] | ProfLocal: 5 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00018246] | ProfLocal: 9 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00021287] | ProfLocal: 4 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00024328] | ProfLocal: 5 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00027369] | ProfLocal: 4 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00030410] | ProfLocal: 9 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00033451] | ProfLocal: 9 | Ocupacao: 8/10
+      [+] Chave: 000.000.841-90
+      [+] Chave: 000.000.931-81
+      [+] Chave: 000.000.981-40
+      [+] Chave: 000.001.911-91
+      [+] Chave: 000.001.961-50
+      [+] Chave: 000.002.941-60
+      [+] Chave: 000.003.921-70
+      [+] Chave: 000.004.901-80
+
+--> [Bucket Offset: 00036492] | ProfLocal: 9 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00039533] | ProfLocal: 11 | Ocupacao: 8/10
+      [+] Chave: 000.001.791-40
+      [+] Chave: 000.001.881-31
+      [+] Chave: 000.001.971-22
+      [+] Chave: 000.003.751-60
+      [+] Chave: 000.003.841-51
+      [+] Chave: 000.003.931-42
+      [+] Chave: 000.005.711-80
+      [+] Chave: 000.005.801-71
+
+--> [Bucket Offset: 00042574] | ProfLocal: 9 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00045615] | ProfLocal: 12 | Ocupacao: 6/10
+      [+] Chave: 000.001.891-03
+      [+] Chave: 000.005.541-70
+      [+] Chave: 000.005.631-61
+      [+] Chave: 000.005.721-52
+      [+] Chave: 000.005.811-43
+      [+] Chave: 000.005.901-34
+
+--> [Bucket Offset: 00048656] | ProfLocal: 13 | Ocupacao: 6/10
+      [+] Chave: 000.000.481-27
+      [+] Chave: 000.000.661-09
+      [+] Chave: 000.004.131-94
+      [+] Chave: 000.004.311-76
+      [+] Chave: 000.007.171-42
+      [+] Chave: 000.007.351-24
+
+--> [Bucket Offset: 00051697] | ProfLocal: 12 | Ocupacao: 7/10
+      [+] Chave: 000.002.091-55
+      [+] Chave: 000.002.181-46
+      [+] Chave: 000.002.271-37
+      [+] Chave: 000.002.361-28
+      [+] Chave: 000.002.451-19
+      [+] Chave: 000.006.011-95
+      [+] Chave: 000.006.101-86
+
+--> [Bucket Offset: 00054738] | ProfLocal: 13 | Ocupacao: 7/10
+      [+] Chave: 000.000.371-92
+      [+] Chave: 000.000.551-74
+      [+] Chave: 000.000.731-56
+      [+] Chave: 000.000.911-38
+      [+] Chave: 000.003.591-22
+      [+] Chave: 000.003.771-04
+      [+] Chave: 000.007.421-71
+
+--> [Bucket Offset: 00057779] | ProfLocal: 13 | Ocupacao: 6/10
+      [+] Chave: 000.002.341-84
+      [+] Chave: 000.002.521-66
+      [+] Chave: 000.002.701-48
+      [+] Chave: 000.005.381-32
+      [+] Chave: 000.005.561-14
+      [+] Chave: 100.000.243-84
+
+--> [Bucket Offset: 00060820] | ProfLocal: 8 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00063861] | ProfLocal: 12 | Ocupacao: 6/10
+      [+] Chave: 000.004.511-00
+      [+] Chave: 000.006.211-10
+      [+] Chave: 000.006.301-01
+      [+] Chave: 100.000.030-34
+      [+] Chave: 100.000.120-25
+      [+] Chave: 100.000.210-16
+
+--> [Bucket Offset: 00066902] | ProfLocal: 11 | Ocupacao: 7/10
+      [+] Chave: 000.000.001-91
+      [+] Chave: 000.001.171-10
+      [+] Chave: 000.001.261-01
+      [+] Chave: 000.003.131-30
+      [+] Chave: 000.003.221-21
+      [+] Chave: 000.003.311-12
+      [+] Chave: 000.003.401-03
+
+--> [Bucket Offset: 00069943] | ProfLocal: 9 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00072984] | ProfLocal: 13 | Ocupacao: 5/10
+      [+] Chave: 000.004.171-81
+      [+] Chave: 000.004.351-63
+      [+] Chave: 000.004.531-45
+      [+] Chave: 000.004.711-27
+      [+] Chave: 000.007.391-11
+
+--> [Bucket Offset: 00076025] | ProfLocal: 9 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00079066] | ProfLocal: 12 | Ocupacao: 9/10
+      [+] Chave: 000.002.491-06
+      [+] Chave: 000.006.051-82
+      [+] Chave: 000.006.141-73
+      [+] Chave: 000.006.231-64
+      [+] Chave: 000.006.321-55
+      [+] Chave: 000.006.411-46
+      [+] Chave: 000.006.501-37
+      [+] Chave: 100.000.177-60
+      [+] Chave: 100.000.267-51
+
+--> [Bucket Offset: 00082107] | ProfLocal: 8 | Ocupacao: 2/10
+      [+] Chave: 000.000.701-30
+      [+] Chave: 000.002.801-00
+
+--> [Bucket Offset: 00085148] | ProfLocal: 9 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00088189] | ProfLocal: 12 | Ocupacao: 9/10
+      [+] Chave: 000.001.061-86
+      [+] Chave: 000.001.151-77
+      [+] Chave: 000.001.241-68
+      [+] Chave: 000.001.331-59
+      [+] Chave: 000.004.191-25
+      [+] Chave: 000.004.281-16
+      [+] Chave: 000.004.371-07
+      [+] Chave: 100.000.042-78
+      [+] Chave: 100.000.132-69
+
+--> [Bucket Offset: 00091230] | ProfLocal: 8 | Ocupacao: 5/10
+      [+] Chave: 000.000.031-07
+      [+] Chave: 000.001.011-17
+      [+] Chave: 000.001.101-08
+      [+] Chave: 000.004.001-06
+      [+] Chave: 100.000.006-04
+
+--> [Bucket Offset: 00094271] | ProfLocal: 9 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00097312] | ProfLocal: 12 | Ocupacao: 8/10
+      [+] Chave: 000.002.291-80
+      [+] Chave: 000.002.381-71
+      [+] Chave: 000.002.471-62
+      [+] Chave: 000.002.561-53
+      [+] Chave: 000.002.651-44
+      [+] Chave: 000.002.741-35
+      [+] Chave: 000.002.831-26
+      [+] Chave: 000.002.921-17
+
+--> [Bucket Offset: 00100353] | ProfLocal: 13 | Ocupacao: 8/10
+      [+] Chave: 000.003.321-94
+      [+] Chave: 000.003.501-76
+      [+] Chave: 000.006.181-60
+      [+] Chave: 000.006.361-42
+      [+] Chave: 000.006.541-24
+      [+] Chave: 000.006.721-06
+      [+] Chave: 100.000.090-75
+      [+] Chave: 100.000.270-57
+
+--> [Bucket Offset: 00103394] | ProfLocal: 9 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00106435] | ProfLocal: 12 | Ocupacao: 7/10
+      [+] Chave: 000.000.591-61
+      [+] Chave: 000.000.681-52
+      [+] Chave: 000.000.771-43
+      [+] Chave: 000.000.861-34
+      [+] Chave: 000.000.951-25
+      [+] Chave: 000.004.601-92
+      [+] Chave: 100.000.291-81
+
+--> [Bucket Offset: 00109476] | ProfLocal: 8 | Ocupacao: 9/10
+      [+] Chave: 000.000.531-20
+      [+] Chave: 000.000.621-11
+      [+] Chave: 000.000.711-02
+      [+] Chave: 000.001.511-30
+      [+] Chave: 000.001.601-21
+      [+] Chave: 000.003.611-00
+      [+] Chave: 100.000.150-40
+      [+] Chave: 100.000.231-40
+      [+] Chave: 100.000.240-31
+
+--> [Bucket Offset: 00112517] | ProfLocal: 13 | Ocupacao: 5/10
+      [+] Chave: 000.001.531-84
+      [+] Chave: 000.001.711-66
+      [+] Chave: 000.004.391-50
+      [+] Chave: 000.004.571-32
+      [+] Chave: 000.004.751-14
+
+--> [Bucket Offset: 00115558] | ProfLocal: 3 | Ocupacao: 1/10
+      [+] Chave: 000.006.971-09
+
+--> [Bucket Offset: 00118599] | ProfLocal: 7 | Ocupacao: 9/10
+      [+] Chave: 000.000.131-70
+      [+] Chave: 000.000.271-20
+      [+] Chave: 000.001.111-80
+      [+] Chave: 000.001.251-30
+      [+] Chave: 000.002.231-40
+      [+] Chave: 000.003.211-50
+      [+] Chave: 000.003.351-00
+      [+] Chave: 000.004.331-10
+      [+] Chave: 000.005.311-20
+
+--> [Bucket Offset: 00121640] | ProfLocal: 5 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00124681] | ProfLocal: 8 | Ocupacao: 9/10
+      [+] Chave: 000.001.081-20
+      [+] Chave: 000.002.061-30
+      [+] Chave: 000.003.041-40
+      [+] Chave: 000.004.021-50
+      [+] Chave: 000.004.161-00
+      [+] Chave: 000.005.001-60
+      [+] Chave: 000.005.141-10
+      [+] Chave: 000.006.121-20
+      [+] Chave: 000.007.101-30
+
+--> [Bucket Offset: 00127722] | ProfLocal: 4 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00130763] | ProfLocal: 9 | Ocupacao: 4/10
+      [+] Chave: 100.000.009-57
+      [+] Chave: 100.000.018-48
+      [+] Chave: 100.000.027-39
+      [+] Chave: 100.000.108-39
+
+--> [Bucket Offset: 00133804] | ProfLocal: 12 | Ocupacao: 5/10
+      [+] Chave: 000.002.721-91
+      [+] Chave: 000.002.811-82
+      [+] Chave: 000.002.901-73
+      [+] Chave: 000.005.851-30
+      [+] Chave: 000.005.941-21
+
+--> [Bucket Offset: 00136845] | ProfLocal: 12 | Ocupacao: 8/10
+      [+] Chave: 000.001.481-80
+      [+] Chave: 000.001.571-71
+      [+] Chave: 000.001.661-62
+      [+] Chave: 000.001.751-53
+      [+] Chave: 000.001.841-44
+      [+] Chave: 000.001.931-35
+      [+] Chave: 000.004.791-01
+      [+] Chave: 100.000.282-90
+
+--> [Bucket Offset: 00139886] | ProfLocal: 12 | Ocupacao: 9/10
+      [+] Chave: 000.000.051-50
+      [+] Chave: 000.000.141-41
+      [+] Chave: 000.000.231-32
+      [+] Chave: 000.000.321-23
+      [+] Chave: 000.000.411-14
+      [+] Chave: 000.000.501-05
+      [+] Chave: 100.000.021-43
+      [+] Chave: 100.000.111-34
+      [+] Chave: 100.000.201-25
+
+--> [Bucket Offset: 00142927] | ProfLocal: 11 | Ocupacao: 6/10
+      [+] Chave: 000.001.041-32
+      [+] Chave: 000.001.131-23
+      [+] Chave: 000.001.221-14
+      [+] Chave: 000.001.311-05
+      [+] Chave: 000.003.001-52
+      [+] Chave: 000.006.041-00
+
+--> [Bucket Offset: 00145968] | ProfLocal: 11 | Ocupacao: 9/10
+      [+] Chave: 000.000.011-63
+      [+] Chave: 000.000.101-54
+      [+] Chave: 000.003.051-11
+      [+] Chave: 000.003.141-02
+      [+] Chave: 000.005.011-31
+      [+] Chave: 000.005.101-22
+      [+] Chave: 100.000.054-01
+      [+] Chave: 100.000.126-10
+      [+] Chave: 100.000.216-01
+
+--> [Bucket Offset: 00149009] | ProfLocal: 12 | Ocupacao: 7/10
+      [+] Chave: 000.001.191-64
+      [+] Chave: 000.001.281-55
+      [+] Chave: 000.001.371-46
+      [+] Chave: 000.001.461-37
+      [+] Chave: 000.001.551-28
+      [+] Chave: 000.001.641-19
+      [+] Chave: 000.005.201-95
+
+--> [Bucket Offset: 00152050] | ProfLocal: 6 | Ocupacao: 9/10
+      [+] Chave: 000.000.071-02
+      [+] Chave: 000.000.801-01
+      [+] Chave: 000.001.141-03
+      [+] Chave: 000.001.351-00
+      [+] Chave: 000.002.001-07
+      [+] Chave: 000.002.211-04
+      [+] Chave: 000.002.421-01
+      [+] Chave: 000.004.041-01
+      [+] Chave: 000.005.111-02
+
+--> [Bucket Offset: 00155091] | ProfLocal: 5 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00158132] | ProfLocal: 7 | Ocupacao: 5/10
+      [+] Chave: 000.000.121-06
+      [+] Chave: 000.000.541-00
+      [+] Chave: 000.001.611-01
+      [+] Chave: 000.003.021-04
+      [+] Chave: 100.000.015-03
+
+--> [Bucket Offset: 00161173] | ProfLocal: 13 | Ocupacao: 6/10
+      [+] Chave: 000.002.041-96
+      [+] Chave: 000.002.221-78
+      [+] Chave: 000.005.081-44
+      [+] Chave: 000.005.261-26
+      [+] Chave: 000.005.441-08
+      [+] Chave: 100.000.123-78
+
+--> [Bucket Offset: 00164214] | ProfLocal: 13 | Ocupacao: 5/10
+      [+] Chave: 000.003.361-81
+      [+] Chave: 000.003.541-63
+      [+] Chave: 000.003.721-45
+      [+] Chave: 000.003.901-27
+      [+] Chave: 000.006.581-11
+
+--> [Bucket Offset: 00167255] | ProfLocal: 10 | Ocupacao: 7/10
+      [+] Chave: 000.000.221-60
+      [+] Chave: 000.000.311-51
+      [+] Chave: 000.000.401-42
+      [+] Chave: 000.001.201-70
+      [+] Chave: 000.003.701-00
+      [+] Chave: 000.004.421-00
+      [+] Chave: 000.005.401-10
+
+--> [Bucket Offset: 00170296] | ProfLocal: 10 | Ocupacao: 9/10
+      [+] Chave: 000.000.361-10
+      [+] Chave: 000.000.451-01
+      [+] Chave: 000.001.341-20
+      [+] Chave: 000.001.431-11
+      [+] Chave: 000.001.521-02
+      [+] Chave: 000.002.321-30
+      [+] Chave: 000.002.411-21
+      [+] Chave: 000.002.501-12
+      [+] Chave: 000.003.301-40
+
+--> [Bucket Offset: 00173337] | ProfLocal: 13 | Ocupacao: 7/10
+      [+] Chave: 000.000.251-86
+      [+] Chave: 000.000.431-68
+      [+] Chave: 000.003.291-34
+      [+] Chave: 000.003.471-16
+      [+] Chave: 000.007.121-83
+      [+] Chave: 000.007.301-65
+      [+] Chave: 100.000.294-24
+
+--> [Bucket Offset: 00176378] | ProfLocal: 13 | Ocupacao: 7/10
+      [+] Chave: 000.000.291-73
+      [+] Chave: 000.000.471-55
+      [+] Chave: 000.000.651-37
+      [+] Chave: 000.000.831-19
+      [+] Chave: 000.007.161-70
+      [+] Chave: 000.007.341-52
+      [+] Chave: 100.000.171-75
+
+--> [Bucket Offset: 00179419] | ProfLocal: 12 | Ocupacao: 8/10
+      [+] Chave: 000.002.081-83
+      [+] Chave: 000.002.171-74
+      [+] Chave: 000.002.261-65
+      [+] Chave: 000.002.351-56
+      [+] Chave: 000.002.441-47
+      [+] Chave: 000.002.531-38
+      [+] Chave: 000.002.621-29
+      [+] Chave: 000.005.391-04
+
+--> [Bucket Offset: 00182460] | ProfLocal: 5 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00185501] | ProfLocal: 11 | Ocupacao: 8/10
+      [+] Chave: 000.001.861-98
+      [+] Chave: 000.001.951-89
+      [+] Chave: 000.004.991-37
+      [+] Chave: 000.006.591-93
+      [+] Chave: 000.006.681-84
+      [+] Chave: 000.006.771-75
+      [+] Chave: 000.006.861-66
+      [+] Chave: 000.006.951-57
+
+--> [Bucket Offset: 00188542] | ProfLocal: 11 | Ocupacao: 7/10
+      [+] Chave: 000.001.691-88
+      [+] Chave: 000.001.781-79
+      [+] Chave: 000.003.741-99
+      [+] Chave: 000.006.691-56
+      [+] Chave: 000.006.781-47
+      [+] Chave: 000.006.871-38
+      [+] Chave: 000.006.961-29
+
+--> [Bucket Offset: 00191583] | ProfLocal: 4 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00194624] | ProfLocal: 8 | Ocupacao: 9/10
+      [+] Chave: 000.000.491-07
+      [+] Chave: 000.001.561-08
+      [+] Chave: 000.002.631-09
+      [+] Chave: 000.003.391-05
+      [+] Chave: 000.004.461-06
+      [+] Chave: 000.005.531-07
+      [+] Chave: 000.006.291-03
+      [+] Chave: 000.006.601-08
+      [+] Chave: 000.007.361-04
+
+--> [Bucket Offset: 00197665] | ProfLocal: 8 | Ocupacao: 7/10
+      [+] Chave: 000.002.371-08
+      [+] Chave: 000.003.441-09
+      [+] Chave: 000.005.271-06
+      [+] Chave: 000.006.341-07
+      [+] Chave: 000.007.411-08
+      [+] Chave: 100.000.192-08
+      [+] Chave: 100.000.273-08
+
+--> [Bucket Offset: 00200706] | ProfLocal: 11 | Ocupacao: 8/10
+      [+] Chave: 000.001.651-90
+      [+] Chave: 000.001.741-81
+      [+] Chave: 000.001.831-72
+      [+] Chave: 000.001.921-63
+      [+] Chave: 000.004.871-20
+      [+] Chave: 000.004.961-11
+      [+] Chave: 000.006.831-40
+      [+] Chave: 000.006.921-31
+
+--> [Bucket Offset: 00203747] | ProfLocal: 12 | Ocupacao: 9/10
+      [+] Chave: 000.002.461-90
+      [+] Chave: 000.002.551-81
+      [+] Chave: 000.002.641-72
+      [+] Chave: 000.002.731-63
+      [+] Chave: 000.002.821-54
+      [+] Chave: 000.002.911-45
+      [+] Chave: 000.005.681-20
+      [+] Chave: 000.005.771-11
+      [+] Chave: 000.005.861-02
+
+--> [Bucket Offset: 00206788] | ProfLocal: 12 | Ocupacao: 9/10
+      [+] Chave: 000.000.691-24
+      [+] Chave: 000.000.781-15
+      [+] Chave: 000.000.871-06
+      [+] Chave: 000.004.341-91
+      [+] Chave: 000.004.431-82
+      [+] Chave: 000.004.521-73
+      [+] Chave: 000.004.611-64
+      [+] Chave: 000.004.701-55
+      [+] Chave: 000.007.471-30
+
+--> [Bucket Offset: 00209829] | ProfLocal: 11 | Ocupacao: 9/10
+      [+] Chave: 000.000.061-22
+      [+] Chave: 000.000.151-13
+      [+] Chave: 000.000.241-04
+      [+] Chave: 000.002.021-42
+      [+] Chave: 000.002.111-33
+      [+] Chave: 000.002.201-24
+      [+] Chave: 000.005.321-00
+      [+] Chave: 000.007.021-10
+      [+] Chave: 000.007.111-01
+
+--> [Bucket Offset: 00212870] | ProfLocal: 12 | Ocupacao: 10/10
+      [+] Chave: 000.001.021-99
+      [+] Chave: 000.004.061-47
+      [+] Chave: 000.004.151-38
+      [+] Chave: 000.004.241-29
+      [+] Chave: 100.000.039-72
+      [+] Chave: 100.000.075-36
+      [+] Chave: 100.000.129-63
+      [+] Chave: 100.000.165-27
+      [+] Chave: 100.000.219-54
+      [+] Chave: 100.000.255-18
+
+--> [Bucket Offset: 00215911] | ProfLocal: 11 | Ocupacao: 7/10
+      [+] Chave: 000.001.071-58
+      [+] Chave: 000.001.161-49
+      [+] Chave: 000.003.031-78
+      [+] Chave: 000.003.121-69
+      [+] Chave: 000.006.071-26
+      [+] Chave: 000.006.161-17
+      [+] Chave: 000.006.251-08
+
+--> [Bucket Offset: 00218952] | ProfLocal: 12 | Ocupacao: 6/10
+      [+] Chave: 000.000.211-99
+      [+] Chave: 000.003.071-65
+      [+] Chave: 000.003.161-56
+      [+] Chave: 000.003.251-47
+      [+] Chave: 000.003.341-38
+      [+] Chave: 000.003.431-29
+
+--> [Bucket Offset: 00221993] | ProfLocal: 12 | Ocupacao: 8/10
+      [+] Chave: 000.001.591-15
+      [+] Chave: 000.001.681-06
+      [+] Chave: 000.005.151-91
+      [+] Chave: 000.005.241-82
+      [+] Chave: 000.005.331-73
+      [+] Chave: 000.005.421-64
+      [+] Chave: 000.005.511-55
+      [+] Chave: 000.005.601-46
+
+--> [Bucket Offset: 00225034] | ProfLocal: 11 | Ocupacao: 6/10
+      [+] Chave: 000.000.191-00
+      [+] Chave: 000.002.151-20
+      [+] Chave: 000.002.241-11
+      [+] Chave: 000.002.331-02
+      [+] Chave: 000.004.111-40
+      [+] Chave: 000.004.201-31
+
+--> [Bucket Offset: 00228075] | ProfLocal: 13 | Ocupacao: 6/10
+      [+] Chave: 000.003.061-93
+      [+] Chave: 000.003.241-75
+      [+] Chave: 000.003.421-57
+      [+] Chave: 000.003.601-39
+      [+] Chave: 000.006.281-23
+      [+] Chave: 000.006.461-05
+
+--> [Bucket Offset: 00231116] | ProfLocal: 13 | Ocupacao: 7/10
+      [+] Chave: 000.001.271-83
+      [+] Chave: 000.001.451-65
+      [+] Chave: 000.001.631-47
+      [+] Chave: 000.001.811-29
+      [+] Chave: 000.004.491-13
+      [+] Chave: 100.000.072-93
+      [+] Chave: 100.000.252-75
+
+--> [Bucket Offset: 00234157] | ProfLocal: 7 | Ocupacao: 10/10
+      [+] Chave: 000.000.301-80
+      [+] Chave: 000.000.441-30
+      [+] Chave: 000.001.421-40
+      [+] Chave: 000.002.401-50
+      [+] Chave: 000.002.541-00
+      [+] Chave: 000.003.521-10
+      [+] Chave: 000.004.501-20
+      [+] Chave: 100.000.060-50
+      [+] Chave: 100.000.141-50
+      [+] Chave: 100.000.222-50
+
+--> [Bucket Offset: 00237198] | ProfLocal: 10 | Ocupacao: 5/10
+      [+] Chave: 000.002.591-79
+      [+] Chave: 000.003.481-98
+      [+] Chave: 000.003.571-89
+      [+] Chave: 000.004.551-99
+      [+] Chave: 000.006.791-19
+
+--> [Bucket Offset: 00240239] | ProfLocal: 12 | Ocupacao: 7/10
+      [+] Chave: 000.002.691-31
+      [+] Chave: 000.002.781-22
+      [+] Chave: 000.002.871-13
+      [+] Chave: 000.002.961-04
+      [+] Chave: 000.006.521-80
+      [+] Chave: 000.006.611-71
+      [+] Chave: 000.006.701-62
+
+--> [Bucket Offset: 00243280] | ProfLocal: 12 | Ocupacao: 8/10
+      [+] Chave: 000.001.491-52
+      [+] Chave: 000.001.581-43
+      [+] Chave: 000.001.671-34
+      [+] Chave: 000.001.761-25
+      [+] Chave: 000.001.851-16
+      [+] Chave: 000.001.941-07
+      [+] Chave: 000.005.411-92
+      [+] Chave: 000.005.501-83
+
+--> [Bucket Offset: 00246321] | ProfLocal: 13 | Ocupacao: 6/10
+      [+] Chave: 000.000.421-96
+      [+] Chave: 000.000.601-78
+      [+] Chave: 000.003.281-62
+      [+] Chave: 000.003.461-44
+      [+] Chave: 000.003.641-26
+      [+] Chave: 000.003.821-08
+
+--> [Bucket Offset: 00249362] | ProfLocal: 12 | Ocupacao: 9/10
+      [+] Chave: 000.002.511-94
+      [+] Chave: 000.002.601-85
+      [+] Chave: 000.005.371-60
+      [+] Chave: 000.005.461-51
+      [+] Chave: 000.005.551-42
+      [+] Chave: 000.005.641-33
+      [+] Chave: 000.005.731-24
+      [+] Chave: 000.005.821-15
+      [+] Chave: 000.005.911-06
+
+--> [Bucket Offset: 00252403] | ProfLocal: 13 | Ocupacao: 5/10
+      [+] Chave: 000.000.511-87
+      [+] Chave: 000.003.191-71
+      [+] Chave: 000.003.371-53
+      [+] Chave: 000.003.551-35
+      [+] Chave: 000.003.731-17
+
+--> [Bucket Offset: 00255444] | ProfLocal: 8 | Ocupacao: 7/10
+      [+] Chave: 000.005.191-89
+      [+] Chave: 000.006.171-99
+      [+] Chave: 000.007.291-59
+      [+] Chave: 100.000.198-95
+      [+] Chave: 100.000.279-95
+      [+] Chave: 100.000.288-86
+      [+] Chave: 100.000.297-77
+
+--> [Bucket Offset: 00258485] | ProfLocal: 9 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00261526] | ProfLocal: 11 | Ocupacao: 6/10
+      [+] Chave: 000.003.691-95
+      [+] Chave: 000.003.781-86
+      [+] Chave: 000.003.871-77
+      [+] Chave: 000.003.961-68
+      [+] Chave: 000.005.831-97
+      [+] Chave: 000.005.921-88
+
+--> [Bucket Offset: 00264567] | ProfLocal: 8 | Ocupacao: 9/10
+      [+] Chave: 000.004.291-98
+      [+] Chave: 000.004.381-89
+      [+] Chave: 000.005.361-99
+      [+] Chave: 000.006.391-68
+      [+] Chave: 000.006.481-59
+      [+] Chave: 000.007.191-96
+      [+] Chave: 000.007.281-87
+      [+] Chave: 000.007.371-78
+      [+] Chave: 000.007.461-69
+
+--> [Bucket Offset: 00267608] | ProfLocal: 4 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00270649] | ProfLocal: 7 | Ocupacao: 4/10
+      [+] Chave: 000.005.281-70
+      [+] Chave: 000.006.261-80
+      [+] Chave: 000.007.241-90
+      [+] Chave: 000.007.381-40
+
+--> [Bucket Offset: 00273690] | ProfLocal: 8 | Ocupacao: 10/10
+      [+] Chave: 000.000.891-50
+      [+] Chave: 000.001.871-60
+      [+] Chave: 000.002.851-70
+      [+] Chave: 000.002.991-20
+      [+] Chave: 000.003.831-80
+      [+] Chave: 000.003.971-30
+      [+] Chave: 000.004.811-90
+      [+] Chave: 000.004.951-40
+      [+] Chave: 000.005.931-50
+      [+] Chave: 000.006.911-60
+
+--> [Bucket Offset: 00276731] | ProfLocal: 7 | Ocupacao: 5/10
+      [+] Chave: 000.000.611-40
+      [+] Chave: 000.001.731-00
+      [+] Chave: 000.002.711-10
+      [+] Chave: 100.000.036-20
+      [+] Chave: 100.000.117-20
+
+--> [Bucket Offset: 00279772] | ProfLocal: 8 | Ocupacao: 5/10
+      [+] Chave: 000.003.181-08
+      [+] Chave: 000.004.251-09
+      [+] Chave: 000.006.081-06
+      [+] Chave: 000.007.151-07
+      [+] Chave: 100.000.189-02
+
+--> [Bucket Offset: 00282813] | ProfLocal: 12 | Ocupacao: 8/10
+      [+] Chave: 000.002.391-43
+      [+] Chave: 000.002.481-34
+      [+] Chave: 000.002.571-25
+      [+] Chave: 000.002.661-16
+      [+] Chave: 000.002.751-07
+      [+] Chave: 000.006.221-92
+      [+] Chave: 000.006.311-83
+      [+] Chave: 000.006.401-74
+
+--> [Bucket Offset: 00285854] | ProfLocal: 13 | Ocupacao: 7/10
+      [+] Chave: 000.001.231-96
+      [+] Chave: 000.001.411-78
+      [+] Chave: 000.004.091-62
+      [+] Chave: 000.004.271-44
+      [+] Chave: 000.004.451-26
+      [+] Chave: 000.004.631-08
+      [+] Chave: 100.000.195-42
+
+--> [Bucket Offset: 00288895] | ProfLocal: 13 | Ocupacao: 6/10
+      [+] Chave: 000.001.321-87
+      [+] Chave: 000.001.501-69
+      [+] Chave: 000.004.181-53
+      [+] Chave: 000.004.361-35
+      [+] Chave: 000.004.541-17
+      [+] Chave: 100.000.285-33
+
+--> [Bucket Offset: 00291936] | ProfLocal: 11 | Ocupacao: 7/10
+      [+] Chave: 000.000.991-12
+      [+] Chave: 000.002.771-50
+      [+] Chave: 000.002.861-41
+      [+] Chave: 000.002.951-32
+      [+] Chave: 000.004.731-70
+      [+] Chave: 000.004.821-61
+      [+] Chave: 000.004.911-52
+
+--> [Bucket Offset: 00294977] | ProfLocal: 12 | Ocupacao: 8/10
+      [+] Chave: 000.003.531-91
+      [+] Chave: 000.003.621-82
+      [+] Chave: 000.003.711-73
+      [+] Chave: 000.003.801-64
+      [+] Chave: 000.006.661-30
+      [+] Chave: 000.006.751-21
+      [+] Chave: 000.006.841-12
+      [+] Chave: 000.006.931-03
+
+--> [Bucket Offset: 00298018] | ProfLocal: 12 | Ocupacao: 6/10
+      [+] Chave: 000.006.351-70
+      [+] Chave: 000.006.441-61
+      [+] Chave: 000.006.531-52
+      [+] Chave: 000.006.621-43
+      [+] Chave: 000.006.711-34
+      [+] Chave: 000.006.801-25
+
+--> [Bucket Offset: 00301059] | ProfLocal: 13 | Ocupacao: 6/10
+      [+] Chave: 000.001.441-93
+      [+] Chave: 000.001.621-75
+      [+] Chave: 000.001.801-57
+      [+] Chave: 000.004.481-41
+      [+] Chave: 000.004.661-23
+      [+] Chave: 000.004.841-05
+
+--> [Bucket Offset: 00304100] | ProfLocal: 8 | Ocupacao: 1/10
+      [+] Chave: 000.005.991-90
+
+--> [Bucket Offset: 00307141] | ProfLocal: 9 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00310182] | ProfLocal: 11 | Ocupacao: 6/10
+      [+] Chave: 000.003.791-58
+      [+] Chave: 000.003.881-49
+      [+] Chave: 000.005.571-96
+      [+] Chave: 000.005.661-87
+      [+] Chave: 000.005.751-78
+      [+] Chave: 000.005.841-69
+
+--> [Bucket Offset: 00313223] | ProfLocal: 7 | Ocupacao: 8/10
+      [+] Chave: 000.000.751-08
+      [+] Chave: 000.001.821-09
+      [+] Chave: 000.002.581-05
+      [+] Chave: 000.003.651-06
+      [+] Chave: 000.004.721-07
+      [+] Chave: 000.005.061-09
+      [+] Chave: 000.005.481-03
+      [+] Chave: 000.006.551-04
+
+--> [Bucket Offset: 00316264] | ProfLocal: 7 | Ocupacao: 7/10
+      [+] Chave: 000.001.391-90
+      [+] Chave: 000.003.491-60
+      [+] Chave: 000.004.471-70
+      [+] Chave: 000.005.451-80
+      [+] Chave: 000.005.591-30
+      [+] Chave: 000.006.431-90
+      [+] Chave: 000.006.571-40
+
+--> [Bucket Offset: 00319305] | ProfLocal: 10 | Ocupacao: 6/10
+      [+] Chave: 000.001.051-04
+      [+] Chave: 000.002.031-14
+      [+] Chave: 000.002.121-05
+      [+] Chave: 000.003.011-24
+      [+] Chave: 000.003.101-15
+      [+] Chave: 000.006.131-00
+
+--> [Bucket Offset: 00322346] | ProfLocal: 10 | Ocupacao: 8/10
+      [+] Chave: 000.000.021-35
+      [+] Chave: 000.000.111-26
+      [+] Chave: 000.000.201-17
+      [+] Chave: 000.001.001-45
+      [+] Chave: 000.001.091-00
+      [+] Chave: 000.005.021-03
+      [+] Chave: 000.006.001-13
+      [+] Chave: 100.000.000-19
+
+--> [Bucket Offset: 00325387] | ProfLocal: 12 | Ocupacao: 6/10
+      [+] Chave: 000.005.041-57
+      [+] Chave: 000.005.131-48
+      [+] Chave: 000.005.221-39
+      [+] Chave: 100.000.066-45
+      [+] Chave: 100.000.156-36
+      [+] Chave: 100.000.246-27
+
+--> [Bucket Offset: 00328428] | ProfLocal: 9 | Ocupacao: 7/10
+      [+] Chave: 000.003.091-09
+      [+] Chave: 000.004.071-19
+      [+] Chave: 000.005.051-29
+      [+] Chave: 000.006.031-39
+      [+] Chave: 000.007.011-49
+      [+] Chave: 000.007.061-08
+      [+] Chave: 100.000.099-03
+
+--> [Bucket Offset: 00331469] | ProfLocal: 13 | Ocupacao: 6/10
+      [+] Chave: 000.005.071-72
+      [+] Chave: 000.005.251-54
+      [+] Chave: 000.005.431-36
+      [+] Chave: 000.005.611-18
+      [+] Chave: 100.000.096-60
+      [+] Chave: 100.000.276-42
+
+--> [Bucket Offset: 00334510] | ProfLocal: 12 | Ocupacao: 8/10
+      [+] Chave: 000.000.091-48
+      [+] Chave: 000.000.181-39
+      [+] Chave: 000.004.011-88
+      [+] Chave: 000.004.101-79
+      [+] Chave: 000.007.051-36
+      [+] Chave: 000.007.141-27
+      [+] Chave: 000.007.231-18
+      [+] Chave: 000.007.321-09
+
+--> [Bucket Offset: 00337551] | ProfLocal: 11 | Ocupacao: 8/10
+      [+] Chave: 000.000.281-00
+      [+] Chave: 000.002.071-01
+      [+] Chave: 000.004.031-21
+      [+] Chave: 000.004.121-12
+      [+] Chave: 000.004.211-03
+      [+] Chave: 100.000.045-10
+      [+] Chave: 100.000.135-01
+      [+] Chave: 100.000.207-10
+
+--> [Bucket Offset: 00340592] | ProfLocal: 12 | Ocupacao: 7/10
+      [+] Chave: 000.001.291-27
+      [+] Chave: 000.001.381-18
+      [+] Chave: 000.001.471-09
+      [+] Chave: 000.005.031-85
+      [+] Chave: 000.005.121-76
+      [+] Chave: 000.005.211-67
+      [+] Chave: 000.005.301-58
+
+--> [Bucket Offset: 00343633] | ProfLocal: 13 | Ocupacao: 7/10
+      [+] Chave: 000.000.171-67
+      [+] Chave: 000.000.351-49
+      [+] Chave: 000.007.041-64
+      [+] Chave: 000.007.221-46
+      [+] Chave: 000.007.401-28
+      [+] Chave: 100.000.051-69
+      [+] Chave: 100.000.105-96
+
+--> [Bucket Offset: 00346674] | ProfLocal: 12 | Ocupacao: 10/10
+      [+] Chave: 000.000.631-93
+      [+] Chave: 000.000.721-84
+      [+] Chave: 000.000.811-75
+      [+] Chave: 000.000.901-66
+      [+] Chave: 000.003.581-50
+      [+] Chave: 000.003.671-41
+      [+] Chave: 000.003.761-32
+      [+] Chave: 000.003.851-23
+      [+] Chave: 000.003.941-14
+      [+] Chave: 000.007.501-90
+
+--> [Bucket Offset: 00349715] | ProfLocal: 13 | Ocupacao: 7/10
+      [+] Chave: 000.002.251-93
+      [+] Chave: 000.002.431-75
+      [+] Chave: 000.002.611-57
+      [+] Chave: 000.005.291-41
+      [+] Chave: 000.005.471-23
+      [+] Chave: 000.005.651-05
+      [+] Chave: 100.000.153-93
+
+--> [Bucket Offset: 00352756] | ProfLocal: 9 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00355797] | ProfLocal: 11 | Ocupacao: 6/10
+      [+] Chave: 000.002.891-67
+      [+] Chave: 000.002.981-58
+      [+] Chave: 000.004.761-96
+      [+] Chave: 000.004.851-87
+      [+] Chave: 000.004.941-78
+      [+] Chave: 000.006.901-98
+
+--> [Bucket Offset: 00358838] | ProfLocal: 12 | Ocupacao: 6/10
+      [+] Chave: 000.000.671-80
+      [+] Chave: 000.000.761-71
+      [+] Chave: 000.000.851-62
+      [+] Chave: 000.000.941-53
+      [+] Chave: 000.003.891-10
+      [+] Chave: 000.003.981-01
+
+--> [Bucket Offset: 00361879] | ProfLocal: 12 | Ocupacao: 8/10
+      [+] Chave: 000.004.051-75
+      [+] Chave: 000.004.141-66
+      [+] Chave: 000.004.231-57
+      [+] Chave: 000.004.321-48
+      [+] Chave: 000.004.411-39
+      [+] Chave: 000.007.091-23
+      [+] Chave: 000.007.181-14
+      [+] Chave: 000.007.271-05
+
+--> [Bucket Offset: 00364920] | ProfLocal: 13 | Ocupacao: 6/10
+      [+] Chave: 000.003.201-88
+      [+] Chave: 000.006.061-54
+      [+] Chave: 000.006.241-36
+      [+] Chave: 000.006.421-18
+      [+] Chave: 100.000.024-96
+      [+] Chave: 100.000.204-78
+
+--> [Bucket Offset: 00367961] | ProfLocal: 8 | Ocupacao: 7/10
+      [+] Chave: 000.003.991-83
+      [+] Chave: 000.004.971-93
+      [+] Chave: 000.006.891-81
+      [+] Chave: 000.006.981-72
+      [+] Chave: 100.000.069-98
+      [+] Chave: 100.000.078-89
+      [+] Chave: 100.000.159-89
+
+--> [Bucket Offset: 00371002] | ProfLocal: 13 | Ocupacao: 5/10
+      [+] Chave: 000.003.151-84
+      [+] Chave: 000.003.331-66
+      [+] Chave: 000.003.511-48
+      [+] Chave: 000.006.191-32
+      [+] Chave: 000.006.371-14
+
+--> [Bucket Offset: 00374043] | ProfLocal: 12 | Ocupacao: 6/10
+      [+] Chave: 000.001.701-94
+      [+] Chave: 000.004.561-60
+      [+] Chave: 000.004.651-51
+      [+] Chave: 000.004.741-42
+      [+] Chave: 000.004.831-33
+      [+] Chave: 000.004.921-24
+
+--> [Bucket Offset: 00377084] | ProfLocal: 9 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00380125] | ProfLocal: 10 | Ocupacao: 9/10
+      [+] Chave: 000.004.691-49
+      [+] Chave: 000.005.491-77
+      [+] Chave: 000.005.581-68
+      [+] Chave: 000.005.671-59
+      [+] Chave: 000.006.381-96
+      [+] Chave: 000.006.471-87
+      [+] Chave: 000.006.561-78
+      [+] Chave: 000.006.651-69
+      [+] Chave: 000.007.451-97
+
+--> [Bucket Offset: 00383166] | ProfLocal: 11 | Ocupacao: 7/10
+      [+] Chave: 000.000.791-97
+      [+] Chave: 000.000.881-88
+      [+] Chave: 000.000.971-79
+      [+] Chave: 000.002.931-99
+      [+] Chave: 000.005.791-65
+      [+] Chave: 000.005.881-56
+      [+] Chave: 000.005.971-47
+
+--> [Bucket Offset: 00386207] | ProfLocal: 8 | Ocupacao: 3/10
+      [+] Chave: 000.001.981-02
+      [+] Chave: 000.004.881-00
+      [+] Chave: 000.005.951-01
+
+--> [Bucket Offset: 00389248] | ProfLocal: 11 | Ocupacao: 7/10
+      [+] Chave: 000.004.591-86
+      [+] Chave: 000.004.681-77
+      [+] Chave: 000.004.771-68
+      [+] Chave: 000.004.861-59
+      [+] Chave: 000.006.641-97
+      [+] Chave: 000.006.731-88
+      [+] Chave: 000.006.821-79
+
+--> [Bucket Offset: 00392289] | ProfLocal: 13 | Ocupacao: 6/10
+      [+] Chave: 000.003.271-90
+      [+] Chave: 000.003.451-72
+      [+] Chave: 000.003.631-54
+      [+] Chave: 000.003.811-36
+      [+] Chave: 000.006.491-20
+      [+] Chave: 000.006.671-02
+
+--> [Bucket Offset: 00395330] | ProfLocal: 8 | Ocupacao: 9/10
+      [+] Chave: 000.000.581-90
+      [+] Chave: 000.002.681-60
+      [+] Chave: 000.003.661-70
+      [+] Chave: 000.004.641-80
+      [+] Chave: 000.004.781-30
+      [+] Chave: 000.005.621-90
+      [+] Chave: 000.005.761-40
+      [+] Chave: 000.006.741-50
+      [+] Chave: 000.006.881-00
+
+--> [Bucket Offset: 00398371] | ProfLocal: 8 | Ocupacao: 2/10
+      [+] Chave: 000.006.091-70
+      [+] Chave: 000.007.071-80
+
+--> [Bucket Offset: 00401412] | ProfLocal: 10 | Ocupacao: 5/10
+      [+] Chave: 000.001.991-76
+      [+] Chave: 000.002.881-95
+      [+] Chave: 000.002.971-86
+      [+] Chave: 000.003.951-96
+      [+] Chave: 000.006.991-44
+
+--> [Bucket Offset: 00404453] | ProfLocal: 10 | Ocupacao: 7/10
+      [+] Chave: 000.004.891-74
+      [+] Chave: 000.004.981-65
+      [+] Chave: 000.005.781-93
+      [+] Chave: 000.005.871-84
+      [+] Chave: 000.005.961-75
+      [+] Chave: 000.006.851-94
+      [+] Chave: 000.006.941-85
+
+--> [Bucket Offset: 00407494] | ProfLocal: 11 | Ocupacao: 5/10
+      [+] Chave: 000.002.671-98
+      [+] Chave: 000.002.761-89
+      [+] Chave: 000.005.891-28
+      [+] Chave: 000.005.981-19
+      [+] Chave: 000.007.491-84
+
+--> [Bucket Offset: 00410535] | ProfLocal: 8 | Ocupacao: 2/10
+      [+] Chave: 000.000.921-00
+      [+] Chave: 000.001.901-10
+
+--> [Bucket Offset: 00413576] | ProfLocal: 13 | Ocupacao: 8/10
+      [+] Chave: 000.000.161-95
+      [+] Chave: 000.000.341-77
+      [+] Chave: 000.000.521-59
+      [+] Chave: 000.003.381-25
+      [+] Chave: 000.003.561-07
+      [+] Chave: 000.007.031-92
+      [+] Chave: 000.007.211-74
+      [+] Chave: 100.000.258-60
+
+--> [Bucket Offset: 00416617] | ProfLocal: 12 | Ocupacao: 4/10
+      [+] Chave: 000.002.051-68
+      [+] Chave: 000.002.141-59
+      [+] Chave: 000.005.091-16
+      [+] Chave: 000.005.181-07
+
+--> [Bucket Offset: 00419658] | ProfLocal: 13 | Ocupacao: 7/10
+      [+] Chave: 000.000.391-36
+      [+] Chave: 000.000.571-18
+      [+] Chave: 000.004.221-85
+      [+] Chave: 000.004.401-67
+      [+] Chave: 000.007.081-51
+      [+] Chave: 000.007.261-33
+      [+] Chave: 000.007.441-15
+
+--> [Bucket Offset: 00422699] | ProfLocal: 13 | Ocupacao: 5/10
+      [+] Chave: 000.000.461-83
+      [+] Chave: 000.000.641-65
+      [+] Chave: 000.000.821-47
+      [+] Chave: 000.003.681-13
+      [+] Chave: 000.007.331-80
+
+--> [Bucket Offset: 00425740] | ProfLocal: 8 | Ocupacao: 6/10
+      [+] Chave: 000.000.961-05
+      [+] Chave: 000.002.791-02
+      [+] Chave: 000.003.861-03
+      [+] Chave: 000.004.931-04
+      [+] Chave: 000.005.691-00
+      [+] Chave: 000.006.761-01
+
+--> [Bucket Offset: 00428781] | ProfLocal: 13 | Ocupacao: 7/10
+      [+] Chave: 000.000.381-64
+      [+] Chave: 000.000.561-46
+      [+] Chave: 000.000.741-28
+      [+] Chave: 000.007.251-61
+      [+] Chave: 000.007.431-43
+      [+] Chave: 100.000.081-84
+      [+] Chave: 100.000.261-66
+
+--> [Bucket Offset: 00431822] | ProfLocal: 13 | Ocupacao: 6/10
+      [+] Chave: 000.004.081-90
+      [+] Chave: 000.004.261-72
+      [+] Chave: 000.004.441-54
+      [+] Chave: 000.004.621-36
+      [+] Chave: 000.004.801-18
+      [+] Chave: 000.007.481-02
+
+--> [Bucket Offset: 00434863] | ProfLocal: 7 | Ocupacao: 9/10
+      [+] Chave: 000.000.331-03
+      [+] Chave: 000.001.401-04
+      [+] Chave: 000.002.161-00
+      [+] Chave: 000.003.231-01
+      [+] Chave: 000.004.301-02
+      [+] Chave: 000.007.201-00
+      [+] Chave: 100.000.063-00
+      [+] Chave: 100.000.144-00
+      [+] Chave: 100.000.225-00
+
+--> [Bucket Offset: 00437904] | ProfLocal: 12 | Ocupacao: 4/10
+      [+] Chave: 000.002.011-70
+      [+] Chave: 000.002.101-61
+      [+] Chave: 000.005.231-00
+      [+] Chave: 100.000.003-61
+
+--> [Bucket Offset: 00440945] | ProfLocal: 12 | Ocupacao: 10/10
+      [+] Chave: 000.002.191-18
+      [+] Chave: 000.002.281-09
+      [+] Chave: 000.006.021-67
+      [+] Chave: 000.006.111-58
+      [+] Chave: 000.006.201-49
+      [+] Chave: 100.000.057-54
+      [+] Chave: 100.000.093-18
+      [+] Chave: 100.000.147-45
+      [+] Chave: 100.000.183-09
+      [+] Chave: 100.000.237-36
+
+--> [Bucket Offset: 00443986] | ProfLocal: 13 | Ocupacao: 6/10
+      [+] Chave: 000.001.181-92
+      [+] Chave: 000.001.361-74
+      [+] Chave: 000.001.541-56
+      [+] Chave: 000.001.721-38
+      [+] Chave: 000.004.581-04
+      [+] Chave: 100.000.162-84
+
+--> [Bucket Offset: 00447027] | ProfLocal: 13 | Ocupacao: 5/10
+      [+] Chave: 000.003.171-28
+      [+] Chave: 000.007.001-77
+      [+] Chave: 100.000.048-63
+      [+] Chave: 100.000.174-18
+      [+] Chave: 100.000.228-45
+
+--> [Bucket Offset: 00450068] | ProfLocal: 13 | Ocupacao: 6/10
+      [+] Chave: 000.003.411-85
+      [+] Chave: 000.006.271-51
+      [+] Chave: 000.006.451-33
+      [+] Chave: 000.006.631-15
+      [+] Chave: 100.000.180-66
+      [+] Chave: 100.000.234-93
+
+--> [Bucket Offset: 00453109] | ProfLocal: 13 | Ocupacao: 4/10
+      [+] Chave: 000.000.081-76
+      [+] Chave: 000.000.261-58
+      [+] Chave: 000.007.131-55
+      [+] Chave: 000.007.311-37
+
+--> [Bucket Offset: 00456150] | ProfLocal: 12 | Ocupacao: 6/10
+      [+] Chave: 000.001.031-60
+      [+] Chave: 000.001.121-51
+      [+] Chave: 000.001.211-42
+      [+] Chave: 000.001.301-33
+      [+] Chave: 100.000.012-52
+      [+] Chave: 100.000.102-43
+
+--> [Bucket Offset: 00459191] | ProfLocal: 13 | Ocupacao: 6/10
+      [+] Chave: 000.002.131-87
+      [+] Chave: 000.002.311-69
+      [+] Chave: 000.005.171-35
+      [+] Chave: 000.005.351-17
+      [+] Chave: 100.000.033-87
+      [+] Chave: 100.000.213-69
+
+--> [Bucket Offset: 00462232] | ProfLocal: 8 | Ocupacao: 3/10
+      [+] Chave: 100.000.087-70
+      [+] Chave: 100.000.168-70
+      [+] Chave: 100.000.249-70
+
+--> [Bucket Offset: 00465273] | ProfLocal: 13 | Ocupacao: 6/10
+      [+] Chave: 000.002.301-97
+      [+] Chave: 000.005.161-63
+      [+] Chave: 000.005.341-45
+      [+] Chave: 000.005.521-27
+      [+] Chave: 000.005.701-09
+      [+] Chave: 100.000.186-51
+
+--> [Bucket Offset: 00468314] | ProfLocal: 8 | Ocupacao: 6/10
+      [+] Chave: 000.001.771-05
+      [+] Chave: 000.002.841-06
+      [+] Chave: 000.003.911-07
+      [+] Chave: 000.004.671-03
+      [+] Chave: 000.005.741-04
+      [+] Chave: 000.006.811-05
+
+--> [Bucket Offset: 00471355] | ProfLocal: 13 | Ocupacao: 5/10
+      [+] Chave: 000.003.111-97
+      [+] Chave: 000.006.151-45
+      [+] Chave: 000.006.331-27
+      [+] Chave: 000.006.511-09
+      [+] Chave: 100.000.114-87
+
+--> [Bucket Offset: 00474396] | ProfLocal: 13 | Ocupacao: 6/10
+      [+] Chave: 000.000.041-89
+      [+] Chave: 000.003.081-37
+      [+] Chave: 000.003.261-19
+      [+] Chave: 100.000.084-27
+      [+] Chave: 100.000.138-54
+      [+] Chave: 100.000.264-09
+
+
+
+=== REPRESENTACAO ESQUEMATICA DA HASHFILE ===
+Profundidade Global: 13
+Total de Buckets Instanciados: 157
+
+--> [Bucket Offset: 00000000] | ProfLocal: 4 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00003041] | ProfLocal: 4 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00006082] | ProfLocal: 5 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00009123] | ProfLocal: 5 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00012164] | ProfLocal: 9 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00015205] | ProfLocal: 5 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00018246] | ProfLocal: 9 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00021287] | ProfLocal: 4 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00024328] | ProfLocal: 5 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00027369] | ProfLocal: 4 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00030410] | ProfLocal: 9 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00033451] | ProfLocal: 9 | Ocupacao: 8/10
+      [+] Chave: 000.000.841-90
+      [+] Chave: 000.000.931-81
+      [+] Chave: 000.000.981-40
+      [+] Chave: 000.001.911-91
+      [+] Chave: 000.001.961-50
+      [+] Chave: 000.002.941-60
+      [+] Chave: 000.003.921-70
+      [+] Chave: 000.004.901-80
+
+--> [Bucket Offset: 00036492] | ProfLocal: 9 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00039533] | ProfLocal: 11 | Ocupacao: 8/10
+      [+] Chave: 000.001.791-40
+      [+] Chave: 000.001.881-31
+      [+] Chave: 000.001.971-22
+      [+] Chave: 000.003.751-60
+      [+] Chave: 000.003.841-51
+      [+] Chave: 000.003.931-42
+      [+] Chave: 000.005.711-80
+      [+] Chave: 000.005.801-71
+
+--> [Bucket Offset: 00042574] | ProfLocal: 9 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00045615] | ProfLocal: 12 | Ocupacao: 6/10
+      [+] Chave: 000.001.891-03
+      [+] Chave: 000.005.541-70
+      [+] Chave: 000.005.631-61
+      [+] Chave: 000.005.721-52
+      [+] Chave: 000.005.811-43
+      [+] Chave: 000.005.901-34
+
+--> [Bucket Offset: 00048656] | ProfLocal: 13 | Ocupacao: 6/10
+      [+] Chave: 000.000.481-27
+      [+] Chave: 000.000.661-09
+      [+] Chave: 000.004.131-94
+      [+] Chave: 000.004.311-76
+      [+] Chave: 000.007.171-42
+      [+] Chave: 000.007.351-24
+
+--> [Bucket Offset: 00051697] | ProfLocal: 12 | Ocupacao: 7/10
+      [+] Chave: 000.002.091-55
+      [+] Chave: 000.002.181-46
+      [+] Chave: 000.002.271-37
+      [+] Chave: 000.002.361-28
+      [+] Chave: 000.002.451-19
+      [+] Chave: 000.006.011-95
+      [+] Chave: 000.006.101-86
+
+--> [Bucket Offset: 00054738] | ProfLocal: 13 | Ocupacao: 7/10
+      [+] Chave: 000.000.371-92
+      [+] Chave: 000.000.551-74
+      [+] Chave: 000.000.731-56
+      [+] Chave: 000.000.911-38
+      [+] Chave: 000.003.591-22
+      [+] Chave: 000.003.771-04
+      [+] Chave: 000.007.421-71
+
+--> [Bucket Offset: 00057779] | ProfLocal: 13 | Ocupacao: 6/10
+      [+] Chave: 000.002.341-84
+      [+] Chave: 000.002.521-66
+      [+] Chave: 000.002.701-48
+      [+] Chave: 000.005.381-32
+      [+] Chave: 000.005.561-14
+      [+] Chave: 100.000.243-84
+
+--> [Bucket Offset: 00060820] | ProfLocal: 8 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00063861] | ProfLocal: 12 | Ocupacao: 6/10
+      [+] Chave: 000.004.511-00
+      [+] Chave: 000.006.211-10
+      [+] Chave: 000.006.301-01
+      [+] Chave: 100.000.030-34
+      [+] Chave: 100.000.120-25
+      [+] Chave: 100.000.210-16
+
+--> [Bucket Offset: 00066902] | ProfLocal: 11 | Ocupacao: 7/10
+      [+] Chave: 000.000.001-91
+      [+] Chave: 000.001.171-10
+      [+] Chave: 000.001.261-01
+      [+] Chave: 000.003.131-30
+      [+] Chave: 000.003.221-21
+      [+] Chave: 000.003.311-12
+      [+] Chave: 000.003.401-03
+
+--> [Bucket Offset: 00069943] | ProfLocal: 9 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00072984] | ProfLocal: 13 | Ocupacao: 5/10
+      [+] Chave: 000.004.171-81
+      [+] Chave: 000.004.351-63
+      [+] Chave: 000.004.531-45
+      [+] Chave: 000.004.711-27
+      [+] Chave: 000.007.391-11
+
+--> [Bucket Offset: 00076025] | ProfLocal: 9 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00079066] | ProfLocal: 12 | Ocupacao: 9/10
+      [+] Chave: 000.002.491-06
+      [+] Chave: 000.006.051-82
+      [+] Chave: 000.006.141-73
+      [+] Chave: 000.006.231-64
+      [+] Chave: 000.006.321-55
+      [+] Chave: 000.006.411-46
+      [+] Chave: 000.006.501-37
+      [+] Chave: 100.000.177-60
+      [+] Chave: 100.000.267-51
+
+--> [Bucket Offset: 00082107] | ProfLocal: 8 | Ocupacao: 2/10
+      [+] Chave: 000.000.701-30
+      [+] Chave: 000.002.801-00
+
+--> [Bucket Offset: 00085148] | ProfLocal: 9 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00088189] | ProfLocal: 12 | Ocupacao: 9/10
+      [+] Chave: 000.001.061-86
+      [+] Chave: 000.001.151-77
+      [+] Chave: 000.001.241-68
+      [+] Chave: 000.001.331-59
+      [+] Chave: 000.004.191-25
+      [+] Chave: 000.004.281-16
+      [+] Chave: 000.004.371-07
+      [+] Chave: 100.000.042-78
+      [+] Chave: 100.000.132-69
+
+--> [Bucket Offset: 00091230] | ProfLocal: 8 | Ocupacao: 5/10
+      [+] Chave: 000.000.031-07
+      [+] Chave: 000.001.011-17
+      [+] Chave: 000.001.101-08
+      [+] Chave: 000.004.001-06
+      [+] Chave: 100.000.006-04
+
+--> [Bucket Offset: 00094271] | ProfLocal: 9 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00097312] | ProfLocal: 12 | Ocupacao: 8/10
+      [+] Chave: 000.002.291-80
+      [+] Chave: 000.002.381-71
+      [+] Chave: 000.002.471-62
+      [+] Chave: 000.002.561-53
+      [+] Chave: 000.002.651-44
+      [+] Chave: 000.002.741-35
+      [+] Chave: 000.002.831-26
+      [+] Chave: 000.002.921-17
+
+--> [Bucket Offset: 00100353] | ProfLocal: 13 | Ocupacao: 8/10
+      [+] Chave: 000.003.321-94
+      [+] Chave: 000.003.501-76
+      [+] Chave: 000.006.181-60
+      [+] Chave: 000.006.361-42
+      [+] Chave: 000.006.541-24
+      [+] Chave: 000.006.721-06
+      [+] Chave: 100.000.090-75
+      [+] Chave: 100.000.270-57
+
+--> [Bucket Offset: 00103394] | ProfLocal: 9 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00106435] | ProfLocal: 12 | Ocupacao: 7/10
+      [+] Chave: 000.000.591-61
+      [+] Chave: 000.000.681-52
+      [+] Chave: 000.000.771-43
+      [+] Chave: 000.000.861-34
+      [+] Chave: 000.000.951-25
+      [+] Chave: 000.004.601-92
+      [+] Chave: 100.000.291-81
+
+--> [Bucket Offset: 00109476] | ProfLocal: 8 | Ocupacao: 9/10
+      [+] Chave: 000.000.531-20
+      [+] Chave: 000.000.621-11
+      [+] Chave: 000.000.711-02
+      [+] Chave: 000.001.511-30
+      [+] Chave: 000.001.601-21
+      [+] Chave: 000.003.611-00
+      [+] Chave: 100.000.150-40
+      [+] Chave: 100.000.231-40
+      [+] Chave: 100.000.240-31
+
+--> [Bucket Offset: 00112517] | ProfLocal: 13 | Ocupacao: 5/10
+      [+] Chave: 000.001.531-84
+      [+] Chave: 000.001.711-66
+      [+] Chave: 000.004.391-50
+      [+] Chave: 000.004.571-32
+      [+] Chave: 000.004.751-14
+
+--> [Bucket Offset: 00115558] | ProfLocal: 3 | Ocupacao: 1/10
+      [+] Chave: 000.006.971-09
+
+--> [Bucket Offset: 00118599] | ProfLocal: 7 | Ocupacao: 9/10
+      [+] Chave: 000.000.131-70
+      [+] Chave: 000.000.271-20
+      [+] Chave: 000.001.111-80
+      [+] Chave: 000.001.251-30
+      [+] Chave: 000.002.231-40
+      [+] Chave: 000.003.211-50
+      [+] Chave: 000.003.351-00
+      [+] Chave: 000.004.331-10
+      [+] Chave: 000.005.311-20
+
+--> [Bucket Offset: 00121640] | ProfLocal: 5 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00124681] | ProfLocal: 8 | Ocupacao: 9/10
+      [+] Chave: 000.001.081-20
+      [+] Chave: 000.002.061-30
+      [+] Chave: 000.003.041-40
+      [+] Chave: 000.004.021-50
+      [+] Chave: 000.004.161-00
+      [+] Chave: 000.005.001-60
+      [+] Chave: 000.005.141-10
+      [+] Chave: 000.006.121-20
+      [+] Chave: 000.007.101-30
+
+--> [Bucket Offset: 00127722] | ProfLocal: 4 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00130763] | ProfLocal: 9 | Ocupacao: 4/10
+      [+] Chave: 100.000.009-57
+      [+] Chave: 100.000.018-48
+      [+] Chave: 100.000.027-39
+      [+] Chave: 100.000.108-39
+
+--> [Bucket Offset: 00133804] | ProfLocal: 12 | Ocupacao: 5/10
+      [+] Chave: 000.002.721-91
+      [+] Chave: 000.002.811-82
+      [+] Chave: 000.002.901-73
+      [+] Chave: 000.005.851-30
+      [+] Chave: 000.005.941-21
+
+--> [Bucket Offset: 00136845] | ProfLocal: 12 | Ocupacao: 8/10
+      [+] Chave: 000.001.481-80
+      [+] Chave: 000.001.571-71
+      [+] Chave: 000.001.661-62
+      [+] Chave: 000.001.751-53
+      [+] Chave: 000.001.841-44
+      [+] Chave: 000.001.931-35
+      [+] Chave: 000.004.791-01
+      [+] Chave: 100.000.282-90
+
+--> [Bucket Offset: 00139886] | ProfLocal: 12 | Ocupacao: 9/10
+      [+] Chave: 000.000.051-50
+      [+] Chave: 000.000.141-41
+      [+] Chave: 000.000.231-32
+      [+] Chave: 000.000.321-23
+      [+] Chave: 000.000.411-14
+      [+] Chave: 000.000.501-05
+      [+] Chave: 100.000.021-43
+      [+] Chave: 100.000.111-34
+      [+] Chave: 100.000.201-25
+
+--> [Bucket Offset: 00142927] | ProfLocal: 11 | Ocupacao: 6/10
+      [+] Chave: 000.001.041-32
+      [+] Chave: 000.001.131-23
+      [+] Chave: 000.001.221-14
+      [+] Chave: 000.001.311-05
+      [+] Chave: 000.003.001-52
+      [+] Chave: 000.006.041-00
+
+--> [Bucket Offset: 00145968] | ProfLocal: 11 | Ocupacao: 9/10
+      [+] Chave: 000.000.011-63
+      [+] Chave: 000.000.101-54
+      [+] Chave: 000.003.051-11
+      [+] Chave: 000.003.141-02
+      [+] Chave: 000.005.011-31
+      [+] Chave: 000.005.101-22
+      [+] Chave: 100.000.054-01
+      [+] Chave: 100.000.126-10
+      [+] Chave: 100.000.216-01
+
+--> [Bucket Offset: 00149009] | ProfLocal: 12 | Ocupacao: 7/10
+      [+] Chave: 000.001.191-64
+      [+] Chave: 000.001.281-55
+      [+] Chave: 000.001.371-46
+      [+] Chave: 000.001.461-37
+      [+] Chave: 000.001.551-28
+      [+] Chave: 000.001.641-19
+      [+] Chave: 000.005.201-95
+
+--> [Bucket Offset: 00152050] | ProfLocal: 6 | Ocupacao: 9/10
+      [+] Chave: 000.000.071-02
+      [+] Chave: 000.000.801-01
+      [+] Chave: 000.001.141-03
+      [+] Chave: 000.001.351-00
+      [+] Chave: 000.002.001-07
+      [+] Chave: 000.002.211-04
+      [+] Chave: 000.002.421-01
+      [+] Chave: 000.004.041-01
+      [+] Chave: 000.005.111-02
+
+--> [Bucket Offset: 00155091] | ProfLocal: 5 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00158132] | ProfLocal: 7 | Ocupacao: 5/10
+      [+] Chave: 000.000.121-06
+      [+] Chave: 000.000.541-00
+      [+] Chave: 000.001.611-01
+      [+] Chave: 000.003.021-04
+      [+] Chave: 100.000.015-03
+
+--> [Bucket Offset: 00161173] | ProfLocal: 13 | Ocupacao: 6/10
+      [+] Chave: 000.002.041-96
+      [+] Chave: 000.002.221-78
+      [+] Chave: 000.005.081-44
+      [+] Chave: 000.005.261-26
+      [+] Chave: 000.005.441-08
+      [+] Chave: 100.000.123-78
+
+--> [Bucket Offset: 00164214] | ProfLocal: 13 | Ocupacao: 5/10
+      [+] Chave: 000.003.361-81
+      [+] Chave: 000.003.541-63
+      [+] Chave: 000.003.721-45
+      [+] Chave: 000.003.901-27
+      [+] Chave: 000.006.581-11
+
+--> [Bucket Offset: 00167255] | ProfLocal: 10 | Ocupacao: 7/10
+      [+] Chave: 000.000.221-60
+      [+] Chave: 000.000.311-51
+      [+] Chave: 000.000.401-42
+      [+] Chave: 000.001.201-70
+      [+] Chave: 000.003.701-00
+      [+] Chave: 000.004.421-00
+      [+] Chave: 000.005.401-10
+
+--> [Bucket Offset: 00170296] | ProfLocal: 10 | Ocupacao: 9/10
+      [+] Chave: 000.000.361-10
+      [+] Chave: 000.000.451-01
+      [+] Chave: 000.001.341-20
+      [+] Chave: 000.001.431-11
+      [+] Chave: 000.001.521-02
+      [+] Chave: 000.002.321-30
+      [+] Chave: 000.002.411-21
+      [+] Chave: 000.002.501-12
+      [+] Chave: 000.003.301-40
+
+--> [Bucket Offset: 00173337] | ProfLocal: 13 | Ocupacao: 7/10
+      [+] Chave: 000.000.251-86
+      [+] Chave: 000.000.431-68
+      [+] Chave: 000.003.291-34
+      [+] Chave: 000.003.471-16
+      [+] Chave: 000.007.121-83
+      [+] Chave: 000.007.301-65
+      [+] Chave: 100.000.294-24
+
+--> [Bucket Offset: 00176378] | ProfLocal: 13 | Ocupacao: 7/10
+      [+] Chave: 000.000.291-73
+      [+] Chave: 000.000.471-55
+      [+] Chave: 000.000.651-37
+      [+] Chave: 000.000.831-19
+      [+] Chave: 000.007.161-70
+      [+] Chave: 000.007.341-52
+      [+] Chave: 100.000.171-75
+
+--> [Bucket Offset: 00179419] | ProfLocal: 12 | Ocupacao: 8/10
+      [+] Chave: 000.002.081-83
+      [+] Chave: 000.002.171-74
+      [+] Chave: 000.002.261-65
+      [+] Chave: 000.002.351-56
+      [+] Chave: 000.002.441-47
+      [+] Chave: 000.002.531-38
+      [+] Chave: 000.002.621-29
+      [+] Chave: 000.005.391-04
+
+--> [Bucket Offset: 00182460] | ProfLocal: 5 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00185501] | ProfLocal: 11 | Ocupacao: 8/10
+      [+] Chave: 000.001.861-98
+      [+] Chave: 000.001.951-89
+      [+] Chave: 000.004.991-37
+      [+] Chave: 000.006.591-93
+      [+] Chave: 000.006.681-84
+      [+] Chave: 000.006.771-75
+      [+] Chave: 000.006.861-66
+      [+] Chave: 000.006.951-57
+
+--> [Bucket Offset: 00188542] | ProfLocal: 11 | Ocupacao: 7/10
+      [+] Chave: 000.001.691-88
+      [+] Chave: 000.001.781-79
+      [+] Chave: 000.003.741-99
+      [+] Chave: 000.006.691-56
+      [+] Chave: 000.006.781-47
+      [+] Chave: 000.006.871-38
+      [+] Chave: 000.006.961-29
+
+--> [Bucket Offset: 00191583] | ProfLocal: 4 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00194624] | ProfLocal: 8 | Ocupacao: 9/10
+      [+] Chave: 000.000.491-07
+      [+] Chave: 000.001.561-08
+      [+] Chave: 000.002.631-09
+      [+] Chave: 000.003.391-05
+      [+] Chave: 000.004.461-06
+      [+] Chave: 000.005.531-07
+      [+] Chave: 000.006.291-03
+      [+] Chave: 000.006.601-08
+      [+] Chave: 000.007.361-04
+
+--> [Bucket Offset: 00197665] | ProfLocal: 8 | Ocupacao: 7/10
+      [+] Chave: 000.002.371-08
+      [+] Chave: 000.003.441-09
+      [+] Chave: 000.005.271-06
+      [+] Chave: 000.006.341-07
+      [+] Chave: 000.007.411-08
+      [+] Chave: 100.000.192-08
+      [+] Chave: 100.000.273-08
+
+--> [Bucket Offset: 00200706] | ProfLocal: 11 | Ocupacao: 8/10
+      [+] Chave: 000.001.651-90
+      [+] Chave: 000.001.741-81
+      [+] Chave: 000.001.831-72
+      [+] Chave: 000.001.921-63
+      [+] Chave: 000.004.871-20
+      [+] Chave: 000.004.961-11
+      [+] Chave: 000.006.831-40
+      [+] Chave: 000.006.921-31
+
+--> [Bucket Offset: 00203747] | ProfLocal: 12 | Ocupacao: 9/10
+      [+] Chave: 000.002.461-90
+      [+] Chave: 000.002.551-81
+      [+] Chave: 000.002.641-72
+      [+] Chave: 000.002.731-63
+      [+] Chave: 000.002.821-54
+      [+] Chave: 000.002.911-45
+      [+] Chave: 000.005.681-20
+      [+] Chave: 000.005.771-11
+      [+] Chave: 000.005.861-02
+
+--> [Bucket Offset: 00206788] | ProfLocal: 12 | Ocupacao: 9/10
+      [+] Chave: 000.000.691-24
+      [+] Chave: 000.000.781-15
+      [+] Chave: 000.000.871-06
+      [+] Chave: 000.004.341-91
+      [+] Chave: 000.004.431-82
+      [+] Chave: 000.004.521-73
+      [+] Chave: 000.004.611-64
+      [+] Chave: 000.004.701-55
+      [+] Chave: 000.007.471-30
+
+--> [Bucket Offset: 00209829] | ProfLocal: 11 | Ocupacao: 9/10
+      [+] Chave: 000.000.061-22
+      [+] Chave: 000.000.151-13
+      [+] Chave: 000.000.241-04
+      [+] Chave: 000.002.021-42
+      [+] Chave: 000.002.111-33
+      [+] Chave: 000.002.201-24
+      [+] Chave: 000.005.321-00
+      [+] Chave: 000.007.021-10
+      [+] Chave: 000.007.111-01
+
+--> [Bucket Offset: 00212870] | ProfLocal: 12 | Ocupacao: 10/10
+      [+] Chave: 000.001.021-99
+      [+] Chave: 000.004.061-47
+      [+] Chave: 000.004.151-38
+      [+] Chave: 000.004.241-29
+      [+] Chave: 100.000.039-72
+      [+] Chave: 100.000.075-36
+      [+] Chave: 100.000.129-63
+      [+] Chave: 100.000.165-27
+      [+] Chave: 100.000.219-54
+      [+] Chave: 100.000.255-18
+
+--> [Bucket Offset: 00215911] | ProfLocal: 11 | Ocupacao: 7/10
+      [+] Chave: 000.001.071-58
+      [+] Chave: 000.001.161-49
+      [+] Chave: 000.003.031-78
+      [+] Chave: 000.003.121-69
+      [+] Chave: 000.006.071-26
+      [+] Chave: 000.006.161-17
+      [+] Chave: 000.006.251-08
+
+--> [Bucket Offset: 00218952] | ProfLocal: 12 | Ocupacao: 6/10
+      [+] Chave: 000.000.211-99
+      [+] Chave: 000.003.071-65
+      [+] Chave: 000.003.161-56
+      [+] Chave: 000.003.251-47
+      [+] Chave: 000.003.341-38
+      [+] Chave: 000.003.431-29
+
+--> [Bucket Offset: 00221993] | ProfLocal: 12 | Ocupacao: 8/10
+      [+] Chave: 000.001.591-15
+      [+] Chave: 000.001.681-06
+      [+] Chave: 000.005.151-91
+      [+] Chave: 000.005.241-82
+      [+] Chave: 000.005.331-73
+      [+] Chave: 000.005.421-64
+      [+] Chave: 000.005.511-55
+      [+] Chave: 000.005.601-46
+
+--> [Bucket Offset: 00225034] | ProfLocal: 11 | Ocupacao: 6/10
+      [+] Chave: 000.000.191-00
+      [+] Chave: 000.002.151-20
+      [+] Chave: 000.002.241-11
+      [+] Chave: 000.002.331-02
+      [+] Chave: 000.004.111-40
+      [+] Chave: 000.004.201-31
+
+--> [Bucket Offset: 00228075] | ProfLocal: 13 | Ocupacao: 6/10
+      [+] Chave: 000.003.061-93
+      [+] Chave: 000.003.241-75
+      [+] Chave: 000.003.421-57
+      [+] Chave: 000.003.601-39
+      [+] Chave: 000.006.281-23
+      [+] Chave: 000.006.461-05
+
+--> [Bucket Offset: 00231116] | ProfLocal: 13 | Ocupacao: 7/10
+      [+] Chave: 000.001.271-83
+      [+] Chave: 000.001.451-65
+      [+] Chave: 000.001.631-47
+      [+] Chave: 000.001.811-29
+      [+] Chave: 000.004.491-13
+      [+] Chave: 100.000.072-93
+      [+] Chave: 100.000.252-75
+
+--> [Bucket Offset: 00234157] | ProfLocal: 7 | Ocupacao: 10/10
+      [+] Chave: 000.000.301-80
+      [+] Chave: 000.000.441-30
+      [+] Chave: 000.001.421-40
+      [+] Chave: 000.002.401-50
+      [+] Chave: 000.002.541-00
+      [+] Chave: 000.003.521-10
+      [+] Chave: 000.004.501-20
+      [+] Chave: 100.000.060-50
+      [+] Chave: 100.000.141-50
+      [+] Chave: 100.000.222-50
+
+--> [Bucket Offset: 00237198] | ProfLocal: 10 | Ocupacao: 5/10
+      [+] Chave: 000.002.591-79
+      [+] Chave: 000.003.481-98
+      [+] Chave: 000.003.571-89
+      [+] Chave: 000.004.551-99
+      [+] Chave: 000.006.791-19
+
+--> [Bucket Offset: 00240239] | ProfLocal: 12 | Ocupacao: 7/10
+      [+] Chave: 000.002.691-31
+      [+] Chave: 000.002.781-22
+      [+] Chave: 000.002.871-13
+      [+] Chave: 000.002.961-04
+      [+] Chave: 000.006.521-80
+      [+] Chave: 000.006.611-71
+      [+] Chave: 000.006.701-62
+
+--> [Bucket Offset: 00243280] | ProfLocal: 12 | Ocupacao: 8/10
+      [+] Chave: 000.001.491-52
+      [+] Chave: 000.001.581-43
+      [+] Chave: 000.001.671-34
+      [+] Chave: 000.001.761-25
+      [+] Chave: 000.001.851-16
+      [+] Chave: 000.001.941-07
+      [+] Chave: 000.005.411-92
+      [+] Chave: 000.005.501-83
+
+--> [Bucket Offset: 00246321] | ProfLocal: 13 | Ocupacao: 6/10
+      [+] Chave: 000.000.421-96
+      [+] Chave: 000.000.601-78
+      [+] Chave: 000.003.281-62
+      [+] Chave: 000.003.461-44
+      [+] Chave: 000.003.641-26
+      [+] Chave: 000.003.821-08
+
+--> [Bucket Offset: 00249362] | ProfLocal: 12 | Ocupacao: 9/10
+      [+] Chave: 000.002.511-94
+      [+] Chave: 000.002.601-85
+      [+] Chave: 000.005.371-60
+      [+] Chave: 000.005.461-51
+      [+] Chave: 000.005.551-42
+      [+] Chave: 000.005.641-33
+      [+] Chave: 000.005.731-24
+      [+] Chave: 000.005.821-15
+      [+] Chave: 000.005.911-06
+
+--> [Bucket Offset: 00252403] | ProfLocal: 13 | Ocupacao: 5/10
+      [+] Chave: 000.000.511-87
+      [+] Chave: 000.003.191-71
+      [+] Chave: 000.003.371-53
+      [+] Chave: 000.003.551-35
+      [+] Chave: 000.003.731-17
+
+--> [Bucket Offset: 00255444] | ProfLocal: 8 | Ocupacao: 7/10
+      [+] Chave: 000.005.191-89
+      [+] Chave: 000.006.171-99
+      [+] Chave: 000.007.291-59
+      [+] Chave: 100.000.198-95
+      [+] Chave: 100.000.279-95
+      [+] Chave: 100.000.288-86
+      [+] Chave: 100.000.297-77
+
+--> [Bucket Offset: 00258485] | ProfLocal: 9 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00261526] | ProfLocal: 11 | Ocupacao: 6/10
+      [+] Chave: 000.003.691-95
+      [+] Chave: 000.003.781-86
+      [+] Chave: 000.003.871-77
+      [+] Chave: 000.003.961-68
+      [+] Chave: 000.005.831-97
+      [+] Chave: 000.005.921-88
+
+--> [Bucket Offset: 00264567] | ProfLocal: 8 | Ocupacao: 9/10
+      [+] Chave: 000.004.291-98
+      [+] Chave: 000.004.381-89
+      [+] Chave: 000.005.361-99
+      [+] Chave: 000.006.391-68
+      [+] Chave: 000.006.481-59
+      [+] Chave: 000.007.191-96
+      [+] Chave: 000.007.281-87
+      [+] Chave: 000.007.371-78
+      [+] Chave: 000.007.461-69
+
+--> [Bucket Offset: 00267608] | ProfLocal: 4 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00270649] | ProfLocal: 7 | Ocupacao: 4/10
+      [+] Chave: 000.005.281-70
+      [+] Chave: 000.006.261-80
+      [+] Chave: 000.007.241-90
+      [+] Chave: 000.007.381-40
+
+--> [Bucket Offset: 00273690] | ProfLocal: 8 | Ocupacao: 10/10
+      [+] Chave: 000.000.891-50
+      [+] Chave: 000.001.871-60
+      [+] Chave: 000.002.851-70
+      [+] Chave: 000.002.991-20
+      [+] Chave: 000.003.831-80
+      [+] Chave: 000.003.971-30
+      [+] Chave: 000.004.811-90
+      [+] Chave: 000.004.951-40
+      [+] Chave: 000.005.931-50
+      [+] Chave: 000.006.911-60
+
+--> [Bucket Offset: 00276731] | ProfLocal: 7 | Ocupacao: 5/10
+      [+] Chave: 000.000.611-40
+      [+] Chave: 000.001.731-00
+      [+] Chave: 000.002.711-10
+      [+] Chave: 100.000.036-20
+      [+] Chave: 100.000.117-20
+
+--> [Bucket Offset: 00279772] | ProfLocal: 8 | Ocupacao: 5/10
+      [+] Chave: 000.003.181-08
+      [+] Chave: 000.004.251-09
+      [+] Chave: 000.006.081-06
+      [+] Chave: 000.007.151-07
+      [+] Chave: 100.000.189-02
+
+--> [Bucket Offset: 00282813] | ProfLocal: 12 | Ocupacao: 8/10
+      [+] Chave: 000.002.391-43
+      [+] Chave: 000.002.481-34
+      [+] Chave: 000.002.571-25
+      [+] Chave: 000.002.661-16
+      [+] Chave: 000.002.751-07
+      [+] Chave: 000.006.221-92
+      [+] Chave: 000.006.311-83
+      [+] Chave: 000.006.401-74
+
+--> [Bucket Offset: 00285854] | ProfLocal: 13 | Ocupacao: 7/10
+      [+] Chave: 000.001.231-96
+      [+] Chave: 000.001.411-78
+      [+] Chave: 000.004.091-62
+      [+] Chave: 000.004.271-44
+      [+] Chave: 000.004.451-26
+      [+] Chave: 000.004.631-08
+      [+] Chave: 100.000.195-42
+
+--> [Bucket Offset: 00288895] | ProfLocal: 13 | Ocupacao: 6/10
+      [+] Chave: 000.001.321-87
+      [+] Chave: 000.001.501-69
+      [+] Chave: 000.004.181-53
+      [+] Chave: 000.004.361-35
+      [+] Chave: 000.004.541-17
+      [+] Chave: 100.000.285-33
+
+--> [Bucket Offset: 00291936] | ProfLocal: 11 | Ocupacao: 7/10
+      [+] Chave: 000.000.991-12
+      [+] Chave: 000.002.771-50
+      [+] Chave: 000.002.861-41
+      [+] Chave: 000.002.951-32
+      [+] Chave: 000.004.731-70
+      [+] Chave: 000.004.821-61
+      [+] Chave: 000.004.911-52
+
+--> [Bucket Offset: 00294977] | ProfLocal: 12 | Ocupacao: 8/10
+      [+] Chave: 000.003.531-91
+      [+] Chave: 000.003.621-82
+      [+] Chave: 000.003.711-73
+      [+] Chave: 000.003.801-64
+      [+] Chave: 000.006.661-30
+      [+] Chave: 000.006.751-21
+      [+] Chave: 000.006.841-12
+      [+] Chave: 000.006.931-03
+
+--> [Bucket Offset: 00298018] | ProfLocal: 12 | Ocupacao: 6/10
+      [+] Chave: 000.006.351-70
+      [+] Chave: 000.006.441-61
+      [+] Chave: 000.006.531-52
+      [+] Chave: 000.006.621-43
+      [+] Chave: 000.006.711-34
+      [+] Chave: 000.006.801-25
+
+--> [Bucket Offset: 00301059] | ProfLocal: 13 | Ocupacao: 6/10
+      [+] Chave: 000.001.441-93
+      [+] Chave: 000.001.621-75
+      [+] Chave: 000.001.801-57
+      [+] Chave: 000.004.481-41
+      [+] Chave: 000.004.661-23
+      [+] Chave: 000.004.841-05
+
+--> [Bucket Offset: 00304100] | ProfLocal: 8 | Ocupacao: 1/10
+      [+] Chave: 000.005.991-90
+
+--> [Bucket Offset: 00307141] | ProfLocal: 9 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00310182] | ProfLocal: 11 | Ocupacao: 6/10
+      [+] Chave: 000.003.791-58
+      [+] Chave: 000.003.881-49
+      [+] Chave: 000.005.571-96
+      [+] Chave: 000.005.661-87
+      [+] Chave: 000.005.751-78
+      [+] Chave: 000.005.841-69
+
+--> [Bucket Offset: 00313223] | ProfLocal: 7 | Ocupacao: 8/10
+      [+] Chave: 000.000.751-08
+      [+] Chave: 000.001.821-09
+      [+] Chave: 000.002.581-05
+      [+] Chave: 000.003.651-06
+      [+] Chave: 000.004.721-07
+      [+] Chave: 000.005.061-09
+      [+] Chave: 000.005.481-03
+      [+] Chave: 000.006.551-04
+
+--> [Bucket Offset: 00316264] | ProfLocal: 7 | Ocupacao: 7/10
+      [+] Chave: 000.001.391-90
+      [+] Chave: 000.003.491-60
+      [+] Chave: 000.004.471-70
+      [+] Chave: 000.005.451-80
+      [+] Chave: 000.005.591-30
+      [+] Chave: 000.006.431-90
+      [+] Chave: 000.006.571-40
+
+--> [Bucket Offset: 00319305] | ProfLocal: 10 | Ocupacao: 6/10
+      [+] Chave: 000.001.051-04
+      [+] Chave: 000.002.031-14
+      [+] Chave: 000.002.121-05
+      [+] Chave: 000.003.011-24
+      [+] Chave: 000.003.101-15
+      [+] Chave: 000.006.131-00
+
+--> [Bucket Offset: 00322346] | ProfLocal: 10 | Ocupacao: 8/10
+      [+] Chave: 000.000.021-35
+      [+] Chave: 000.000.111-26
+      [+] Chave: 000.000.201-17
+      [+] Chave: 000.001.001-45
+      [+] Chave: 000.001.091-00
+      [+] Chave: 000.005.021-03
+      [+] Chave: 000.006.001-13
+      [+] Chave: 100.000.000-19
+
+--> [Bucket Offset: 00325387] | ProfLocal: 12 | Ocupacao: 6/10
+      [+] Chave: 000.005.041-57
+      [+] Chave: 000.005.131-48
+      [+] Chave: 000.005.221-39
+      [+] Chave: 100.000.066-45
+      [+] Chave: 100.000.156-36
+      [+] Chave: 100.000.246-27
+
+--> [Bucket Offset: 00328428] | ProfLocal: 9 | Ocupacao: 7/10
+      [+] Chave: 000.003.091-09
+      [+] Chave: 000.004.071-19
+      [+] Chave: 000.005.051-29
+      [+] Chave: 000.006.031-39
+      [+] Chave: 000.007.011-49
+      [+] Chave: 000.007.061-08
+      [+] Chave: 100.000.099-03
+
+--> [Bucket Offset: 00331469] | ProfLocal: 13 | Ocupacao: 6/10
+      [+] Chave: 000.005.071-72
+      [+] Chave: 000.005.251-54
+      [+] Chave: 000.005.431-36
+      [+] Chave: 000.005.611-18
+      [+] Chave: 100.000.096-60
+      [+] Chave: 100.000.276-42
+
+--> [Bucket Offset: 00334510] | ProfLocal: 12 | Ocupacao: 8/10
+      [+] Chave: 000.000.091-48
+      [+] Chave: 000.000.181-39
+      [+] Chave: 000.004.011-88
+      [+] Chave: 000.004.101-79
+      [+] Chave: 000.007.051-36
+      [+] Chave: 000.007.141-27
+      [+] Chave: 000.007.231-18
+      [+] Chave: 000.007.321-09
+
+--> [Bucket Offset: 00337551] | ProfLocal: 11 | Ocupacao: 8/10
+      [+] Chave: 000.000.281-00
+      [+] Chave: 000.002.071-01
+      [+] Chave: 000.004.031-21
+      [+] Chave: 000.004.121-12
+      [+] Chave: 000.004.211-03
+      [+] Chave: 100.000.045-10
+      [+] Chave: 100.000.135-01
+      [+] Chave: 100.000.207-10
+
+--> [Bucket Offset: 00340592] | ProfLocal: 12 | Ocupacao: 7/10
+      [+] Chave: 000.001.291-27
+      [+] Chave: 000.001.381-18
+      [+] Chave: 000.001.471-09
+      [+] Chave: 000.005.031-85
+      [+] Chave: 000.005.121-76
+      [+] Chave: 000.005.211-67
+      [+] Chave: 000.005.301-58
+
+--> [Bucket Offset: 00343633] | ProfLocal: 13 | Ocupacao: 7/10
+      [+] Chave: 000.000.171-67
+      [+] Chave: 000.000.351-49
+      [+] Chave: 000.007.041-64
+      [+] Chave: 000.007.221-46
+      [+] Chave: 000.007.401-28
+      [+] Chave: 100.000.051-69
+      [+] Chave: 100.000.105-96
+
+--> [Bucket Offset: 00346674] | ProfLocal: 12 | Ocupacao: 10/10
+      [+] Chave: 000.000.631-93
+      [+] Chave: 000.000.721-84
+      [+] Chave: 000.000.811-75
+      [+] Chave: 000.000.901-66
+      [+] Chave: 000.003.581-50
+      [+] Chave: 000.003.671-41
+      [+] Chave: 000.003.761-32
+      [+] Chave: 000.003.851-23
+      [+] Chave: 000.003.941-14
+      [+] Chave: 000.007.501-90
+
+--> [Bucket Offset: 00349715] | ProfLocal: 13 | Ocupacao: 7/10
+      [+] Chave: 000.002.251-93
+      [+] Chave: 000.002.431-75
+      [+] Chave: 000.002.611-57
+      [+] Chave: 000.005.291-41
+      [+] Chave: 000.005.471-23
+      [+] Chave: 000.005.651-05
+      [+] Chave: 100.000.153-93
+
+--> [Bucket Offset: 00352756] | ProfLocal: 9 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00355797] | ProfLocal: 11 | Ocupacao: 6/10
+      [+] Chave: 000.002.891-67
+      [+] Chave: 000.002.981-58
+      [+] Chave: 000.004.761-96
+      [+] Chave: 000.004.851-87
+      [+] Chave: 000.004.941-78
+      [+] Chave: 000.006.901-98
+
+--> [Bucket Offset: 00358838] | ProfLocal: 12 | Ocupacao: 6/10
+      [+] Chave: 000.000.671-80
+      [+] Chave: 000.000.761-71
+      [+] Chave: 000.000.851-62
+      [+] Chave: 000.000.941-53
+      [+] Chave: 000.003.891-10
+      [+] Chave: 000.003.981-01
+
+--> [Bucket Offset: 00361879] | ProfLocal: 12 | Ocupacao: 8/10
+      [+] Chave: 000.004.051-75
+      [+] Chave: 000.004.141-66
+      [+] Chave: 000.004.231-57
+      [+] Chave: 000.004.321-48
+      [+] Chave: 000.004.411-39
+      [+] Chave: 000.007.091-23
+      [+] Chave: 000.007.181-14
+      [+] Chave: 000.007.271-05
+
+--> [Bucket Offset: 00364920] | ProfLocal: 13 | Ocupacao: 6/10
+      [+] Chave: 000.003.201-88
+      [+] Chave: 000.006.061-54
+      [+] Chave: 000.006.241-36
+      [+] Chave: 000.006.421-18
+      [+] Chave: 100.000.024-96
+      [+] Chave: 100.000.204-78
+
+--> [Bucket Offset: 00367961] | ProfLocal: 8 | Ocupacao: 7/10
+      [+] Chave: 000.003.991-83
+      [+] Chave: 000.004.971-93
+      [+] Chave: 000.006.891-81
+      [+] Chave: 000.006.981-72
+      [+] Chave: 100.000.069-98
+      [+] Chave: 100.000.078-89
+      [+] Chave: 100.000.159-89
+
+--> [Bucket Offset: 00371002] | ProfLocal: 13 | Ocupacao: 5/10
+      [+] Chave: 000.003.151-84
+      [+] Chave: 000.003.331-66
+      [+] Chave: 000.003.511-48
+      [+] Chave: 000.006.191-32
+      [+] Chave: 000.006.371-14
+
+--> [Bucket Offset: 00374043] | ProfLocal: 12 | Ocupacao: 6/10
+      [+] Chave: 000.001.701-94
+      [+] Chave: 000.004.561-60
+      [+] Chave: 000.004.651-51
+      [+] Chave: 000.004.741-42
+      [+] Chave: 000.004.831-33
+      [+] Chave: 000.004.921-24
+
+--> [Bucket Offset: 00377084] | ProfLocal: 9 | Ocupacao: 0/10
+      (Bucket Vazio)
+
+--> [Bucket Offset: 00380125] | ProfLocal: 10 | Ocupacao: 9/10
+      [+] Chave: 000.004.691-49
+      [+] Chave: 000.005.491-77
+      [+] Chave: 000.005.581-68
+      [+] Chave: 000.005.671-59
+      [+] Chave: 000.006.381-96
+      [+] Chave: 000.006.471-87
+      [+] Chave: 000.006.561-78
+      [+] Chave: 000.006.651-69
+      [+] Chave: 000.007.451-97
+
+--> [Bucket Offset: 00383166] | ProfLocal: 11 | Ocupacao: 7/10
+      [+] Chave: 000.000.791-97
+      [+] Chave: 000.000.881-88
+      [+] Chave: 000.000.971-79
+      [+] Chave: 000.002.931-99
+      [+] Chave: 000.005.791-65
+      [+] Chave: 000.005.881-56
+      [+] Chave: 000.005.971-47
+
+--> [Bucket Offset: 00386207] | ProfLocal: 8 | Ocupacao: 3/10
+      [+] Chave: 000.001.981-02
+      [+] Chave: 000.004.881-00
+      [+] Chave: 000.005.951-01
+
+--> [Bucket Offset: 00389248] | ProfLocal: 11 | Ocupacao: 7/10
+      [+] Chave: 000.004.591-86
+      [+] Chave: 000.004.681-77
+      [+] Chave: 000.004.771-68
+      [+] Chave: 000.004.861-59
+      [+] Chave: 000.006.641-97
+      [+] Chave: 000.006.731-88
+      [+] Chave: 000.006.821-79
+
+--> [Bucket Offset: 00392289] | ProfLocal: 13 | Ocupacao: 6/10
+      [+] Chave: 000.003.271-90
+      [+] Chave: 000.003.451-72
+      [+] Chave: 000.003.631-54
+      [+] Chave: 000.003.811-36
+      [+] Chave: 000.006.491-20
+      [+] Chave: 000.006.671-02
+
+--> [Bucket Offset: 00395330] | ProfLocal: 8 | Ocupacao: 9/10
+      [+] Chave: 000.000.581-90
+      [+] Chave: 000.002.681-60
+      [+] Chave: 000.003.661-70
+      [+] Chave: 000.004.641-80
+      [+] Chave: 000.004.781-30
+      [+] Chave: 000.005.621-90
+      [+] Chave: 000.005.761-40
+      [+] Chave: 000.006.741-50
+      [+] Chave: 000.006.881-00
+
+--> [Bucket Offset: 00398371] | ProfLocal: 8 | Ocupacao: 2/10
+      [+] Chave: 000.006.091-70
+      [+] Chave: 000.007.071-80
+
+--> [Bucket Offset: 00401412] | ProfLocal: 10 | Ocupacao: 5/10
+      [+] Chave: 000.001.991-76
+      [+] Chave: 000.002.881-95
+      [+] Chave: 000.002.971-86
+      [+] Chave: 000.003.951-96
+      [+] Chave: 000.006.991-44
+
+--> [Bucket Offset: 00404453] | ProfLocal: 10 | Ocupacao: 7/10
+      [+] Chave: 000.004.891-74
+      [+] Chave: 000.004.981-65
+      [+] Chave: 000.005.781-93
+      [+] Chave: 000.005.871-84
+      [+] Chave: 000.005.961-75
+      [+] Chave: 000.006.851-94
+      [+] Chave: 000.006.941-85
+
+--> [Bucket Offset: 00407494] | ProfLocal: 11 | Ocupacao: 5/10
+      [+] Chave: 000.002.671-98
+      [+] Chave: 000.002.761-89
+      [+] Chave: 000.005.891-28
+      [+] Chave: 000.005.981-19
+      [+] Chave: 000.007.491-84
+
+--> [Bucket Offset: 00410535] | ProfLocal: 8 | Ocupacao: 2/10
+      [+] Chave: 000.000.921-00
+      [+] Chave: 000.001.901-10
+
+--> [Bucket Offset: 00413576] | ProfLocal: 13 | Ocupacao: 8/10
+      [+] Chave: 000.000.161-95
+      [+] Chave: 000.000.341-77
+      [+] Chave: 000.000.521-59
+      [+] Chave: 000.003.381-25
+      [+] Chave: 000.003.561-07
+      [+] Chave: 000.007.031-92
+      [+] Chave: 000.007.211-74
+      [+] Chave: 100.000.258-60
+
+--> [Bucket Offset: 00416617] | ProfLocal: 12 | Ocupacao: 4/10
+      [+] Chave: 000.002.051-68
+      [+] Chave: 000.002.141-59
+      [+] Chave: 000.005.091-16
+      [+] Chave: 000.005.181-07
+
+--> [Bucket Offset: 00419658] | ProfLocal: 13 | Ocupacao: 7/10
+      [+] Chave: 000.000.391-36
+      [+] Chave: 000.000.571-18
+      [+] Chave: 000.004.221-85
+      [+] Chave: 000.004.401-67
+      [+] Chave: 000.007.081-51
+      [+] Chave: 000.007.261-33
+      [+] Chave: 000.007.441-15
+
+--> [Bucket Offset: 00422699] | ProfLocal: 13 | Ocupacao: 5/10
+      [+] Chave: 000.000.461-83
+      [+] Chave: 000.000.641-65
+      [+] Chave: 000.000.821-47
+      [+] Chave: 000.003.681-13
+      [+] Chave: 000.007.331-80
+
+--> [Bucket Offset: 00425740] | ProfLocal: 8 | Ocupacao: 6/10
+      [+] Chave: 000.000.961-05
+      [+] Chave: 000.002.791-02
+      [+] Chave: 000.003.861-03
+      [+] Chave: 000.004.931-04
+      [+] Chave: 000.005.691-00
+      [+] Chave: 000.006.761-01
+
+--> [Bucket Offset: 00428781] | ProfLocal: 13 | Ocupacao: 7/10
+      [+] Chave: 000.000.381-64
+      [+] Chave: 000.000.561-46
+      [+] Chave: 000.000.741-28
+      [+] Chave: 000.007.251-61
+      [+] Chave: 000.007.431-43
+      [+] Chave: 100.000.081-84
+      [+] Chave: 100.000.261-66
+
+--> [Bucket Offset: 00431822] | ProfLocal: 13 | Ocupacao: 6/10
+      [+] Chave: 000.004.081-90
+      [+] Chave: 000.004.261-72
+      [+] Chave: 000.004.441-54
+      [+] Chave: 000.004.621-36
+      [+] Chave: 000.004.801-18
+      [+] Chave: 000.007.481-02
+
+--> [Bucket Offset: 00434863] | ProfLocal: 7 | Ocupacao: 9/10
+      [+] Chave: 000.000.331-03
+      [+] Chave: 000.001.401-04
+      [+] Chave: 000.002.161-00
+      [+] Chave: 000.003.231-01
+      [+] Chave: 000.004.301-02
+      [+] Chave: 000.007.201-00
+      [+] Chave: 100.000.063-00
+      [+] Chave: 100.000.144-00
+      [+] Chave: 100.000.225-00
+
+--> [Bucket Offset: 00437904] | ProfLocal: 12 | Ocupacao: 4/10
+      [+] Chave: 000.002.011-70
+      [+] Chave: 000.002.101-61
+      [+] Chave: 000.005.231-00
+      [+] Chave: 100.000.003-61
+
+--> [Bucket Offset: 00440945] | ProfLocal: 12 | Ocupacao: 10/10
+      [+] Chave: 000.002.191-18
+      [+] Chave: 000.002.281-09
+      [+] Chave: 000.006.021-67
+      [+] Chave: 000.006.111-58
+      [+] Chave: 000.006.201-49
+      [+] Chave: 100.000.057-54
+      [+] Chave: 100.000.093-18
+      [+] Chave: 100.000.147-45
+      [+] Chave: 100.000.183-09
+      [+] Chave: 100.000.237-36
+
+--> [Bucket Offset: 00443986] | ProfLocal: 13 | Ocupacao: 6/10
+      [+] Chave: 000.001.181-92
+      [+] Chave: 000.001.361-74
+      [+] Chave: 000.001.541-56
+      [+] Chave: 000.001.721-38
+      [+] Chave: 000.004.581-04
+      [+] Chave: 100.000.162-84
+
+--> [Bucket Offset: 00447027] | ProfLocal: 13 | Ocupacao: 5/10
+      [+] Chave: 000.003.171-28
+      [+] Chave: 000.007.001-77
+      [+] Chave: 100.000.048-63
+      [+] Chave: 100.000.174-18
+      [+] Chave: 100.000.228-45
+
+--> [Bucket Offset: 00450068] | ProfLocal: 13 | Ocupacao: 6/10
+      [+] Chave: 000.003.411-85
+      [+] Chave: 000.006.271-51
+      [+] Chave: 000.006.451-33
+      [+] Chave: 000.006.631-15
+      [+] Chave: 100.000.180-66
+      [+] Chave: 100.000.234-93
+
+--> [Bucket Offset: 00453109] | ProfLocal: 13 | Ocupacao: 4/10
+      [+] Chave: 000.000.081-76
+      [+] Chave: 000.000.261-58
+      [+] Chave: 000.007.131-55
+      [+] Chave: 000.007.311-37
+
+--> [Bucket Offset: 00456150] | ProfLocal: 12 | Ocupacao: 6/10
+      [+] Chave: 000.001.031-60
+      [+] Chave: 000.001.121-51
+      [+] Chave: 000.001.211-42
+      [+] Chave: 000.001.301-33
+      [+] Chave: 100.000.012-52
+      [+] Chave: 100.000.102-43
+
+--> [Bucket Offset: 00459191] | ProfLocal: 13 | Ocupacao: 6/10
+      [+] Chave: 000.002.131-87
+      [+] Chave: 000.002.311-69
+      [+] Chave: 000.005.171-35
+      [+] Chave: 000.005.351-17
+      [+] Chave: 100.000.033-87
+      [+] Chave: 100.000.213-69
+
+--> [Bucket Offset: 00462232] | ProfLocal: 8 | Ocupacao: 3/10
+      [+] Chave: 100.000.087-70
+      [+] Chave: 100.000.168-70
+      [+] Chave: 100.000.249-70
+
+--> [Bucket Offset: 00465273] | ProfLocal: 13 | Ocupacao: 6/10
+      [+] Chave: 000.002.301-97
+      [+] Chave: 000.005.161-63
+      [+] Chave: 000.005.341-45
+      [+] Chave: 000.005.521-27
+      [+] Chave: 000.005.701-09
+      [+] Chave: 100.000.186-51
+
+--> [Bucket Offset: 00468314] | ProfLocal: 8 | Ocupacao: 6/10
+      [+] Chave: 000.001.771-05
+      [+] Chave: 000.002.841-06
+      [+] Chave: 000.003.911-07
+      [+] Chave: 000.004.671-03
+      [+] Chave: 000.005.741-04
+      [+] Chave: 000.006.811-05
+
+--> [Bucket Offset: 00471355] | ProfLocal: 13 | Ocupacao: 5/10
+      [+] Chave: 000.003.111-97
+      [+] Chave: 000.006.151-45
+      [+] Chave: 000.006.331-27
+      [+] Chave: 000.006.511-09
+      [+] Chave: 100.000.114-87
+
+--> [Bucket Offset: 00474396] | ProfLocal: 13 | Ocupacao: 6/10
+      [+] Chave: 000.000.041-89
+      [+] Chave: 000.003.081-37
+      [+] Chave: 000.003.261-19
+      [+] Chave: 100.000.084-27
+      [+] Chave: 100.000.138-54
+      [+] Chave: 100.000.264-09
+

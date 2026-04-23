@@ -1413,3 +1413,262 @@ Total de Buckets Instanciados: 17
       [+] Chave: b09.10
       [+] Chave: b010.9
 
+
+
+=== REPRESENTACAO ESQUEMATICA DA HASHFILE ===
+Profundidade Global: 5
+Total de Buckets Instanciados: 17
+
+--> [Bucket Offset: 00000000] | ProfLocal: 4 | Ocupacao: 8/10
+      [+] Chave: b02.9
+      [+] Chave: b03.8
+      [+] Chave: b04.7
+      [+] Chave: b05.6
+      [+] Chave: b06.5
+      [+] Chave: b07.4
+      [+] Chave: b08.3
+      [+] Chave: b09.2
+
+--> [Bucket Offset: 00003041] | ProfLocal: 4 | Ocupacao: 7/10
+      [+] Chave: b03.9
+      [+] Chave: b04.8
+      [+] Chave: b05.7
+      [+] Chave: b06.6
+      [+] Chave: b07.5
+      [+] Chave: b08.4
+      [+] Chave: b09.3
+
+--> [Bucket Offset: 00006082] | ProfLocal: 4 | Ocupacao: 4/10
+      [+] Chave: b05.9
+      [+] Chave: b07.7
+      [+] Chave: b08.6
+      [+] Chave: b09.5
+
+--> [Bucket Offset: 00009123] | ProfLocal: 4 | Ocupacao: 6/10
+      [+] Chave: b04.9
+      [+] Chave: b05.8
+      [+] Chave: b06.7
+      [+] Chave: b07.6
+      [+] Chave: b08.5
+      [+] Chave: b09.4
+
+--> [Bucket Offset: 00012164] | ProfLocal: 4 | Ocupacao: 5/10
+      [+] Chave: b01.1
+      [+] Chave: b01.10
+      [+] Chave: b09.9
+      [+] Chave: b010.1
+      [+] Chave: b010.10
+
+--> [Bucket Offset: 00015205] | ProfLocal: 4 | Ocupacao: 3/10
+      [+] Chave: b06.9
+      [+] Chave: b08.7
+      [+] Chave: b09.6
+
+--> [Bucket Offset: 00018246] | ProfLocal: 4 | Ocupacao: 3/10
+      [+] Chave: b07.9
+      [+] Chave: b08.8
+      [+] Chave: b09.7
+
+--> [Bucket Offset: 00021287] | ProfLocal: 4 | Ocupacao: 2/10
+      [+] Chave: b08.9
+      [+] Chave: b09.8
+
+--> [Bucket Offset: 00024328] | ProfLocal: 5 | Ocupacao: 7/10
+      [+] Chave: b01.9
+      [+] Chave: b02.8
+      [+] Chave: b03.7
+      [+] Chave: b05.5
+      [+] Chave: b07.3
+      [+] Chave: b08.2
+      [+] Chave: b09.1
+
+--> [Bucket Offset: 00027369] | ProfLocal: 4 | Ocupacao: 4/10
+      [+] Chave: b01.2
+      [+] Chave: b02.1
+      [+] Chave: b02.10
+      [+] Chave: b010.2
+
+--> [Bucket Offset: 00030410] | ProfLocal: 4 | Ocupacao: 5/10
+      [+] Chave: b01.3
+      [+] Chave: b02.2
+      [+] Chave: b03.1
+      [+] Chave: b03.10
+      [+] Chave: b010.3
+
+--> [Bucket Offset: 00033451] | ProfLocal: 4 | Ocupacao: 6/10
+      [+] Chave: b01.4
+      [+] Chave: b02.3
+      [+] Chave: b03.2
+      [+] Chave: b04.1
+      [+] Chave: b04.10
+      [+] Chave: b010.4
+
+--> [Bucket Offset: 00036492] | ProfLocal: 4 | Ocupacao: 7/10
+      [+] Chave: b01.5
+      [+] Chave: b02.4
+      [+] Chave: b03.3
+      [+] Chave: b04.2
+      [+] Chave: b05.1
+      [+] Chave: b05.10
+      [+] Chave: b010.5
+
+--> [Bucket Offset: 00039533] | ProfLocal: 4 | Ocupacao: 7/10
+      [+] Chave: b01.6
+      [+] Chave: b02.5
+      [+] Chave: b04.3
+      [+] Chave: b05.2
+      [+] Chave: b06.1
+      [+] Chave: b06.10
+      [+] Chave: b010.6
+
+--> [Bucket Offset: 00042574] | ProfLocal: 4 | Ocupacao: 9/10
+      [+] Chave: b01.7
+      [+] Chave: b02.6
+      [+] Chave: b03.5
+      [+] Chave: b04.4
+      [+] Chave: b05.3
+      [+] Chave: b06.2
+      [+] Chave: b07.1
+      [+] Chave: b07.10
+      [+] Chave: b010.7
+
+--> [Bucket Offset: 00045615] | ProfLocal: 4 | Ocupacao: 10/10
+      [+] Chave: b01.8
+      [+] Chave: b02.7
+      [+] Chave: b03.6
+      [+] Chave: b04.5
+      [+] Chave: b05.4
+      [+] Chave: b06.3
+      [+] Chave: b07.2
+      [+] Chave: b08.1
+      [+] Chave: b08.10
+      [+] Chave: b010.8
+
+--> [Bucket Offset: 00048656] | ProfLocal: 5 | Ocupacao: 2/10
+      [+] Chave: b09.10
+      [+] Chave: b010.9
+
+
+
+=== REPRESENTACAO ESQUEMATICA DA HASHFILE ===
+Profundidade Global: 5
+Total de Buckets Instanciados: 17
+
+--> [Bucket Offset: 00000000] | ProfLocal: 4 | Ocupacao: 4/10
+      [+] Chave: b02.9
+      [+] Chave: b03.8
+      [+] Chave: b08.3
+      [+] Chave: b09.2
+
+--> [Bucket Offset: 00003041] | ProfLocal: 4 | Ocupacao: 4/10
+      [+] Chave: b03.9
+      [+] Chave: b04.8
+      [+] Chave: b08.4
+      [+] Chave: b09.3
+
+--> [Bucket Offset: 00006082] | ProfLocal: 4 | Ocupacao: 4/10
+      [+] Chave: b05.9
+      [+] Chave: b06.8
+      [+] Chave: b08.6
+      [+] Chave: b09.5
+
+--> [Bucket Offset: 00009123] | ProfLocal: 4 | Ocupacao: 4/10
+      [+] Chave: b04.9
+      [+] Chave: b05.8
+      [+] Chave: b08.5
+      [+] Chave: b09.4
+
+--> [Bucket Offset: 00012164] | ProfLocal: 4 | Ocupacao: 5/10
+      [+] Chave: b01.1
+      [+] Chave: b01.10
+      [+] Chave: b09.9
+      [+] Chave: b010.1
+      [+] Chave: b010.10
+
+--> [Bucket Offset: 00015205] | ProfLocal: 4 | Ocupacao: 4/10
+      [+] Chave: b06.9
+      [+] Chave: b07.8
+      [+] Chave: b08.7
+      [+] Chave: b09.6
+
+--> [Bucket Offset: 00018246] | ProfLocal: 4 | Ocupacao: 3/10
+      [+] Chave: b07.9
+      [+] Chave: b08.8
+      [+] Chave: b09.7
+
+--> [Bucket Offset: 00021287] | ProfLocal: 4 | Ocupacao: 2/10
+      [+] Chave: b08.9
+      [+] Chave: b09.8
+
+--> [Bucket Offset: 00024328] | ProfLocal: 5 | Ocupacao: 6/10
+      [+] Chave: b01.9
+      [+] Chave: b02.8
+      [+] Chave: b03.7
+      [+] Chave: b07.3
+      [+] Chave: b08.2
+      [+] Chave: b09.1
+
+--> [Bucket Offset: 00027369] | ProfLocal: 4 | Ocupacao: 4/10
+      [+] Chave: b01.2
+      [+] Chave: b02.1
+      [+] Chave: b02.10
+      [+] Chave: b010.2
+
+--> [Bucket Offset: 00030410] | ProfLocal: 4 | Ocupacao: 5/10
+      [+] Chave: b01.3
+      [+] Chave: b02.2
+      [+] Chave: b03.1
+      [+] Chave: b03.10
+      [+] Chave: b010.3
+
+--> [Bucket Offset: 00033451] | ProfLocal: 4 | Ocupacao: 6/10
+      [+] Chave: b01.4
+      [+] Chave: b02.3
+      [+] Chave: b03.2
+      [+] Chave: b04.1
+      [+] Chave: b04.10
+      [+] Chave: b010.4
+
+--> [Bucket Offset: 00036492] | ProfLocal: 4 | Ocupacao: 7/10
+      [+] Chave: b01.5
+      [+] Chave: b02.4
+      [+] Chave: b03.3
+      [+] Chave: b04.2
+      [+] Chave: b05.1
+      [+] Chave: b05.10
+      [+] Chave: b010.5
+
+--> [Bucket Offset: 00039533] | ProfLocal: 4 | Ocupacao: 8/10
+      [+] Chave: b01.6
+      [+] Chave: b02.5
+      [+] Chave: b03.4
+      [+] Chave: b04.3
+      [+] Chave: b05.2
+      [+] Chave: b06.1
+      [+] Chave: b06.10
+      [+] Chave: b010.6
+
+--> [Bucket Offset: 00042574] | ProfLocal: 4 | Ocupacao: 8/10
+      [+] Chave: b01.7
+      [+] Chave: b02.6
+      [+] Chave: b03.5
+      [+] Chave: b05.3
+      [+] Chave: b06.2
+      [+] Chave: b07.1
+      [+] Chave: b07.10
+      [+] Chave: b010.7
+
+--> [Bucket Offset: 00045615] | ProfLocal: 4 | Ocupacao: 8/10
+      [+] Chave: b01.8
+      [+] Chave: b02.7
+      [+] Chave: b03.6
+      [+] Chave: b06.3
+      [+] Chave: b07.2
+      [+] Chave: b08.1
+      [+] Chave: b08.10
+      [+] Chave: b010.8
+
+--> [Bucket Offset: 00048656] | ProfLocal: 5 | Ocupacao: 2/10
+      [+] Chave: b09.10
+      [+] Chave: b010.9
+

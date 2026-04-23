@@ -31,7 +31,7 @@ void comandoMudSvg(FILE* svg, float x , float y, char* cpf){
         printf("Erro em comandoMudSvg\n");
         return;
     }
-    fprintf(svg, "<rect x=\"%f\" y=\"%f\" width=\"10\" height=\"10\" fill=\"none\" stroke=\"red\" stroke-width=\"1\" />\n", x-5, y-5);
+    fprintf(svg, "<rect x=\"%f\" y=\"%f\" width=\"100\" height=\"100\" fill=\"red\" stroke=\"red\" stroke-width=\"2\" />\n", x-5, y-5);
     if(cpf) fprintf(svg, "<text x=\"%f\" y=\"%f\" fill=\"black\" font-size=\"8\">%s</text>\n", x-5, y+15, cpf);
 }
 

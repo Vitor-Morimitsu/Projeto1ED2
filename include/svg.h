@@ -22,7 +22,7 @@ void abrirSvg(FILE* arqSvg);
 void desenharRetanguloSVG(FILE* arqSvg, Quadra q);
 
 ///colocar um pequeno X vermelho no local da âncora da quadra removida.
-void comandoRqSvg(FILE* svg, float x, float y);
+void comandoRqSvg(FILE* svg, float x, float y,float w, float h);
 
 //marcar o endereço de destino com um pequeno quadrado vermelho no local de destino. Colocar o cpf dentro do quadrado (usar fonte minúscula)
 void comandoMudSvg(FILE* svg, float x , float y, char* cpf);

@@ -38,7 +38,9 @@ void comandoRq(FILE* txt, FILE* svg, HashFile hashQuadras, HashFile hashPessoas,
         if(q){
             float x = getXQuadra(q);
             float y = getYQuadra(q);
-            comandoRqSvg(svg, x, y);
+            float w = getWQuadra(q);
+            float h = getHQuadra(q);
+            comandoRqSvg(svg, x, y,w,h);
             liberarQuadra(q);
         }
     }

@@ -1,0 +1,3 @@
+Antigo endereco: cep = B41-7.12, Numero = 100, Complemento = -
+CPF: 000.007.251-61,Nome: Luzia_Taisa ,Sobrenome: Abadzhimarinov_Vaasilewa,Sexo: F, Nascimento: 5/5/1982 
+CEP: nao encontrado

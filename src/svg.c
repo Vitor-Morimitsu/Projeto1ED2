@@ -4,7 +4,7 @@ void abrirSvg(FILE* arqSvg){
     if(arqSvg == NULL){
         printf("Erro em abrirSvg\n");
     }
-    fprintf(arqSvg, "<svg xmlns:svg=\"http://www.w3.org/2000/svg\" xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" width=\"1500\" height=\"1500\">\n");
+    fprintf(arqSvg, "<svg xmlns:svg=\"http://www.w3.org/2000/svg\" xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" width=\"10000\" height=\"10000\">\n");
 }
 
 void desenharRetanguloSVG(FILE* arqSvg, Quadra q){
@@ -17,13 +17,13 @@ void desenharRetanguloSVG(FILE* arqSvg, Quadra q){
 }
 
 //coloca um x no local da ancora da quadra removida
-void comandoRqSvg(FILE* svg, float x, float y){
+void comandoRqSvg(FILE* svg, float x, float y, float w, float h){
     if(!svg){
         printf("Erro em comandoRqSvg\n");
         return;
     }
-    fprintf(svg, "<line x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" stroke=\"red\" stroke-width=\"2\" />\n", x-5, y-5, x+5, y+5);
-    fprintf(svg, "<line x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" stroke=\"red\" stroke-width=\"2\" />\n", x+5, y-5, x-5, y+5);
+    fprintf(svg, "<line x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" stroke=\"red\" stroke-width=\"2\" />\n", x, y, x+w, y+h);
+    fprintf(svg, "<line x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" stroke=\"red\" stroke-width=\"2\" />\n", x+w, y, x, y+h);
 }
 
 void comandoMudSvg(FILE* svg, float x , float y, char* cpf){
@@ -83,7 +83,7 @@ void comandoDspjSvg(FILE* svg, float x, float y){
         printf("Erro em comandoDspjSvg\n");
         return;
     }
-    fprintf(svg, "<circle cx=\"%f\" cy=\"%f\" r=\"12\" fill=\"black\" />\n", x, y);
+    fprintf(svg, "<circle cx=\"%f\" cy=\"%f\" r=\"15\" fill=\"black\" />\n", x, y);
 }
 
 void fecharSVG(FILE* arqSvg){

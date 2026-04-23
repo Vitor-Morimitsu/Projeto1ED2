@@ -1,0 +1,84 @@
+Numero total de habitantes: 1501
+Numero total de moradores: 75
+Proporcao moradores/habitantes: 0.049967
+Numero total de homens: 853
+Numero total de mulheres: 648
+Porcentagem de habitantes homens: 0.568288
+Porcentagem de habitantes mulheres: 0.431712
+Porcentagem moradores homens: 11.373333
+Porcentagem moradores mulheres: 8.640000
+Numero total de sem-tetos: 1426
+Porcentagem sem-tetos homens: 0.570126
+Porcentagem sem-tetos mulheres: 0.429874
+cpf do falecido: 000.003.901-27, nome do falecido: Niek_Bernardo, sobrenome do falecido: Sanna_Sala, sexo do falecido: M, data de nascimento: 15/6/1974
+O falecido não tinha moradia
+cpf do falecido: 000.013.991-28, nome do falecido: Daniel_Pedro, sobrenome do falecido: Abadzhiiska_Marini, sexo do falecido: M, data de nascimento: 13/10/1970
+O falecido não tinha moradia
+cpf do falecido: 000.003.411-85, nome do falecido: Ambrosius_Hajo, sobrenome do falecido: Rossi_Mawieva, sexo do falecido: M, data de nascimento: 10/4/2017
+O falecido não tinha moradia
+cpf do falecido: 000.007.041-64, nome do falecido: Doortje_Larissa, sobrenome do falecido: Abadzhiyan_Colombo, sexo do falecido: F, data de nascimento: 23/11/2019
+O falecido não tinha moradia
+cpf do falecido: 000.013.221-76, nome do falecido: Helio_Enzo, sobrenome do falecido: Mawicow_Abadzhimarinov, sexo do falecido: M, data de nascimento: 20/1/2003
+O falecido não tinha moradia
+cpf do falecido: 000.005.841-69, nome do falecido: Joke_Kees, sobrenome do falecido: Kabacchieff_Martino, sexo do falecido: M, data de nascimento: 18/11/1966
+O falecido não tinha moradia
+cpf do falecido: 000.010.581-34, nome do falecido: Camila_Isabella, sobrenome do falecido: Abadzhimarinowa_Pellegrini, sexo do falecido: F, data de nascimento: 28/3/1982
+O falecido não tinha moradia
+cpf do falecido: 000.002.581-05, nome do falecido: Iara_Zelia, sobrenome do falecido: Farina_Abadzhiewa, sexo do falecido: F, data de nascimento: 14/12/1963
+O falecido não tinha moradia
+cpf do falecido: 000.013.681-68, nome do falecido: Larissa_Silena, sobrenome do falecido: Abadghimarinow_Mawiyan, sexo do falecido: F, data de nascimento: 19/7/1969
+O falecido não tinha moradia
+cpf do falecido: 000.002.221-78, nome do falecido: Benjamim_Flavio, sobrenome do falecido: Vacavliew_DAmico_Orlando, sexo do falecido: M, data de nascimento: 22/7/1980
+O falecido não tinha moradia
+cpf do falecido: 000.011.021-33, nome do falecido: Larissa_Mariana, sobrenome do falecido: Vacavchiew_Kabacchiisci, sexo do falecido: F, data de nascimento: 25/10/1975
+O falecido não tinha moradia
+cpf do falecido: 000.003.111-97, nome do falecido: Camiel_Brunswichk, sobrenome do falecido: Daaliewa_Costa, sexo do falecido: M, data de nascimento: 28/5/2006
+O falecido não tinha moradia
+cpf do falecido: 000.002.121-05, nome do falecido: Rafael_Valdir, sobrenome do falecido: Lombardo_Dabcheff, sexo do falecido: M, data de nascimento: 24/2/1985
+O falecido não tinha moradia
+cpf do falecido: 000.002.881-95, nome do falecido: Rafael_Albertjan, sobrenome do falecido: Martino_Goncalves, sexo do falecido: M, data de nascimento: 25/5/2008
+O falecido não tinha moradia
+cpf do falecido: 000.013.671-96, nome do falecido: Artur_Francisco, sobrenome do falecido: Kabacchijska_Vacavliewa, sexo do falecido: M, data de nascimento: 2/3/1996
+O falecido não tinha moradia
+cpf do falecido: 000.008.891-99, nome do falecido: Rafael_Albertjan, sobrenome do falecido: Daalova_Pellegrino, sexo do falecido: M, data de nascimento: 22/9/2010
+O falecido não tinha moradia
+cpf do falecido: 000.001.031-60, nome do falecido: Pedro_Silvio, sobrenome do falecido: Sartori_Abadzhiew, sexo do falecido: M, data de nascimento: 15/5/2021
+O falecido não tinha moradia
+cpf do falecido: 000.000.011-63, nome do falecido: Mariana_Berta, sobrenome do falecido: Vacavchiev_Vaasilewa, sexo do falecido: F, data de nascimento: 24/3/2001
+O falecido não tinha moradia
+cpf do falecido: 000.007.421-71, nome do falecido: Eduardo_Thiago, sobrenome do falecido: Mancini_Palumbo, sexo do falecido: M, data de nascimento: 17/4/1986
+O falecido não tinha moradia
+cpf do falecido: 000.014.621-80, nome do falecido: Martijn_Rafael, sobrenome do falecido: Kabacchijscki_Vacavchiev, sexo do falecido: M, data de nascimento: 4/10/1968
+O falecido não tinha moradia
+cpf do falecido: 000.001.371-46, nome do falecido: Pedro_Leonel, sobrenome do falecido: Kabacchiev_Valentini, sexo do falecido: M, data de nascimento: 2/7/1995
+O falecido não tinha moradia
+cpf do falecido: 000.014.481-96, nome do falecido: Olavo_Antonio, sobrenome do falecido: Abadzhimarinov_Mawikowa, sexo do falecido: M, data de nascimento: 3/9/2006
+O falecido não tinha moradia
+cpf do falecido: 000.001.291-27, nome do falecido: Antonio_Martijn, sobrenome do falecido: Tudor_Barbieri, sexo do falecido: M, data de nascimento: 12/7/1962
+O falecido não tinha moradia
+cpf do falecido: 000.003.141-02, nome do falecido: Pedro_Rafael, sobrenome do falecido: Daalieva_Daaliev, sexo do falecido: M, data de nascimento: 16/9/1999
+O falecido não tinha moradia
+cpf do falecido: 000.012.761-23, nome do falecido: Flavio_Eduardo, sobrenome do falecido: Kabacchijscka_Sorrentino, sexo do falecido: M, data de nascimento: 28/1/2018
+O falecido não tinha moradia
+cpf do falecido: 000.001.761-25, nome do falecido: Pedro_Olavo, sobrenome do falecido: Kabacchijska_Daaliiski, sexo do falecido: M, data de nascimento: 24/2/1985
+O falecido não tinha moradia
+cpf do falecido: 000.007.731-31, nome do falecido: Silena_Gisela, sobrenome do falecido: Dabchewa_Abadzhimarinova, sexo do falecido: F, data de nascimento: 11/4/2024
+O falecido não tinha moradia
+cpf do falecido: 000.004.981-65, nome do falecido: Caio_Luuk, sobrenome do falecido: Colombo_Bruno, sexo do falecido: M, data de nascimento: 7/8/1963
+O falecido não tinha moradia
+cpf do falecido: 000.012.621-73, nome do falecido: Debora_Laura, sobrenome do falecido: Daalowa_Sala, sexo do falecido: F, data de nascimento: 13/4/1980
+O falecido não tinha moradia
+cpf do falecido: 000.014.811-34, nome do falecido: Luuk_Camiel, sobrenome do falecido: Ferrari_Daalieff, sexo do falecido: M, data de nascimento: 19/1/1982
+O falecido não tinha moradia
+Numero total de habitantes: 1471
+Numero total de moradores: 75
+Proporcao moradores/habitantes: 0.050986
+Numero total de homens: 831
+Numero total de mulheres: 640
+Porcentagem de habitantes homens: 0.564922
+Porcentagem de habitantes mulheres: 0.435078
+Porcentagem moradores homens: 11.080000
+Porcentagem moradores mulheres: 8.533334
+Numero total de sem-tetos: 1396
+Porcentagem sem-tetos homens: 0.566619
+Porcentagem sem-tetos mulheres: 0.433381

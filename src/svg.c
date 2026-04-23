@@ -41,8 +41,8 @@ void comandoRipSvg(FILE* svg,float x, float y){
         printf("Erro em comandoRipSvg\n");
         return;
     }
-    fprintf(svg, "<line x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" stroke=\"red\" stroke-width=\"2\" />\n", x, y-10, x, y+10);
-    fprintf(svg, "<line x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" stroke=\"red\" stroke-width=\"2\" />\n", x-10, y, x+10, y);
+    fprintf(svg, "<line x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" stroke=\"red\" stroke-width=\"4\" />\n", x, y-20, x, y+20);
+    fprintf(svg, "<line x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" stroke=\"red\" stroke-width=\"4\" />\n", x-20, y, x+20, y);
 }
 
 //colocar numero de moradores em cada face da quadra e na quadra como um todo no centro

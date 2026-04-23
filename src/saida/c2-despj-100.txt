@@ -1,0 +1,100 @@
+Antigo endereco: cep = B44-7.2, Numero = 70, Complemento = ap-903
+Antigo endereco: cep = B40-5.6, Numero = 80, Complemento = -
+Antigo endereco: cep = B42-3.7, Numero = 40, Complemento = ap-1052
+Antigo endereco: cep = B43-7.10, Numero = 50, Complemento = -
+Antigo endereco: cep = B42-7.11, Numero = 40, Complemento = ap-461
+Antigo endereco: cep = B43-9.2, Numero = 40, Complemento = ap-615
+Antigo endereco: cep = B42-10.4, Numero = 30, Complemento = ap-958
+Antigo endereco: cep = B40-10.10, Numero = 10, Complemento = -
+Antigo endereco: cep = B32-19.16, Numero = 20, Complemento = -
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B30-12.11, Numero = 30, Complemento = ap-939
+Antigo endereco: cep = B43-7.5, Numero = 80, Complemento = -
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B41-2.2, Numero = 80, Complemento = -
+Antigo endereco: cep = B31-1.6, Numero = 80, Complemento = -
+Antigo endereco: cep = B44-2.2, Numero = 70, Complemento = -
+Antigo endereco: cep = B31-6.13, Numero = 30, Complemento = ap-1097
+Antigo endereco: cep = B32-5.16, Numero = 40, Complemento = ap-184
+Antigo endereco: cep = B40-2.9, Numero = 30, Complemento = -
+Antigo endereco: cep = B42-2.8, Numero = 20, Complemento = ap-917
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B43-3.10, Numero = 40, Complemento = ap-1374
+Antigo endereco: cep = B40-8.2, Numero = 20, Complemento = ap-391
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B42-6.11, Numero = 30, Complemento = -
+Antigo endereco: cep = B41-2.4, Numero = 10, Complemento = -
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B41-3.9, Numero = 40, Complemento = ap-1559
+Antigo endereco: cep = B30-15.14, Numero = 10, Complemento = -
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B41-9.4, Numero = 100, Complemento = ap-412
+Antigo endereco: cep = B40-1.12, Numero = 60, Complemento = -
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B43-4.5, Numero = 10, Complemento = ap-772
+Antigo endereco: cep = B31-7.13, Numero = 10, Complemento = -
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B32-11.16, Numero = 20, Complemento = ap-958
+Antigo endereco: cep = B31-18.9, Numero = 30, Complemento = -
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B32-6.12, Numero = 50, Complemento = -
+Antigo endereco: cep = B32-11.3, Numero = 50, Complemento = -
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B42-5.3, Numero = 40, Complemento = -
+Antigo endereco: cep = B31-12.2, Numero = 80, Complemento = ap-668
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B43-7.2, Numero = 20, Complemento = -
+Antigo endereco: cep = B40-5.12, Numero = 70, Complemento = ap-1294
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B30-7.16, Numero = 10, Complemento = -
+Antigo endereco: cep = B40-10.3, Numero = 40, Complemento = ap-1359
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B41-6.8, Numero = 50, Complemento = ap-1131
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B30-17.3, Numero = 50, Complemento = -
+Antigo endereco: cep = B44-10.9, Numero = 80, Complemento = -
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B44-8.5, Numero = 40, Complemento = ap-720
+Antigo endereco: cep = B44-1.1, Numero = 90, Complemento = -
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B32-8.10, Numero = 30, Complemento = ap-208
+Antigo endereco: cep = B41-7.12, Numero = 100, Complemento = -
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B40-4.7, Numero = 10, Complemento = -
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B30-3.12, Numero = 50, Complemento = ap-616
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B32-6.14, Numero = 10, Complemento = -
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B30-2.12, Numero = 20, Complemento = ap-1475
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B43-10.9, Numero = 40, Complemento = ap-1105
+Antigo endereco: cep = B31-10.7, Numero = 10, Complemento = ap-941
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B41-3.2, Numero = 40, Complemento = ap-617
+Antigo endereco: cep = B32-6.10, Numero = 50, Complemento = -
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B42-2.12, Numero = 10, Complemento = ap-1578
+Antigo endereco: cep = B44-8.10, Numero = 100, Complemento = ap-789
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B40-8.7, Numero = 50, Complemento = ap-875
+Antigo endereco: cep = , Numero = 0, Complemento = 

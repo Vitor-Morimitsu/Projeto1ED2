@@ -1,0 +1,110 @@
+Antigo endereco: cep = B43-2.18, Numero = 10, Complemento = ap-928
+Antigo endereco: cep = B31-9.9, Numero = 50, Complemento = ap-448
+Antigo endereco: cep = B43-5.13, Numero = 30, Complemento = ap-1463
+Antigo endereco: cep = B40-6.18, Numero = 60, Complemento = -
+Antigo endereco: cep = B42-4.13, Numero = 40, Complemento = -
+Antigo endereco: cep = B43-15.9, Numero = 60, Complemento = ap-1338
+Antigo endereco: cep = B43-13.1, Numero = 80, Complemento = ap-751
+Antigo endereco: cep = B32-11.12, Numero = 40, Complemento = -
+Antigo endereco: cep = B41-10.9, Numero = 80, Complemento = ap-916
+Antigo endereco: cep = B44-12.1, Numero = 60, Complemento = -
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B42-11.2, Numero = 60, Complemento = -
+Antigo endereco: cep = B42-4.12, Numero = 40, Complemento = ap-963
+Antigo endereco: cep = B43-15.11, Numero = 100, Complemento = -
+Antigo endereco: cep = B42-13.12, Numero = 70, Complemento = -
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B41-7.8, Numero = 60, Complemento = -
+Antigo endereco: cep = B43-2.13, Numero = 30, Complemento = -
+Antigo endereco: cep = B44-5.4, Numero = 60, Complemento = -
+Antigo endereco: cep = B31-4.13, Numero = 20, Complemento = ap-249
+Antigo endereco: cep = B42-9.8, Numero = 10, Complemento = -
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B40-13.9, Numero = 30, Complemento = ap-149
+Antigo endereco: cep = B30-15.18, Numero = 20, Complemento = ap-1310
+Antigo endereco: cep = B31-24.17, Numero = 50, Complemento = -
+Antigo endereco: cep = B40-8.17, Numero = 70, Complemento = ap-488
+Antigo endereco: cep = B30-26.18, Numero = 50, Complemento = -
+Antigo endereco: cep = B44-3.13, Numero = 60, Complemento = ap-452
+Antigo endereco: cep = B43-8.5, Numero = 50, Complemento = ap-1178
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B32-26.15, Numero = 30, Complemento = ap-560
+Antigo endereco: cep = B32-25.24, Numero = 80, Complemento = ap-357
+Antigo endereco: cep = B44-8.16, Numero = 50, Complemento = ap-1017
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B44-4.18, Numero = 70, Complemento = -
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B32-16.5, Numero = 40, Complemento = -
+Antigo endereco: cep = B40-12.15, Numero = 20, Complemento = ap-1404
+Antigo endereco: cep = B41-14.18, Numero = 60, Complemento = ap-1268
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B41-7.12, Numero = 20, Complemento = ap-1516
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B44-10.3, Numero = 60, Complemento = -
+Antigo endereco: cep = B41-5.10, Numero = 20, Complemento = -
+Antigo endereco: cep = B30-24.8, Numero = 40, Complemento = -
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B30-21.19, Numero = 10, Complemento = -
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B31-30.2, Numero = 40, Complemento = ap-1225
+Antigo endereco: cep = B40-2.11, Numero = 20, Complemento = ap-800
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B42-2.9, Numero = 50, Complemento = -
+Antigo endereco: cep = B30-2.12, Numero = 50, Complemento = -
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B43-13.9, Numero = 50, Complemento = ap-1482
+Antigo endereco: cep = B31-20.7, Numero = 60, Complemento = ap-624
+Antigo endereco: cep = B30-23.13, Numero = 60, Complemento = -
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B40-8.9, Numero = 80, Complemento = -
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B31-24.19, Numero = 80, Complemento = -
+Antigo endereco: cep = B44-14.18, Numero = 60, Complemento = -
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B32-4.22, Numero = 40, Complemento = -
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B30-3.13, Numero = 50, Complemento = ap-1427
+Antigo endereco: cep = B30-10.21, Numero = 10, Complemento = ap-1185
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B41-15.14, Numero = 60, Complemento = ap-1275
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B31-22.15, Numero = 10, Complemento = ap-582
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = B42-14.16, Numero = 80, Complemento = -
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+Antigo endereco: cep = , Numero = 0, Complemento = 
+CPF: 000.001.491-52,Nome: Gabriel_Tiago ,Sobrenome: Daaliewa_Esposito,Sexo: M, Nascimento: 21/4/2017 
+CEP: nao encontrado
+CPF: 000.005.881-56,Nome: Geert_Joren ,Sobrenome: Silvestri_Mawramatoff,Sexo: M, Nascimento: 8/10/1967 
+CEP: nao encontrado
+CPF: 000.006.041-00,Nome: Helio_Miguel ,Sobrenome: Vacadinova_Kabacchijska,Sexo: M, Nascimento: 19/2/1987 
+CEP: nao encontrado
+CPF: 000.007.361-04,Nome: Maartje_Kas ,Sobrenome: Russo_Bianchi,Sexo: M, Nascimento: 25/3/1996 
+CEP: nao encontrado
+CPF: 000.013.771-59,Nome: Karina_Zelia ,Sobrenome: Rossetti_Abadzhimarinova,Sexo: F, Nascimento: 15/5/1973 
+CEP: nao encontrado

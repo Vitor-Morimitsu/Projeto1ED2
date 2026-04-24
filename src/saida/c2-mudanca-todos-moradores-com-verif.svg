@@ -1569,12 +1569,14 @@
 <text x="7070.000000" y="3020.000000" fill="red" font-size="14">0</text>
 <text x="6995.000000" y="3077.500000" fill="red" font-size="14">0</text>
 <text x="7135.000000" y="3077.500000" fill="red" font-size="14">0</text>
-<text x="845.000000" y="1217.500000" fill="black" font-size="14">Total: 1</text>
-<text x="845.000000" y="1265.000000" fill="red" font-size="14">1</text>
+<rect x="7124.000000" y="3071.500000" width="12.000000" height="12.000000" fill="red" stroke="darkred" stroke-width="1" />
+<text x="7130.000000" y="3077.500000" fill="white" font-size="3" text-anchor="middle" dominant-baseline="middle">000.003.301-40</text>
+<text x="845.000000" y="1217.500000" fill="black" font-size="14">Total: 0</text>
+<text x="845.000000" y="1265.000000" fill="red" font-size="14">0</text>
 <text x="845.000000" y="1170.000000" fill="red" font-size="14">0</text>
 <text x="780.000000" y="1217.500000" fill="red" font-size="14">0</text>
 <text x="900.000000" y="1217.500000" fill="red" font-size="14">0</text>
-<text x="7070.000000" y="3077.500000" fill="black" font-size="14">Total: 0</text>
+<text x="7070.000000" y="3077.500000" fill="black" font-size="14">Total: 1</text>
 <text x="7070.000000" y="3135.000000" fill="red" font-size="14">0</text>
 <text x="7070.000000" y="3020.000000" fill="red" font-size="14">0</text>
 <text x="6995.000000" y="3077.500000" fill="red" font-size="14">0</text>

@@ -4,7 +4,7 @@ void abrirSvg(FILE* arqSvg){
     if(arqSvg == NULL){
         printf("Erro em abrirSvg\n");
     }
-    fprintf(arqSvg, "<svg xmlns:svg=\"http://www.w3.org/2000/svg\" xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" width=\"10000\" height=\"10000\">\n");
+    fprintf(arqSvg, "<svg xmlns:svg=\"http://www.w3.org/2000/svg\" xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" width=\"15000\" height=\"15000\">\n");
 }
 
 void desenharRetanguloSVG(FILE* arqSvg, Quadra q){
@@ -26,13 +26,35 @@ void comandoRqSvg(FILE* svg, float x, float y, float w, float h){
     fprintf(svg, "<line x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" stroke=\"red\" stroke-width=\"2\" />\n", x+w, y, x, y+h);
 }
 
-void comandoMudSvg(FILE* svg, float x , float y, char* cpf){
+void comandoMudSvg(FILE* svg, float x, float y, float w, float h, char face, char* cpf){
     if(!svg){
         printf("Erro em comandoMudSvg\n");
         return;
     }
-    fprintf(svg, "<rect x=\"%f\" y=\"%f\" width=\"100\" height=\"100\" fill=\"red\" stroke=\"red\" stroke-width=\"2\" />\n", x-5, y-5);
-    if(cpf) fprintf(svg, "<text x=\"%f\" y=\"%f\" fill=\"black\" font-size=\"8\">%s</text>\n", x-5, y+15, cpf);
+    /* Rosa dos ventos INVERTIDA: N=baixo, S=cima, L=esquerda, O=direita */
+    float mx, my;
+    float lado = 12.0f; /* tamanho do quadradinho marcador */
+    if(face == 'N' || face == 'n') {
+        /* face Norte = borda inferior da quadra */
+        mx = x + w / 2.0f;
+        my = y + h;
+    } else if(face == 'S' || face == 's') {
+        /* face Sul = borda superior */
+        mx = x + w / 2.0f;
+        my = y;
+    } else if(face == 'L' || face == 'l') {
+        /* face Leste = borda esquerda */
+        mx = x;
+        my = y + h / 2.0f;
+    } else { /* face O */
+        /* face Oeste = borda direita */
+        mx = x + w;
+        my = y + h / 2.0f;
+    }
+    fprintf(svg, "<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" fill=\"red\" stroke=\"darkred\" stroke-width=\"1\" />\n",
+            mx - lado/2.0f, my - lado/2.0f, lado, lado);
+    if(cpf) fprintf(svg, "<text x=\"%f\" y=\"%f\" fill=\"white\" font-size=\"3\" text-anchor=\"middle\" dominant-baseline=\"middle\">%s</text>\n",
+            mx, my, cpf);
 }
 
 //coloca uma cruz vermelha no local do endereço

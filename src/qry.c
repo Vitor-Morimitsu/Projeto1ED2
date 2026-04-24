@@ -270,7 +270,9 @@ void comandoMud(FILE* svg, HashFile hashQuadras, HashFile hashPessoas, char* cpf
                 Quadra q = desserializarQuadra(quadraBuf);
                 float x = getXQuadra(q);
                 float y = getYQuadra(q);
-                comandoMudSvg(svg, x, y, cpf);
+                float w = getWQuadra(q);
+                float h = getHQuadra(q);
+                comandoMudSvg(svg, x, y, w, h, face, cpf);
                 liberarQuadra(q);
             }
             char* textoFinal = serializarPessoa(p);
@@ -383,10 +385,14 @@ void lerQry(FILE* txt, FILE* qry, FILE* svg, HashFile hashQuadras, HashFile hash
         }else if(strcmp(comando, "mud") == 0){
             char cpf[32];
             char cep[32];
-            char face;
+            char faceStr[16];
             int num;
             char complemento[64];
-            if(sscanf(linha, "mud %31s %31s %c %d %63s", cpf, cep, &face, &num, complemento) == 5){
+            if(sscanf(linha, "mud %31s %31s %15s %d %63s", cpf, cep, faceStr, &num, complemento) == 5){
+                /* faceStr pode ser "Face.W", "Face.N", etc. Extrair a letra após o ponto */
+                char face = faceStr[0]; /* fallback: primeira letra */
+                char* ponto = strchr(faceStr, '.');
+                if(ponto && *(ponto+1) != '\0') face = *(ponto+1);
                 comandoMud(svg, hashQuadras,hashPessoas,cpf,cep,face,num,complemento);
             }
         }else if(strcmp(comando, "dspj") == 0){

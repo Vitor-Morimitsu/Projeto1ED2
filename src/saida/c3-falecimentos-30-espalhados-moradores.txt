@@ -1,0 +1,52 @@
+cpf do falecido: 000.001.751-53, nome do falecido: Carlos_Eduardo_Marcelino, sobrenome do falecido: Russo_Ferretti, sexo do falecido: M, data de nascimento: 7/12/2014
+O falecido tinha moradia no CEP: B32-5.12, numero: 20, face: N, complemento: -
+cpf do falecido: 000.001.871-60, nome do falecido: Karina_Zelia, sobrenome do falecido: Grasso_Ferrari, sexo do falecido: F, data de nascimento: 14/12/1980
+O falecido tinha moradia no CEP: B44-12.1, numero: 60, face: S, complemento: -
+cpf do falecido: 000.009.111-19, nome do falecido: Joke_Silvio, sobrenome do falecido: Ferrari_Mawicowa, sexo do falecido: M, data de nascimento: 11/9/1977
+O falecido tinha moradia no CEP: B44-10.13, numero: 50, face: N, complemento: -
+cpf do falecido: 000.009.251-79, nome do falecido: Rafael_Rafael, sobrenome do falecido: Abadzhimarinoff_Mawloff, sexo do falecido: M, data de nascimento: 21/6/2002
+O falecido tinha moradia no CEP: B32-11.12, numero: 40, face: O, complemento: -
+cpf do falecido: 000.009.371-85, nome do falecido: Sara_Melissa, sobrenome do falecido: Mawiyan_Parisi, sexo do falecido: F, data de nascimento: 4/4/1994
+O falecido tinha moradia no CEP: B42-4.13, numero: 40, face: S, complemento: -
+cpf do falecido: 000.006.061-54, nome do falecido: Martijn_Joao, sobrenome do falecido: Mawiew_Kabacchijscka, sexo do falecido: M, data de nascimento: 10/10/1992
+O falecido tinha moradia no CEP: B41-7.12, numero: 20, face: L, complemento: ap-1516
+cpf do falecido: 000.013.021-40, nome do falecido: Catarina_Larissa, sobrenome do falecido: Neri_Galli, sexo do falecido: F, data de nascimento: 6/5/2002
+O falecido tinha moradia no CEP: B32-25.24, numero: 80, face: N, complemento: ap-357
+cpf do falecido: 000.008.211-28, nome do falecido: Enzo_Luuk, sobrenome do falecido: Vacadinov_De_Angelis, sexo do falecido: M, data de nascimento: 1/10/2008
+O falecido tinha moradia no CEP: B30-10.21, numero: 10, face: S, complemento: ap-1185
+cpf do falecido: 000.002.521-66, nome do falecido: Luzia_Catarina, sobrenome do falecido: Bianco_Sartori, sexo do falecido: F, data de nascimento: 12/2/1964
+O falecido tinha moradia no CEP: B41-5.17, numero: 70, face: O, complemento: ap-907
+cpf do falecido: 000.000.081-76, nome do falecido: Heleen_Gisela, sobrenome do falecido: Donati_Kabacchijska, sexo do falecido: F, data de nascimento: 12/4/1986
+O falecido tinha moradia no CEP: B40-9.4, numero: 30, face: O, complemento: ap-559
+cpf do falecido: 000.009.801-96, nome do falecido: Amanda_Laura, sobrenome do falecido: Kabacchiiski_Abadzhijska, sexo do falecido: F, data de nascimento: 21/11/2014
+O falecido tinha moradia no CEP: B30-21.15, numero: 40, face: O, complemento: ap-1004
+cpf do falecido: 000.002.791-02, nome do falecido: Evelijn_Karina, sobrenome do falecido: Kabacchiwa_Rossetti, sexo do falecido: F, data de nascimento: 14/3/2021
+O falecido tinha moradia no CEP: B32-17.7, numero: 40, face: S, complemento: -
+cpf do falecido: 000.006.821-79, nome do falecido: Laura_Karina, sobrenome do falecido: Pagano_Palumbo, sexo do falecido: F, data de nascimento: 1/11/1966
+O falecido tinha moradia no CEP: B42-2.9, numero: 50, face: L, complemento: -
+cpf do falecido: 000.009.901-59, nome do falecido: Luzia_Clara, sobrenome do falecido: Ferrari_Kabacchiv, sexo do falecido: F, data de nascimento: 13/1/2025
+O falecido tinha moradia no CEP: B42-9.10, numero: 40, face: N, complemento: ap-230
+cpf do falecido: 000.009.681-45, nome do falecido: Luzia_Heleen, sobrenome do falecido: Marino_Rossi, sexo do falecido: F, data de nascimento: 18/12/2017
+O falecido tinha moradia no CEP: B32-4.22, numero: 40, face: O, complemento: -
+cpf do falecido: 000.008.141-80, nome do falecido: Rutger_Hans, sobrenome do falecido: Vaasilew_Mawiew, sexo do falecido: M, data de nascimento: 3/1/1966
+O falecido tinha moradia no CEP: B42-11.2, numero: 60, face: S, complemento: -
+cpf do falecido: 000.013.331-00, nome do falecido: Hans_Tiago, sobrenome do falecido: Kabacchiw_Kabackchieff, sexo do falecido: M, data de nascimento: 23/1/2024
+O falecido tinha moradia no CEP: B31-29.2, numero: 40, face: S, complemento: -
+cpf do falecido: 000.014.711-71, nome do falecido: Mert_Enzo, sobrenome do falecido: Carbone_Vabrachka, sexo do falecido: M, data de nascimento: 8/8/1969
+O falecido tinha moradia no CEP: B40-6.18, numero: 60, face: S, complemento: -
+cpf do falecido: 000.011.271-28, nome do falecido: Valdir_Aad, sobrenome do falecido: Abadzhiiscka_Abadzhimarinova, sexo do falecido: M, data de nascimento: 1/4/1970
+O falecido tinha moradia no CEP: B41-7.8, numero: 60, face: N, complemento: -
+cpf do falecido: 000.010.871-50, nome do falecido: Karina_Josefa, sobrenome do falecido: Abanasoff_Sorrentino, sexo do falecido: F, data de nascimento: 6/4/1975
+O falecido tinha moradia no CEP: B40-2.11, numero: 20, face: O, complemento: ap-800
+cpf do falecido: 000.000.871-06, nome do falecido: Caio_Camiel, sobrenome do falecido: Abadzhiew_Kabacchiwa, sexo do falecido: M, data de nascimento: 24/7/1988
+O falecido tinha moradia no CEP: B40-8.9, numero: 80, face: N, complemento: -
+cpf do falecido: 000.001.491-52, nome do falecido: Gabriel_Tiago, sobrenome do falecido: Daaliewa_Esposito, sexo do falecido: M, data de nascimento: 21/4/2017
+O falecido tinha moradia no CEP: B44-10.3, numero: 60, face: N, complemento: -
+cpf do falecido: 000.008.111-65, nome do falecido: Benjamim_Gabriel, sobrenome do falecido: Martinelli_Abadghimarinowa, sexo do falecido: M, data de nascimento: 19/1/1987
+O falecido tinha moradia no CEP: B44-5.18, numero: 10, face: N, complemento: -
+cpf do falecido: 000.000.521-59, nome do falecido: Bianca_Hanneke, sobrenome do falecido: Mawiew_Abadzhimarinoff, sexo do falecido: F, data de nascimento: 2/7/1998
+O falecido tinha moradia no CEP: B42-14.16, numero: 80, face: O, complemento: -
+cpf do falecido: 000.008.701-70, nome do falecido: Henrique_Geert, sobrenome do falecido: Vacadinow_Dabchev, sexo do falecido: M, data de nascimento: 10/1/2025
+O falecido tinha moradia no CEP: B40-13.9, numero: 30, face: O, complemento: ap-149
+cpf do falecido: 000.009.201-00, nome do falecido: Heleen_Laura, sobrenome do falecido: Mawramatoff_Avila, sexo do falecido: F, data de nascimento: 12/10/1976
+O falecido tinha moradia no CEP: B31-24.17, numero: 50, face: O, complemento: -

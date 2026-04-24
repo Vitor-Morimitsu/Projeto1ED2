@@ -1,0 +1,2 @@
+cpf do falecido: 000.002.431-75, nome do falecido: Maria_Amanda, sobrenome do falecido: Marini_Abanasov, sexo do falecido: F, data de nascimento: 6/1/2021
+O falecido tinha moradia no CEP: B40-4.17, numero: 50, face: S, complemento: ap-1331

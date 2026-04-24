@@ -1,0 +1,2 @@
+cpf do falecido: 000.001.341-20, nome do falecido: Antonio_Rafael, sobrenome do falecido: Goncalves_Sartori, sexo do falecido: M, data de nascimento: 15/6/2011
+O falecido não tinha moradia

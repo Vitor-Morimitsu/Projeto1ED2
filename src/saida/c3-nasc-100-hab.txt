@@ -1,0 +1,10 @@
+CPF: 100.000.237-36,Nome: Camiel_Luuk ,Sobrenome: Mawramatov_Mawradinov,Sexo: M, Nascimento: 27/4/2004 
+CEP: nao encontrado
+CPF: 100.000.216-01,Nome: Micaela_Camila ,Sobrenome: Ricci_Santoro,Sexo: F, Nascimento: 4/11/1971 
+CEP: nao encontrado
+CPF: 100.000.252-75,Nome: Joke_Gabriel ,Sobrenome: Vabrachka_Mawradinov,Sexo: M, Nascimento: 16/7/2019 
+CEP: nao encontrado
+CPF: 100.000.135-01,Nome: Rutger_Rutger ,Sobrenome: Mawicowa_Abanasoff,Sexo: M, Nascimento: 14/5/1979 
+CEP: nao encontrado
+CPF: 100.000.117-20,Nome: Brunswichk_Bernardo ,Sobrenome: Abadzhimarinoff_Bruno,Sexo: M, Nascimento: 28/1/1989 
+CEP: nao encontrado

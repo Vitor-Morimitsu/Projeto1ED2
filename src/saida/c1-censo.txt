@@ -1,12 +1,12 @@
-Numero total de habitantes: 751
+Numero total de habitantes: 851
 Numero total de moradores: 170
-Proporcao moradores/habitantes: 0.226365
-Numero total de homens: 408
-Numero total de mulheres: 343
-Porcentagem de habitantes homens: 0.543276
-Porcentagem de habitantes mulheres: 0.456724
-Porcentagem moradores homens: 2.400000
-Porcentagem moradores mulheres: 2.017647
-Numero total de sem-tetos: 581
-Porcentagem sem-tetos homens: 0.538726
-Porcentagem sem-tetos mulheres: 0.461274
+Proporcao moradores/habitantes: 0.199765
+Numero total de homens: 463
+Numero total de mulheres: 388
+Porcentagem de habitantes homens: 0.544066
+Porcentagem de habitantes mulheres: 0.455934
+Porcentagem moradores homens: 2.723529
+Porcentagem moradores mulheres: 2.282353
+Numero total de sem-tetos: 681
+Porcentagem sem-tetos homens: 0.540382
+Porcentagem sem-tetos mulheres: 0.459618

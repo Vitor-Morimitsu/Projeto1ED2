@@ -31,8 +31,11 @@ typedef struct {
 typedef struct {
     FILE* dir;
     FILE* dados;
-    FILE* dumpArq;
+    FILE* dumpArq;     /* mantido NULL; nome guardado para dump final */
+    char  nomeDump[512];
     int   profundidade;   /* profundidade global */
+    long* cacheDir;       /* cache do diretório em memória */
+    int   cacheTamanho;   /* número de entradas no cache */
 } stHashFile;
 
 /* ── Funções privadas ─────────────────────────────────────── */
@@ -50,9 +53,12 @@ static int getBits(unsigned int numero, int prof) {
     return numero & ((1 << prof) - 1);
 }
 
-/* Retorna o offset do bucket para 'chave' lendo o arquivo diretório */
+/* Retorna o offset do bucket para 'chave' usando o cache em memória */
 static long _lerOffsetBucket(stHashFile* h, const char* chave) {
-    int  idx = getBits(hashString(chave), h->profundidade);
+    int idx = getBits(hashString(chave), h->profundidade);
+    if (h->cacheDir && idx < h->cacheTamanho)
+        return h->cacheDir[idx];
+    /* fallback: leitura do disco */
     long pos = sizeof(int) + (long)idx * sizeof(long);
     fseek(h->dir, pos, SEEK_SET);
     long off = -1;
@@ -60,8 +66,10 @@ static long _lerOffsetBucket(stHashFile* h, const char* chave) {
     return off;
 }
 
-/* Escreve um offset no diretório para o índice 'idx' */
+/* Escreve um offset no diretório para o índice 'idx' e atualiza o cache */
 static void _escreverOffsetDir(stHashFile* h, int idx, long offset) {
+    if (h->cacheDir && idx < h->cacheTamanho)
+        h->cacheDir[idx] = offset;
     long pos = sizeof(int) + (long)idx * sizeof(long);
     fseek(h->dir, pos, SEEK_SET);
     fwrite(&offset, sizeof(long), 1, h->dir);
@@ -164,7 +172,16 @@ static void _dobrarDiretorio(stHashFile* h) {
         long off = offsets[i % tamanhoAtual];
         fwrite(&off, sizeof(long), 1, h->dir);
     }
-    fflush(h->dir);
+    /* Atualiza o cache do diretório com realloc */
+    if (h->cacheDir) {
+        long* novoCache = realloc(h->cacheDir, novaTamanho * sizeof(long));
+        if (novoCache) {
+            for (int i = 0; i < novaTamanho; i++)
+                novoCache[i] = offsets[i % tamanhoAtual];
+            h->cacheDir      = novoCache;
+            h->cacheTamanho  = novaTamanho;
+        }
+    }
     free(offsets);
     h->profundidade = novaProfund;
 }
@@ -182,10 +199,6 @@ static void _splitBucket(stHashFile* h, const char* chave) {
 
 
     int novoProfLocal = bucketAntigo.profLocal + 1;
-
-    if (h->dumpArq) {
-        fprintf(h->dumpArq, "[EXPANSAO] Split no bucket de offset %ld. Profundidade local subiu de %d para %d.\n", offsetAntigo, bucketAntigo.profLocal, novoProfLocal);
-    }
 
     /* Criar dois novos buckets vazios */
     Bucket b0, b1;
@@ -227,7 +240,7 @@ HashFile criarHashFile(const char* dirArq, const char* dadosArq, const char* dum
     /* Tenta abrir arquivos existentes */
     FILE* dir   = fopen(dirArq,   "r+b");
     FILE* dados = fopen(dadosArq, "r+b");
-    FILE* dump  = fopen(dumpArq,  "a"); // Append to keep log during execution
+    FILE* dump  = NULL; /* será criado apenas no fecharHashFile */
 
     if (dir == NULL || dados == NULL) {
         /* Algum arquivo não existe — fecha o que porventura abriu e cria tudo do zero */
@@ -268,11 +281,25 @@ HashFile criarHashFile(const char* dirArq, const char* dadosArq, const char* dum
 
     hash->dir     = dir;
     hash->dados   = dados;
-    hash->dumpArq = dump;
+    hash->dumpArq = NULL;
+    strncpy(hash->nomeDump, dumpArq, sizeof(hash->nomeDump) - 1);
+    hash->nomeDump[sizeof(hash->nomeDump) - 1] = '\0';
+
+    /* Aumenta o buffer de I/O para 256KB — reduz chamadas de sistema */
+    setvbuf(dir,   NULL, _IOFBF, 262144);
+    setvbuf(dados, NULL, _IOFBF, 262144);
 
     /* Lê a profundidade global do cabeçalho do diretório */
     fseek(dir, 0, SEEK_SET);
     fread(&hash->profundidade, sizeof(int), 1, dir);
+
+    /* Carrega o diretório inteiro em cache na memória */
+    hash->cacheTamanho = 1 << hash->profundidade;
+    hash->cacheDir = malloc((size_t)hash->cacheTamanho * sizeof(long));
+    if (hash->cacheDir) {
+        fseek(dir, sizeof(int), SEEK_SET);
+        fread(hash->cacheDir, sizeof(long), hash->cacheTamanho, dir);
+    }
 
     return (HashFile)hash;
 }
@@ -378,16 +405,65 @@ void percorrerHashFile(HashFile hashFile, HashFileCallback cb, void* extra) {
     stHashFile* h = (stHashFile*)hashFile;
 
     long fim = _proximaPosFim(h);
-    Bucket b;
+    if (fim <= 0) return;
 
+    /* Lê todo o arquivo de dados de uma vez em RAM */
+    char* bufTotal = malloc((size_t)fim + 1);
+    if (!bufTotal) {
+        /* fallback: leitura bucket a bucket */
+        Bucket b;
+        for (long offset = 0; offset < fim; offset += TAM_BUCKET_BYTES) {
+            _lerBucket(h, offset, &b);
+            for (int i = 0; i < TAM_BUCKET; i++)
+                if (b.registros[i].status == VALIDO)
+                    cb(b.registros[i].chave, b.registros[i].dado, extra);
+        }
+        return;
+    }
+
+    fseek(h->dados, 0, SEEK_SET);
+    fread(bufTotal, 1, (size_t)fim, h->dados);
+    bufTotal[fim] = '\0';
+
+    /* Itera sobre o buffer em memória */
     for (long offset = 0; offset < fim; offset += TAM_BUCKET_BYTES) {
-        _lerBucket(h, offset, &b);
-        for (int i = 0; i < TAM_BUCKET; i++) {
-            if (b.registros[i].status == VALIDO) {
-                cb(b.registros[i].chave, b.registros[i].dado, extra);
-            }
+        char* bloco = bufTotal + offset;
+
+        /* Parse do cabeçalho do bucket */
+        int profLocal = 0, qtd = 0;
+        sscanf(bloco, "prof_local=%d|qtd=%d", &profLocal, &qtd);
+        if (qtd <= 0) continue;
+
+        /* Parse de cada registro */
+        char* p = bloco + HEADER_LINE_SIZE;
+        for (int i = 0; i < TAM_BUCKET; i++, p += REG_LINE_SIZE) {
+            /* Verifica se o status é VALIDO ('1') */
+            if (p[2] != '1') continue;
+
+            char k[32];
+            char dado[TAM_DADO + 1];
+
+            /* A chave começa em p[6] e tem exatos 31 caracteres reservados ("s=1|k=") */
+            memcpy(k, p + 6, 31);
+            k[31] = '\0';
+            int lenk = 31;
+            while (lenk > 0 && k[lenk-1] == ' ') k[--lenk] = '\0';
+
+            /* O dado começa em p[40] ("|d=" começa em 37, logo p[40] é o primeiro char do dado) */
+            int maxDado = TAM_DADO;
+            if (REG_LINE_SIZE - 41 < maxDado) maxDado = REG_LINE_SIZE - 41;
+            memcpy(dado, p + 40, maxDado);
+            dado[maxDado] = '\0';
+
+            int lend = maxDado;
+            /* Remove padding, quebras de linha ou sujeira do fim */
+            while (lend > 0 && (dado[lend-1] == ' ' || dado[lend-1] == '\n' || dado[lend-1] == '\r')) dado[--lend] = '\0';
+
+            cb(k, dado, extra);
         }
     }
+
+    free(bufTotal);
 }
 
 void fecharHashFile(HashFile hashFile) {
@@ -395,32 +471,69 @@ void fecharHashFile(HashFile hashFile) {
     stHashFile* h = (stHashFile*)hashFile;
 
     /* Gera o texto representativo legivel no fim da execução */
-    if (h->dumpArq) {
-        fprintf(h->dumpArq, "\n\n=== REPRESENTACAO ESQUEMATICA DA HASHFILE ===\n");
-        fprintf(h->dumpArq, "Profundidade Global: %d\n", h->profundidade);
-        
-        long fim = _proximaPosFim(h);
-        fprintf(h->dumpArq, "Total de Buckets Instanciados: %ld\n\n", fim / TAM_BUCKET_BYTES);
+    if (h->nomeDump[0] != '\0') {
+        FILE* dump = fopen(h->nomeDump, "w");
+        if (!dump) { printf("Erro ao abrir dump %s\n", h->nomeDump); }
+        else {
+        int totalEntradas = 1 << h->profundidade;
+        long totalBuckets = _proximaPosFim(h) / TAM_BUCKET_BYTES;
 
-        Bucket b;
-        for (long offset = 0; offset < fim; offset += TAM_BUCKET_BYTES) {
-            _lerBucket(h, offset, &b);
-            fprintf(h->dumpArq, "--> [Bucket Offset: %08ld] | ProfLocal: %d | Ocupacao: %d/%d\n", offset, b.profLocal, b.qtd, TAM_BUCKET);
-            if (b.qtd > 0) {
-                for (int i = 0; i < TAM_BUCKET; i++) {
-                    if (b.registros[i].status == VALIDO) {
-                        fprintf(h->dumpArq, "      [+] Chave: %s\n", b.registros[i].chave);
-                    }
-                }
-            } else {
-                fprintf(h->dumpArq, "      (Bucket Vazio)\n");
-            }
-            fprintf(h->dumpArq, "\n");
+        /* ── Cabeçalho ── */
+        fprintf(dump, "DUMP\n");
+        fprintf(dump, "*Dump cabecalho\n");
+        fprintf(dump, "numBucketsd %d \n", totalEntradas);
+        fprintf(dump, "sizeRecordd %d \n", TAM_BUCKET);
+        fprintf(dump, "sizeBlock %d \n", TAM_BUCKET_BYTES);
+        fprintf(dump, "offsetKey 0 \n");
+        fprintf(dump, "sizeKey 32 \n");
+        fprintf(dump, "offsetTable %d \n", (int)sizeof(int));
+        fprintf(dump, "offsetBuckets 0 \n");
+        fprintf(dump, "offsetOverflow -1\n");
+
+        /* ── Tabela de diretório ── (leitura em bloco: 1 fread em vez de N) */
+        fprintf(dump, "* Dump table\n");
+        long* tabela = malloc((size_t)totalEntradas * sizeof(long));
+        if (tabela) {
+            fseek(h->dir, sizeof(int), SEEK_SET);
+            fread(tabela, sizeof(long), totalEntradas, h->dir);
+            for (int i = 0; i < totalEntradas; i++)
+                fprintf(dump, "[%d] %ld\n", i, tabela[i]);
+            free(tabela);
         }
-        fclose(h->dumpArq);
+
+        /* ── Buckets ── */
+        fprintf(dump, "*Dump buckets\n");
+        Bucket b;
+        for (long bloco = 0; bloco < totalBuckets; bloco++) {
+            long offset = bloco * TAM_BUCKET_BYTES;
+            _lerBucket(h, offset, &b);
+            fprintf(dump, "BLOCO: %ld\n", bloco);
+            for (int i = 0; i < TAM_BUCKET; i++) {
+                Registro* r = &b.registros[i];
+                unsigned int hval = 0;
+                if (r->chave[0] != '\0') {
+                    unsigned long hh = 5381;
+                    const char* s = r->chave;
+                    int c;
+                    while ((c = *s++)) hh = ((hh << 5) + hh) + c;
+                    hval = (unsigned int)hh;
+                }
+                char dadoExib[TAM_DADO + 1];
+                strncpy(dadoExib, r->dado, TAM_DADO);
+                dadoExib[TAM_DADO] = '\0';
+                for (int k = 0; dadoExib[k]; k++)
+                    if (dadoExib[k] == ' ') dadoExib[k] = '_';
+                fprintf(dump, "%d | %u | %-44.44s | %d |\n",
+                        r->status, hval, dadoExib, b.profLocal);
+            }
+        }
+        fprintf(dump, "FIM DUMP\n");
+        fclose(dump);
+        }
     }
 
     fclose(h->dir);
     fclose(h->dados);
+    free(h->cacheDir);
     free(h);
 }

@@ -173,9 +173,9 @@ int main(int argc, char* argv[]) {
         // Copia o SVG geo (com as quadras) para o SVG final, sem o </svg>
         FILE* geoSvgCopia = fopen(arquivoSvgGeo, "r");
         if (geoSvgCopia != NULL) {
-            char linhaCopiada[1024];
+            char linhaCopiada[65536];
             while (fgets(linhaCopiada, sizeof(linhaCopiada), geoSvgCopia) != NULL) {
-                if (strncmp(linhaCopiada, "</svg>", 6) == 0) continue;
+                if (strstr(linhaCopiada, "</svg>") != NULL) continue;
                 fputs(linhaCopiada, saidaSvg);
             }
             fclose(geoSvgCopia);

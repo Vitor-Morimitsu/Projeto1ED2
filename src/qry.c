@@ -1,6 +1,5 @@
 #include "qry.h"
 
-/* ── Contexto para o callback do comandoRq ───────────────── */
 typedef struct {
     FILE*     txt;
     HashFile  hashPessoas;

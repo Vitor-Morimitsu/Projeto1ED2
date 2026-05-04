@@ -6,14 +6,10 @@
 
 #define TAM_BUCKET 10
 #define TAM_DADO   HASHFILE_TAM_BUF   // 256 é o tamanho máximo da string
-
-/* O formato do registro passa a ser: s=%d|k=%-31s|d=%s */
 #define REG_CONTENT_SIZE  300  
 #define REG_LINE_SIZE     (REG_CONTENT_SIZE + 1)        
-
 #define HEADER_CONTENT_SIZE  30
 #define HEADER_LINE_SIZE     (HEADER_CONTENT_SIZE + 1)  
-
 #define TAM_BUCKET_BYTES  (HEADER_LINE_SIZE + TAM_BUCKET * REG_LINE_SIZE)
 
 typedef struct {
@@ -38,8 +34,6 @@ typedef struct {
     int   cacheTamanho;   /* número de entradas no cache */
 } stHashFile;
 
-/* ── Funções privadas ─────────────────────────────────────── */
-
 static unsigned int hashString(const char *str) {
     if (!str) return 0;
     unsigned long hash = 5381;
@@ -53,7 +47,7 @@ static int getBits(unsigned int numero, int prof) {
     return numero & ((1 << prof) - 1);
 }
 
-/* Retorna o offset do bucket para 'chave' usando o cache em memória */
+//retorna o offset do bucket para 'chave' usando o cache em memória 
 static long _lerOffsetBucket(stHashFile* h, const char* chave) {
     int idx = getBits(hashString(chave), h->profundidade);
     if (h->cacheDir && idx < h->cacheTamanho)
@@ -66,7 +60,7 @@ static long _lerOffsetBucket(stHashFile* h, const char* chave) {
     return off;
 }
 
-/* Escreve um offset no diretório para o índice 'idx' e atualiza o cache */
+//escreve um offset no diretório para o índice 'idx' e atualiza o cache 
 static void _escreverOffsetDir(stHashFile* h, int idx, long offset) {
     if (h->cacheDir && idx < h->cacheTamanho)
         h->cacheDir[idx] = offset;
@@ -75,7 +69,7 @@ static void _escreverOffsetDir(stHashFile* h, int idx, long offset) {
     fwrite(&offset, sizeof(long), 1, h->dir);
 }
 
-/* Lê um bucket completo a partir do offset no arquivo de dados */
+//lê um bucket completo a partir do offset no arquivo de dados 
 static void _lerBucket(stHashFile* h, long offset, Bucket* b) {
     fseek(h->dados, offset, SEEK_SET);
 
@@ -117,7 +111,7 @@ static void _lerBucket(stHashFile* h, long offset, Bucket* b) {
     }
 }
 
-/* Escreve um bucket completo no offset especificado do arquivo de dados */
+//escreve um bucket completo no offset especificado do arquivo de dados 
 static void _escreverBucket(stHashFile* h, long offset, Bucket* b) {
     fseek(h->dados, offset, SEEK_SET);
 
@@ -145,13 +139,13 @@ static void _escreverBucket(stHashFile* h, long offset, Bucket* b) {
     fflush(h->dados);
 }
 
-/* Retorna o offset do próximo byte livre no arquivo de dados */
+//retorna o offset do próximo byte livre no arquivo de dados 
 static long _proximaPosFim(stHashFile* h) {
     fseek(h->dados, 0, SEEK_END);
     return ftell(h->dados);
 }
 
-/* Dobra o diretório: duplica o número de entradas */
+//dobra o diretório: duplica o número de entradas 
 static void _dobrarDiretorio(stHashFile* h) {
     int tamanhoAtual  = 1 << h->profundidade;
     int novaTamanho   = tamanhoAtual * 2;
@@ -186,7 +180,7 @@ static void _dobrarDiretorio(stHashFile* h) {
     h->profundidade = novaProfund;
 }
 
-/* Faz o split do bucket que contém 'chave' */
+//faz o split do bucket que contém 'chave' 
 static void _splitBucket(stHashFile* h, const char* chave) {
     long   offsetAntigo = _lerOffsetBucket(h, chave);
     Bucket bucketAntigo;
@@ -217,12 +211,10 @@ static void _splitBucket(stHashFile* h, const char* chave) {
         }
     }
 
-    /* b0 reutiliza offsetAntigo; b1 é alocado no final do arquivo */
     long offsetB1 = _proximaPosFim(h);
     _escreverBucket(h, offsetAntigo, &b0);
     _escreverBucket(h, offsetB1,     &b1);
 
-    /* Atualizar entradas do diretório que apontavam para o bucket antigo */
     int mascAntiga    = (1 << bucketAntigo.profLocal) - 1;
     int baseAntiga    = getBits(hashString(chave), bucketAntigo.profLocal);
     int totalEntradas = 1 << h->profundidade;
@@ -285,15 +277,12 @@ HashFile criarHashFile(const char* dirArq, const char* dadosArq, const char* dum
     strncpy(hash->nomeDump, dumpArq, sizeof(hash->nomeDump) - 1);
     hash->nomeDump[sizeof(hash->nomeDump) - 1] = '\0';
 
-    /* Aumenta o buffer de I/O para 256KB — reduz chamadas de sistema */
     setvbuf(dir,   NULL, _IOFBF, 262144);
     setvbuf(dados, NULL, _IOFBF, 262144);
 
-    /* Lê a profundidade global do cabeçalho do diretório */
     fseek(dir, 0, SEEK_SET);
     fread(&hash->profundidade, sizeof(int), 1, dir);
 
-    /* Carrega o diretório inteiro em cache na memória */
     hash->cacheTamanho = 1 << hash->profundidade;
     hash->cacheDir = malloc((size_t)hash->cacheTamanho * sizeof(long));
     if (hash->cacheDir) {

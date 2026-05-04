@@ -182,7 +182,7 @@ char* serializarPessoa(Pessoa p) {
     stPessoa* pessoa = (stPessoa*)p;
     char* buf = malloc(256);
     if (!buf) return NULL;
-    /* Formato: CPF|nome|sobrenome|sexo|dia|mes|ano|CEP|face|num|complemento */
+    //formato: CPF|nome|sobrenome|sexo|dia|mes|ano|CEP|face|num|complemento 
     snprintf(buf, 256, "%s|%s|%s|%c|%d|%d|%d|%s|%c|%d|%s",
              pessoa->CPF, pessoa->nome, pessoa->sobrenome, pessoa->sexo,
              pessoa->diaNascimento, pessoa->mesNascimento, pessoa->anoNascimento,
@@ -195,7 +195,7 @@ Pessoa desserializarPessoa(const char* s) {
     stPessoa* p = malloc(sizeof(stPessoa));
     if (!p) return NULL;
     memset(p, 0, sizeof(stPessoa));
-    /* %[^|] le ate o proximo '|', preservando espacos internos (ex: "Apto 5") */
+    // %[^|] le ate o proximo '|', preservando espacos internos
     sscanf(s, "%31[^|]|%31[^|]|%49[^|]|%c|%d|%d|%d|%31[^|]|%c|%d|%49[^|]",
            p->CPF, p->nome, p->sobrenome, &p->sexo,
            &p->diaNascimento, &p->mesNascimento, &p->anoNascimento,
